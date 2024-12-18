@@ -4,6 +4,7 @@ import PrimaryButton from '@/Components/buttons/PrimaryButton';
 import TextInput from '@/Components/inputs/TextInput';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
+import Textarea from '@/Components/inputs/Textarea';
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -39,7 +40,6 @@ export default function UpdateProfileInformation({
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
-
                     <TextInput
                         id="name"
                         className="mt-1 block w-full"
@@ -49,24 +49,75 @@ export default function UpdateProfileInformation({
                         isFocused
                         autoComplete="name"
                     />
-
                     <InputError className="mt-2" message={errors.name} />
                 </div>
-
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <InputLabel htmlFor="name" value="Gender" />
+                        <TextInput
+                            id="name"
+                            className="mt-1 block w-full"
+                            value={data.name}
+                            onChange={(e) => setData('name', e.target.value)}
+                            required
+                            isFocused
+                            autoComplete="name"
+                        />
+                        <InputError className="mt-2" message={errors.name} />
+                    </div>
+                    <div>
+                        <InputLabel htmlFor="name" value="Gender" />
+                        <TextInput
+                            id="name"
+                            className="mt-1 block w-full"
+                            value={data.name}
+                            onChange={(e) => setData('name', e.target.value)}
+                            required
+                            isFocused
+                            autoComplete="name"
+                        />
+                        <InputError className="mt-2" message={errors.name} />
+                    </div>
+                    <div>
+                        <InputLabel htmlFor="name" value="Gender" />
+                        <TextInput
+                            id="name"
+                            className="mt-1 block w-full"
+                            value={data.name}
+                            onChange={(e) => setData('name', e.target.value)}
+                            required
+                            isFocused
+                            autoComplete="name"
+                        />
+                        <InputError className="mt-2" message={errors.name} />
+                    </div>
+                </div>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
+                    <InputLabel htmlFor="name" value="Religion" />
                     <TextInput
-                        id="email"
-                        type="email"
+                        id="name"
                         className="mt-1 block w-full"
-                        value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
+                        value={data.name}
+                        onChange={(e) => setData('name', e.target.value)}
                         required
-                        autoComplete="username"
+                        isFocused
+                        autoComplete="name"
                     />
-
-                    <InputError className="mt-2" message={errors.email} />
+                    <InputError className="mt-2" message={errors.name} />
+                </div>
+                <div>
+                    <InputLabel htmlFor="name" value="Address" />
+                    <Textarea
+                        id="address"
+                        name="address"
+                        rows={5}
+                        placeholder="Address"
+                        value={data.address}
+                        required
+                        onChange={(e) => handleChange("address", e.target.value)}
+                        className=""
+                    />
+                    <InputError className="mt-2" message={errors.name} />
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (

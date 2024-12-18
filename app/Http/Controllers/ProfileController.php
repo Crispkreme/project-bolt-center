@@ -23,7 +23,15 @@ class ProfileController extends Controller
             'status' => session('status'),
         ]);
     }
-
+    public function changePassword(): Response
+    {
+        return Inertia::render('Profile/ChangePassword');
+    }
+    public function deleteAccount(): Response
+    {
+        return Inertia::render('Profile/DeleteAccount');
+    }
+    
     /**
      * Update the user's profile information.
      */
