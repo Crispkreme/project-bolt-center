@@ -67,6 +67,46 @@ export default function UpdateProfileInformation({
             };
         }
     };
+    const handleCropDone = (croppedArea) => {
+        console.log("Cropped area:", croppedArea);
+        setImageModal(false);
+    
+        const canvas = document.createElement('canvas');
+        canvas.width = croppedArea.width;
+        canvas.height = croppedArea.height;
+        const ctx = canvas.getContext('2d');
+    
+        const imageObj = new Image();
+        imageObj.src = image; 
+        imageObj.onload = () => {
+            ctx.drawImage(
+                imageObj,
+                croppedArea.x,
+                croppedArea.y,
+                croppedArea.width,
+                croppedArea.height,
+                0,
+                0,
+                croppedArea.width,
+                croppedArea.height
+            );
+    
+            const croppedImage = canvas.toDataURL('image/jpeg');
+            const file = dataURLtoFile(croppedImage, 'profile.jpg');
+            setData('profile', file);
+        };
+    };
+    const dataURLtoFile = (dataUrl, filename) => {
+        const arr = dataUrl.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+    };
     const onChooseImg = () => {
         inputRef.current.click();
     };
@@ -86,7 +126,7 @@ export default function UpdateProfileInformation({
         };
         console.log('Submitted form data:', formattedData);
 
-        post('profile.update', {
+        post('profile/create', {
           onSuccess: (response) => {
             const flash = response.props?.flash;
             if (flash?.error) {
@@ -112,7 +152,7 @@ export default function UpdateProfileInformation({
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6 w-full">
+            <form onSubmit={submit} className="mt-6 space-y-6 w-full" >
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
                     <TextInput
@@ -227,10 +267,7 @@ export default function UpdateProfileInformation({
                         image={image}
                         show={imageModal}
                         onClose={() => setImageModal(false)}
-                        onCropDone={(croppedArea) => {
-                        console.log("Cropped area:", croppedArea);
-                        setImageModal(false);
-                        }}
+                        onCropDone={handleCropDone}
                         onCropCancel={() => setImageModal(false)}
                     />                  
                 )}

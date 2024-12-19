@@ -2,17 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\AccountContract;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class ProfileController extends Controller
 {
+    protected $accountContract;
+
+    public function __construct(
+        AccountContract $accountContract,
+    ) {
+        $this->accountContract = $accountContract;
+    }
+    
     /**
      * Display the user's profile form.
      */
@@ -35,17 +46,47 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function updateOrCreateProfile(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $accountData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'gender' => 'required|string',
+            'birthday' => 'required|date',
+            'civil_status' => 'required|string',
+            'religion' => 'nullable|string',
+            'address' => 'nullable|string',
+            'profile' => 'nullable|image|max:5120',
+        ]);
+        $accountData['birthday'] = \Carbon\Carbon::parse($accountData['birthday'])->format('Y-m-d');
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = $request->user();
+        $user->fill($accountData);
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $user->save();
 
-        return Redirect::route('profile.edit');
+        if ($request->hasFile('profile')) {
+            $userSlug = Str::slug($accountData['name'], '-');
+            $file = $request->file('profile');
+            $filename = $userSlug . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('profile', $filename, 'public');
+            $newProfileUrl = Storage::url($path);
+
+            $existingProfile = $user->profile;
+            if ($existingProfile && Storage::exists('public/' . $existingProfile)) {
+                Storage::delete('public/' . $existingProfile);
+            }
+
+            $accountData['profile'] = $newProfileUrl;
+        }
+
+        $this->accountContract->updateOrCreateAccount($accountData);
+
+        return Redirect::route('dashboard');
     }
 
     /**

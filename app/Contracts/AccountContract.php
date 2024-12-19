@@ -5,4 +5,5 @@ namespace App\Contracts;
 interface AccountContract {
 
     public function getLoggedInAccount();
+    public function updateOrCreateAccount($data);
 }
