@@ -1,3 +1,4 @@
+import Header from '@/Components/Header';
 import { Link, usePage } from '@inertiajs/react';
 import React, { useState } from 'react';
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -19,7 +20,7 @@ export default function AuthenticatedLayout({ header, children }) {
     const [open, setOpen] = useState(true);
 
     return (
-        <section className="flex gap-6">
+        <section className="flex gap-1">
             <div className={`bg-[#0e0e0e] min-h-screen ${open ? 'w-72':'w-16'} duration-500 text-gray-100 px-4`}>
                 <div className='py-3 flex justify-end'>
                     <HiMenuAlt3 size={26} className="cursor-pointer" onClick={() => setOpen(!open)}/>
@@ -38,8 +39,10 @@ export default function AuthenticatedLayout({ header, children }) {
                     }
                 </div>
             </div>
-            <div className='m-3 text-xl text-gray-900 font-semibold'>
-                <h1>Main Container</h1>
+            <div className='m-3 text-xl text-gray-900 font-semibold w-full'>
+                <Header />
+
+                <main>{children}</main>
             </div>
         </section>
     );

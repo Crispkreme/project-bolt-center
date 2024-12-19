@@ -2,11 +2,20 @@
 
 namespace App\Http\Middleware;
 
+use App\Contracts\AccountContract;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
+    protected $accountContract;
+
+    public function __construct(
+        AccountContract $accountContract,
+    ) {
+        $this->accountContract = $accountContract;
+    }
+
     /**
      * The root template that is loaded on the first page visit.
      *
@@ -33,6 +42,7 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'account' => $this->accountContract->getLoggedInAccount(),
             ],
         ];
     }
