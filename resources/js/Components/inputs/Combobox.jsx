@@ -1,13 +1,6 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 
-const Combobox = forwardRef(({ options = [], className = '', isFocused = false, ...props }, ref) => {
-    
-    // sample data
-    // const genders = [
-    //     { name: 'Male', value: 'Male' },
-    //     { name: 'Female', value: 'Female' },
-    // ];
-
+const Combobox = forwardRef(({ options = [], className = '', isFocused = false, onChange, ...props }, ref) => {
     const localRef = useRef(null);
 
     useImperativeHandle(ref, () => ({
@@ -26,6 +19,7 @@ const Combobox = forwardRef(({ options = [], className = '', isFocused = false, 
             className={`rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${className}`}
             ref={localRef}
             defaultValue=""
+            onChange={(e) => onChange?.(e.target.value)}
         >
             <option value="" disabled>
                 Select an option

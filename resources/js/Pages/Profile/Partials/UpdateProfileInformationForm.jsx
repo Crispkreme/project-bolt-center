@@ -11,6 +11,8 @@ import { useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ImageCropper from '@/Components/image/ImageCropper';
+import { toast } from "react-hot-toast";
+import { genders, statuses } from '@/Constants';
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -23,7 +25,7 @@ export default function UpdateProfileInformation({
     const [image, setImage] = useState();
     const [imageModal, setImageModal] = useState(false);
     const [currentPage, setCurrentPage] = useState();
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    const { data, setData, post, errors, processing } = useForm({
         name: user.name || '',
         email: user.email || '',
         gender: user.gender || '',
@@ -31,10 +33,9 @@ export default function UpdateProfileInformation({
         civil_status: user.civil_status || '',
         religion: user.religion || '',
         address: user.address || '',
-        age: user.age || '',
+        profile: user.profile || ''
     });
 
-    // Calculate Age based on the selected birthday
     const calculateAge = (birthdate) => {
         const today = new Date();
         const birthDate = new Date(birthdate);
@@ -48,7 +49,6 @@ export default function UpdateProfileInformation({
 
         return age;
     };
-
     const handleChange = (date) => {
         setStartDate(date);
         setData('birthday', date);
@@ -56,7 +56,6 @@ export default function UpdateProfileInformation({
         const age = calculateAge(date);
         setData('age', age);
     };
-
     const handleImageUpload = (event) => {
         if (event.target.files && event.target.files.length > 0) {
             const reader = new FileReader();
@@ -68,41 +67,41 @@ export default function UpdateProfileInformation({
             };
         }
     };
-
     const onChooseImg = () => {
         inputRef.current.click();
     };
-
-    const closeModal = () => {
-        setImageModal(false);
-    };
-
-    const onCropDone = (imgCroppedArea) => {
-        console.log("Cropped Image Area:", imgCroppedArea);
-        closeModal();
-    };
-
-    const onCropCancel = () => {
-        console.log("Crop canceled.");
-        closeModal();
-    };
-
     const submit = (e) => {
         e.preventDefault();
-        patch(route('profile.update'));
+
+        const formattedData = {
+            address: data.address,
+            age: data.age,
+            birthday: data.birthday.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }),
+            civil_status: data.civil_status,
+            email: data.email,
+            gender: data.gender,
+            name: data.name,
+            profile: data.profile,
+            religion: data.religion,
+        };
+        console.log('Submitted form data:', formattedData);
+
+        post('profile.update', {
+          onSuccess: (response) => {
+            const flash = response.props?.flash;
+            if (flash?.error) {
+              toast.error(flash.error);
+            }
+    
+            if (flash?.success) {
+              toast.success(flash.success);
+            }
+          },
+          onError: (errors) => {
+            console.error('Failed to book appointment:', errors);
+          },
+        });
     };
-
-    const genders = [
-        { name: 'Male', value: 'Male' },
-        { name: 'Female', value: 'Female' },
-    ];
-
-    const statuses = [
-        { name: 'Single', value: 'Single' },
-        { name: 'Married', value: 'Married' },
-        { name: 'Divorce', value: 'Divorce' },
-        { name: 'Separated', value: 'Separated' },
-    ];
 
     return (
         <section className="w-full">
@@ -114,7 +113,6 @@ export default function UpdateProfileInformation({
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6 w-full">
-                {/* Name */}
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
                     <TextInput
@@ -127,8 +125,6 @@ export default function UpdateProfileInformation({
                     />
                     <InputError className="mt-2" message={errors.name} />
                 </div>
-
-                {/* Grid Fields */}
                 <div className="grid grid-cols-4 gap-3">
                     <div>
                         <InputLabel htmlFor="gender" value="Gender" />
@@ -137,7 +133,10 @@ export default function UpdateProfileInformation({
                             options={genders}
                             className="mt-1 w-full"
                             value={data.gender}
-                            onChange={(value) => setData('gender', value)}
+                            onChange={(value) => {
+                                setData('gender', value);
+                                console.log('Selected gender:', value);
+                            }}
                         />
                         <InputError className="mt-2" message={errors.gender} />
                     </div>
@@ -148,7 +147,10 @@ export default function UpdateProfileInformation({
                             options={statuses}
                             className="mt-1 w-full"
                             value={data.civil_status}
-                            onChange={(value) => setData('civil_status', value)}
+                            onChange={(value) => {
+                                setData('civil_status', value);
+                                console.log('Selected civil status:', value);
+                            }}
                         />
                         <InputError className="mt-2" message={errors.civil_status} />
                     </div>
@@ -174,8 +176,6 @@ export default function UpdateProfileInformation({
                         <InputError className="mt-2" message={errors.age} />
                     </div>
                 </div>
-
-                {/* Religion */}
                 <div>
                     <InputLabel htmlFor="religion" value="Religion" />
                     <TextInput
@@ -188,8 +188,6 @@ export default function UpdateProfileInformation({
                     />
                     <InputError className="mt-2" message={errors.religion} />
                 </div>
-
-                {/* Address */}
                 <div>
                     <InputLabel htmlFor="address" value="Address" />
                     <Textarea
@@ -201,8 +199,6 @@ export default function UpdateProfileInformation({
                     />
                     <InputError className="mt-2" message={errors.address} />
                 </div>
-
-                {/* Email Verification */}
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
                         <p className="mt-2 text-sm text-gray-800">
@@ -223,12 +219,9 @@ export default function UpdateProfileInformation({
                         )}
                     </div>
                 )}
-
                 <div>
                     <input type="file" accept="image/*" ref={inputRef} onChange={handleImageUpload} style={{ display: 'none' }} />
                 </div>
-
-                {/* Modal */}
                 {currentPage === "crop-img" && imageModal && (
                     <ImageCropper
                         image={image}
@@ -241,13 +234,10 @@ export default function UpdateProfileInformation({
                         onCropCancel={() => setImageModal(false)}
                     />                  
                 )}
-
-                {/* Save Button */}
                 <div className="row flex items-center justify-between gap-4">
                     <SecondaryButton disabled={processing} onClick={onChooseImg}>
                         Upload Profile
                     </SecondaryButton>
-
                     <div className="flex gap-4">
                         <PrimaryButton disabled={processing}>Save</PrimaryButton>
                         <DangerButton disabled={processing}>Cancel</DangerButton>
