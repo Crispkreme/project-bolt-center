@@ -1,7 +1,22 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
+import { useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 
 export default function Dashboard() {
+    const { flash } = usePage().props;
+    
+    useEffect(() => {
+        if (flash?.message?.success) {
+            console.log("success");
+            toast.success("Profile updated successfully!");
+        }
+        if (flash?.message?.error) {
+            console.log("error");
+            toast.error("Please try again");
+        }
+    }, [flash]);
+
     return (
         <AuthenticatedLayout
             header={

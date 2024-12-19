@@ -86,7 +86,11 @@ class ProfileController extends Controller
 
         $this->accountContract->updateOrCreateAccount($accountData);
 
-        return Redirect::route('dashboard');
+        // session()->flash('success', 'Profile updated successfully!');
+
+        return redirect()->route('dashboard')->with([
+            'success' => 'Profile updated successfully!'
+        ]);
     }
 
     /**

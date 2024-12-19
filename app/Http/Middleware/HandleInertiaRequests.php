@@ -44,6 +44,9 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
                 'account' => $this->accountContract->getLoggedInAccount(),
             ],
+            'flash' => [
+                'message' => $request->session()->all()
+            ]
         ];
     }
 }
