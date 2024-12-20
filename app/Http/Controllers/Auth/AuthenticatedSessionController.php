@@ -45,8 +45,8 @@ class AuthenticatedSessionController extends Controller
 
         $account = $this->accountContract->getLoggedInAccount();
 
-        if ($account && !$account->isProfileComplete()) {
-            return redirect()->intended(route('profile.update', absolute: false));
+        if (!$account) {
+            return redirect()->intended(route('profile.edit', absolute: false));
         }
 
         return redirect()->intended(route('dashboard', absolute: false));
