@@ -11,7 +11,7 @@ import { useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ImageCropper from '@/Components/image/ImageCropper';
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 import { genders, statuses } from '@/Constants';
 
 export default function UpdateProfileInformation({
