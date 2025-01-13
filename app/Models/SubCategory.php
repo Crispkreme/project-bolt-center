@@ -6,25 +6,25 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class SubCategory extends Model
 {
     use HasFactory;
     
-    protected $table = 'units';
-
+    protected $table = 'sub_categories';
     protected $fillable = [
-        'unit',
-        'unit_slug',
-        'no_products',
-        'unit_status',
+        'category_id',
+        'sub_category',
+        'sub_category_slug',
+        'description',
+        'sub_category_status',
     ];
 
     protected $casts = [
-        'unit_status' => 'string',
+        'sub_category_status' => 'string',
     ];
     
     protected $attributes = [
-        'unit_status' => 'Active',
+        'sub_category_status' => 'Active',
     ];
 
     public function getCreatedAtAttribute($value)
