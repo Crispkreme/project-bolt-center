@@ -182,5 +182,3 @@
     window.ResizeSensor = ResizeSensor;
   }
 })();
-
-//# sourceMappingURL=maps/ResizeSensor.js.map

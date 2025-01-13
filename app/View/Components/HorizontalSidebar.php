@@ -21,6 +21,6 @@ class HorizontalSidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.horizontal-sidebar');
+        return view('components.sidebars.horizontal-sidebar');
     }
 }

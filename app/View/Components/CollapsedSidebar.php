@@ -21,6 +21,6 @@ class CollapsedSidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.collapsed-sidebar');
+        return view('components.sidebars.collapsed-sidebar');
     }
 }
