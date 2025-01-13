@@ -12,16 +12,22 @@ class TableTopHead extends Component
     public $subtitle;
     public $addTitleText;
     public $importTitleText;
+    public $isModal;
+    public $modalTarget;
+    public $routeTarget;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($title, $subtitle, $addTitleText, $importTitleText)
+    public function __construct($title, $subtitle, $addTitleText, $importTitleText, $isModal, $modalTarget, $routeTarget)
     {
         $this->title = $title;
         $this->subtitle = $subtitle;
         $this->addTitleText = $addTitleText;
         $this->importTitleText = $importTitleText;
+        $this->isModal = $isModal;
+        $this->modalTarget = $modalTarget;
+        $this->routeTarget = $routeTarget;
     }
 
     /**

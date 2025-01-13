@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +27,8 @@ Route::get('/admin/category/list', function () { return view('pages.admin.catego
 Route::get('/admin/category/add', function () { return view('pages.admin.categories.add-category');})->name('admin.category.add');
 Route::get('/admin/stock/low', function () { return view('pages.admin.stocks.stock-low');})->name('admin.stock.low');
 Route::get('/admin/stock/list', function () { return view('pages.admin.stocks.stock-list');})->name('admin.stock.list');
-Route::get('/admin/unit/list', function () { return view('pages.admin.units.unit-list');})->name('admin.unit.list');
+
+Route::get('/admin/unit/list', [UnitController::class, 'unitList'])->name('admin.unit.list');
+Route::post('/admin/unit/store', [UnitController::class, 'unitStore'])->name('admin.unit.store');
 
 require __DIR__.'/auth.php';

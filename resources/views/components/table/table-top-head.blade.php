@@ -6,11 +6,10 @@
         </div>
     </div>
     <ul class="table-top-head">
-        
         @if (Route::is('admin.stock.low'))
             <li>
                 <div class="status-toggle d-flex justify-content-between align-items-center">
-                    <input type="checkbox" id="user2" class="check" checked="">
+                    <input type="checkbox" id="user2" class="check" checked=""/>
                     <label for="user2" class="checktoggle">checkbox</label>
                     Notify
                 </div>
@@ -51,11 +50,19 @@
     </ul>
 
     @if ($addTitleText)
+
         <div class="page-btn">
-            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/add-product" class="btn btn-added">
-                <i data-feather="plus-circle" class="me-2"></i>
-                {{ $addTitleText }}
-            </a>
+            @if ($isModal)
+                <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="{{ $modalTarget }}">
+                    <i data-feather="plus-circle" class="me-2"></i>
+                    {{ $addTitleText }}
+                </a>
+            @else
+                <a href="{{ $routeTarget }}" class="btn btn-added">
+                    <i data-feather="plus-circle" class="me-2"></i>
+                    {{ $addTitleText }}
+                </a>
+            @endif
         </div>
     @endif
 

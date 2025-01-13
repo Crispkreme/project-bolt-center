@@ -5,11 +5,14 @@
         <div class="page-wrapper">
             <div class="content">
 
-                <x-table.table-top-head
-                    title="Product List" 
+                <x-table.table-top-head 
+                    title="Manage Product" 
                     subtitle="Manage your products" 
                     addTitleText="Add New Product" 
                     importTitleText="Import Product" 
+                    :isModal="false" 
+                    modalTarget="" 
+                    routeTarget="{{ route('admin.product.add') }}" 
                 />
 
                 <div class="card table-list-card product-list-card">

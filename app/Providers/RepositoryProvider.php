@@ -2,16 +2,24 @@
 
 namespace App\Providers;
 
+use App\Contracts\UnitContract;
+use App\Repositories\UnitRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryProvider extends ServiceProvider
 {
+    protected $repositories = [
+        UnitContract::class => UnitRepository::class,
+    ];
+
     /**
      * Register services.
      */
     public function register(): void
     {
-        //
+        foreach($this->repositories as $contract => $repository) {
+            $this->app->singleton($contract,$repository);
+        }
     }
 
     /**

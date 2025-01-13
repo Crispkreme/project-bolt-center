@@ -4,7 +4,15 @@
         <div class="page-wrapper">
             <div class="content">
 
-                <x-table.table-top-head title="Category" subtitle="Manage your categories" addTitleText="Add New Category" importTitleText="Import Category" isModal="true" modalTarget="#add-category"/>
+                <x-table.table-top-head 
+                    title="Manage Category" 
+                    subtitle="Manage your categories" 
+                    addTitleText="Add New Category" 
+                    importTitleText="Import Category" 
+                    isModal="false" 
+                    modalTarget="#add-category" 
+                    routeTarget="" 
+                />
 
                 <div class="card table-list-card category-list-card">
                     <div class="card-body">
