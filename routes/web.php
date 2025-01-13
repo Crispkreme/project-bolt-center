@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,9 +10,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () { return view('dashboard'); })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/404', function () { return view('404'); })->middleware(['auth', 'verified'])->name('404');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
 
 // ADMIN PAGE
 Route::get('/admin/dashboard', function () { return view('pages.admin.dashboard');})->name('admin.dashboard');
+Route::get('/employee/dashboard', function () { return view('pages.employee.dashboard');})->name('employee.dashboard');
+
 Route::get('/admin/product/list', function () { return view('pages.admin.products.product-list');})->name('admin.product.list');
 Route::get('/admin/product/add', function () { return view('pages.admin.products.add-product');})->name('admin.product.add');
 
@@ -34,5 +36,8 @@ Route::post('/admin/unit/store', [UnitController::class, 'unitStore'])->name('ad
 // Category
 Route::get('/admin/category/list', [CategoryController::class, 'categoryList'])->name('admin.category.list');
 Route::post('/admin/category/store', [CategoryController::class, 'categoryStore'])->name('admin.category.store');
+
+// sub category
+Route::get('/admin/sub/category/list', [SubCategoryController::class, 'subCategoryList'])->name('admin.sub.category.list');
 
 require __DIR__.'/auth.php';
