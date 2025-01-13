@@ -70,8 +70,10 @@
                                     </div>
                                     <div class="col-lg-3 col-sm-6 col-12 ms-auto">
                                         <div class="input-blocks">
-                                            <a class="btn btn-filters ms-auto"> <i data-feather="search"
-                                                    class="feather-search"></i> Search </a>
+                                            <a class="btn btn-filters ms-auto"> 
+                                                <i data-feather="search" class="feather-search"></i> 
+                                                Search 
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -97,29 +99,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>Chairs</td>
-                                        <td>chairs</td>
-                                        <td>20 Sep 2023</td>
-                                        <td><span class="badge badge-linesuccess">Active</span></td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($categories as $category)
+                                        <tr>
+                                            <td>
+                                                <label class="checkboxs">
+                                                    <input type="checkbox" value="{{ $category->id }}" />
+                                                    <span class="checkmarks"></span>
+                                                </label>
+                                            </td>
+                                            <td>{{ $category->category }}</td>
+                                            <td>{{ $category->category_slug }}</td>
+                                            <td>{{ $category->created_at }}</td>
+                                            <td>
+                                                <span class="badge {{ $category->category_status === 'Active' ? 'badge-linesuccess' : 'badge-linedanger' }}">
+                                                    {{ $category->category_status }}
+                                                </span>
+                                            </td>
+                                            <td class="action-table-data">
+                                                <div class="edit-delete-action">
+                                                    <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category" data-id="{{ $category->id }}">
+                                                        <i data-feather="edit" class="feather-edit"></i>
+                                                    </a>
+                                                    <a class="confirm-text p-2" href="javascript:void(0);" data-id="{{ $category->id }}">
+                                                        <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -19,11 +19,30 @@ class CategoryRepository implements CategoryContract
         $this->model = $model;
     }
 
-    public function getAllCategory()
+    public function getAllCategory($perPage = 10)
     {
-        return $this->model->get()->map(function ($category) {
-            $category->created_at = Carbon::parse($category->created_at)->format('d F Y');
-            return $category;
+        $data = DB::table('categories')->paginate($perPage);
+
+        $data->transform(function ($item) {
+            $item->created_at = Carbon::parse($item->created_at)->format('F j, Y');
+            return $item;
         });
+
+        return $data;
+    }
+
+    public function updateOrCreateCategory($data)
+    {
+        return $this->model->updateOrCreate(
+            [
+                'id' => $data['id'] ?? null,
+            ],
+            [
+                'category' => $data['category'],
+                'category_slug' => $data['category_slug'],
+                'category_status' => $data['category_status'],
+                'created_at' => Carbon::now(),
+            ]
+        );
     }
 }

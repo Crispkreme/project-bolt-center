@@ -1,5 +1,4 @@
-<!-- Add Category -->
-<div class="modal fade" id="add-units-category">
+<div class="modal fade" id="add-category">
     <div class="modal-dialog modal-dialog-centered custom-modal-two">
         <div class="modal-content">
             <div class="page-wrapper-new p-0">
@@ -13,20 +12,20 @@
                         </button>
                     </div>
                     <div class="modal-body custom-modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="modal-footer-btn">
-                            <a href="javascript:void(0);" class="btn btn-cancel me-2"
-                                data-bs-dismiss="modal">Cancel</a>
-                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/units"
-                                class="btn btn-submit">Submit</a>
-                        </div>
+                        <form id="categoryForm" action="{{ route('admin.category.store') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" id="category" name="category" class="form-control" required>
+                            </div>
+                            <div class="modal-footer-btn">
+                                <a href="javascript:void(0);" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</a>
+                                <button type="submit" class="btn btn-submit">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- /Add Category -->
