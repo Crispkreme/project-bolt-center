@@ -8830,5 +8830,3 @@ typeof navigator === "object" &&
 
     return Plyr;
   });
-
-//# sourceMappingURL=plyr.js.map

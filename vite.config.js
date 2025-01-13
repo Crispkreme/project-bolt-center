@@ -5,9 +5,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-
-                // css files
-                'resources/css/app.css',
+                'resources/css/app.css', 
                 'resources/css/bootstrap.min.css',
                 'resources/css/daterangepicker.css',
                 'resources/css/bootstrap-datetimepicker.min.css',
@@ -26,9 +24,7 @@ export default defineConfig({
                 'resources/css/swiper.min.css',
                 'resources/css/boxicons.min.css',
                 'resources/css/style.css',
-                
-                // js files
-                'resources/js/app.js',
+
                 'resources/js/jquery-3.7.1.min.js',
                 'resources/js/moment.min.js',
                 'resources/js/feather.min.js',
@@ -53,8 +49,18 @@ export default defineConfig({
                 'resources/js/ResizeSensor.js',
                 'resources/js/theia-sticky-sidebar.js',
                 'resources/js/script.js',
+                'resources/js/app.js'
             ],
             refresh: true,
         }),
     ],
+    css: {
+        devSourcemap: false,
+    },
+    build: {
+        sourcemap: false,
+    },
+    server: {
+        sourcemapIgnoreList: () => true,
+    },
 });

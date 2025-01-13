@@ -7,6 +7,10 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
         <!-- Scripts -->
         @vite([
             'resources/css/bootstrap.min.css',
@@ -55,10 +59,12 @@
         ])
     </head>
     <body>
-        <div id="global-loader">
-            <div class="whirly-loader"></div>
-        </div>
 
+        <div id="global-loader">
+            <div class="whirly-loader"> </div>
+        </div>
+    
+        <!-- Main Wrapper -->
         <div class="main-wrapper">
 
             <x-header />
@@ -67,29 +73,35 @@
 
             <x-collapsed-sidebar />
 
-            <x-horizontal-sidebar />
+            <x-collapsed-sidebar />
 
-            <div class="page-wrapper">
-                <div class="content">
-                    {{ $slot }}
-                </div>
-            </div>
+            {{ $slot }}
+
         </div>
 
+        <!-- /Main Wrapper -->
         <div class="customizer-links" id="setdata">
             <ul class="sticky-sidebar">
-              <li class="sidebar-icons">
-                <a
-                  href="#"
-                  class="navigation-add"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="left"
-                  data-bs-original-title="Theme"
-                >
-                  <i data-feather="settings" class="feather-five"></i>
-                </a>
-              </li>
+                <li class="sidebar-icons">
+                    <a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left"
+                        data-bs-original-title="Theme">
+                        <i data-feather="settings" class="feather-five"></i>
+                    </a>
+                </li>
             </ul>
         </div>
+
+        <x-modal.add-units />
+
+        <x-modal.add-units-category />
+    
+        <x-modal.add-units-brand />
+    
+        <x-modal.add-unit />
+    
+        <x-modal.add-variation />
+    
+        <x-modal.view-notes />
+
     </body>
 </html>

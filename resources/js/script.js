@@ -583,6 +583,10 @@ $(document).ready(function () {
   });
   $(document).on("click", "#filter_search", function () {
     $("#filter_inputs").slideToggle("slow");
+    $("#unit_filter_inputs").slideToggle("slow");
+    $("#product_filter_inputs").slideToggle("slow");
+    $("#stock_filter_inputs").slideToggle("slow");
+    $("#category_filter_inputs").slideToggle("slow");
   });
   $(document).on("click", "#filter_search1", function () {
     $("#filter_inputs1").slideToggle("slow");

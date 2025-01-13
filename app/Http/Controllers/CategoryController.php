@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\CategoryContract;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -18,16 +21,61 @@ class CategoryController extends Controller
 
     public function categoryList()
     {
-        $user = Auth::user();
+        try {
+            
+            $categories = $this->categoryContract->getAllCategory(10);
 
-        if (!$user) {
-            return redirect()->route('login');
-        }
-        
-        $categories = $this->categoryContract->getAllCategory();
+            return view('pages.admin.categories.category-list', [
+                'categories' => $categories,
+            ]);
 
-        return view('admin.categories.index', [
-            'categories' => $categories,
-        ]);
+        } catch (Exception $e) {
+
+            Log::error('Error in categoryList: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        } 
+    }
+
+    public function categoryStore(Request $request, $id = null)
+    {
+        try {
+
+            $data = $request->validate([
+                'category' => 'required|string|max:255',
+                'category_slug' => 'string|max:255|unique:categories,category_slug',
+            ]);
+            if (empty($data['category_slug'])) {
+                $data['category_slug'] = Str::slug($data['category']);
+            }
+            $data['category_status'] = 'Active';
+
+            if($id) {
+                $data['id'] = $id;
+                $this->categoryContract->updateOrCreateCategory($data);
+            } else {
+                $this->categoryContract->updateOrCreateCategory($data);
+            }
+            
+            return redirect()->route('admin.category.list')->with('success', 'Category created successfully!');
+
+        } catch (Exception $e) {
+
+            Log::error('Error in categoryStore: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()
+                   ->back()
+                   ->with($notification);
+        } 
     }
 }
