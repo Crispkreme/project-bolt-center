@@ -3,8 +3,15 @@
     <div class="page-wrapper">
         <div class="content">
 
-            <x-table.table-top-head title="Manage Stock" subtitle="Manage your stocks" addTitleText="Add Stock"
-                importTitleText="Import Stock" isModal="false" modalTarget="" />
+            <x-table.table-top-head 
+                title="Manage Stock" 
+                subtitle="Manage your stocks" 
+                addTitleText="Add New Stock" 
+                importTitleText="Import Stock" 
+                isModal="true" 
+                modalTarget="#add-stock" 
+                routeTarget="" 
+            />
 
             <!-- /product list -->
             <div class="card table-list-card">

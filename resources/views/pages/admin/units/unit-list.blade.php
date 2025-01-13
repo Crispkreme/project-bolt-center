@@ -3,8 +3,15 @@
     <div class="page-wrapper">
         <div class="content">
 
-            <x-table.table-top-head title="Units" subtitle="Manage your categories" addTitleText="Add New Unit"
-                importTitleText="Import Unit" isModal="true" modalTarget="#add-units" />
+            <x-table.table-top-head 
+                title="Units" 
+                subtitle="Manage your categories" 
+                addTitleText="Add New Unit" 
+                importTitleText="Import Unit" 
+                :isModal="true" 
+                modalTarget="#add-units" 
+                routeTarget="" 
+            />
 
             <!-- /product list -->
             <div class="card table-list-card">
@@ -98,36 +105,40 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <label class="checkboxs">
-                                            <input type="checkbox" />
-                                            <span class="checkmarks"></span>
-                                        </label>
-                                    </td>
-                                    <td>Piece</td>
-                                    <td>PC</td>
-                                    <td>25</td>
-                                    <td>25 May 2023</td>
-                                    <td><span class="badge badge-linesuccess">Active</span></td>
-                                    <td class="action-table-data">
-                                        <div class="edit-delete-action">
-                                            <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#edit-units">
-                                                <i data-feather="edit" class="feather-edit"></i>
-                                            </a>
-                                            <a class="confirm-text p-2" href="javascript:void(0);">
-                                                <i data-feather="trash-2" class="feather-trash-2"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($units as $unit)
+                                    <tr>
+                                        <td>
+                                            <label class="checkboxs">
+                                                <input type="checkbox" />
+                                                <span class="checkmarks"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{ $unit->unit }}</td>
+                                        <td>{{ $unit->unit_slug }}</td>
+                                        <td>{{ $unit->no_products }}</td>
+                                        <td>{{ $unit->created_at }}</td>
+                                        <td>
+                                            <span class="badge {{ $unit->unit_status === 'Active' ? 'badge-linesuccess' : 'badge-linedanger' }}">
+                                                {{ $unit->unit_status }}
+                                            </span>
+                                        </td>
+                                        <td class="action-table-data">
+                                            <div class="edit-delete-action">
+                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
+                                                    <i data-feather="edit" class="feather-edit"></i>
+                                                </a>
+                                                <a class="confirm-text p-2" href="javascript:void(0);">
+                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <!-- /product list -->
         </div>
     </div>
 
