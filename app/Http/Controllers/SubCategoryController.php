@@ -22,7 +22,7 @@ class SubCategoryController extends Controller
         try {
             
             $subCategories = $this->subCategoryContract->getAllSubCategory(10);
-            dd($subCategories);
+   
             return view('pages.admin.categories.sub-category-list', [
                 'subCategories' => $subCategories,
             ]);

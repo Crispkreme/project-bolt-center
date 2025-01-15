@@ -98,9 +98,9 @@
                                 </a>
                         </li>
                         <li class="">
-                                <a href="{{ route('admin.category.list') }}"><i
-                                    data-feather="codepen"></i>
-                                    <span>Category</span>
+                                <a href="{{ route('admin.category.list') }}">
+                                        <i data-feather="codepen"></i>
+                                        <span>Category</span>
                                 </a>
                         </li>
                         <li class="">
