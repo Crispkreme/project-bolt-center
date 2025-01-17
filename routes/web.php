@@ -22,10 +22,8 @@ Route::middleware('auth')->group(function () {
 // ADMIN PAGE
 Route::get('/admin/dashboard', function () { return view('pages.admin.dashboard');})->name('admin.dashboard');
 Route::get('/employee/dashboard', function () { return view('pages.employee.dashboard');})->name('employee.dashboard');
-
 Route::get('/admin/product/list', function () { return view('pages.admin.products.product-list');})->name('admin.product.list');
 Route::get('/admin/product/add', function () { return view('pages.admin.products.add-product');})->name('admin.product.add');
-
 Route::get('/admin/stock/low', function () { return view('pages.admin.stocks.stock-low');})->name('admin.stock.low');
 Route::get('/admin/stock/list', function () { return view('pages.admin.stocks.stock-list');})->name('admin.stock.list');
 
