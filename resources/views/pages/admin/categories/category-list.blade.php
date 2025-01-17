@@ -28,8 +28,7 @@
                                 <a class="btn btn-filter" id="filter_search">
                                     <i data-feather="filter" class="filter-icon"></i>
                                     <span>
-                                        <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/closes.svg"
-                                            alt="img">
+                                        <img src="{{ asset('images/svg/closes.svg') }}" alt="img">
                                     </span>
                                 </a>
                             </div>
