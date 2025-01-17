@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Contracts\CategoryContract;
+use App\Contracts\SubCategoryContract;
 use App\Contracts\UnitContract;
 use App\Repositories\CategoryRepository;
+use App\Repositories\SubCategoryRepository;
 use App\Repositories\UnitRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,6 +15,7 @@ class RepositoryProvider extends ServiceProvider
     protected $repositories = [
         UnitContract::class => UnitRepository::class,
         CategoryContract::class => CategoryRepository::class,
+        SubCategoryContract::class => SubCategoryRepository::class,
     ];
 
     /**

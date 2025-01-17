@@ -11,52 +11,51 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
-        @vite([
-            'resources/css/bootstrap.min.css',
-            'resources/css/daterangepicker.css',
-            'resources/css/bootstrap-datetimepicker.min.css',
-            'resources/css/animate.css',
-            'resources/css/select2.min.css',
-            'resources/css/fontawesome.min.css',
-            'resources/css/all.min.css',
-            'resources/css/feather.css',
-            'resources/css/jquery.fancybox.min.css',
-            'resources/css/summernote-bs4.min.css',
-            'resources/css/bootstrap-tagsinput.css',
-            'resources/css/dataTables.bootstrap5.min.css',
-            'resources/css/intlTelInput.css',
-            'resources/css/plyr.css',
-            'resources/css/owl.carousel.min.css',
-            'resources/css/swiper.min.css',
-            'resources/css/boxicons.min.css',
-            'resources/css/style.css',
+        <!-- Stylesheets -->
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/feather.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/jquery.fancybox.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/summernote-bs4.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap-tagsinput.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/intlTelInput.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/plyr.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/swiper.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/boxicons.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-            'resources/js/jquery-3.7.1.min.js',
-            'resources/js/moment.min.js',
-            'resources/js/feather.min.js',
-            'resources/js/jquery.slimscroll.min.js',
-            'resources/js/bootstrap.bundle.min.js',
-            'resources/js/apexcharts.min.js',
-            'resources/js/chart-data.js',
-            'resources/js/sweetalert2.all.min.js',
-            'resources/js/sweetalerts.min.js',
-            'resources/js/swiper.min.js',
-            'resources/js/jquery.fancybox.min.js',
-            'resources/js/select2.min.js',
-            'resources/js/bootstrap-datetimepicker.min.js',
-            'resources/js/daterangepicker.js',
-            'resources/js/bootstrap-tagsinput.js',
-            'resources/js/jquery.dataTables.min.js',
-            'resources/js/dataTables.bootstrap5.min.js',
-            'resources/js/summernote-bs4.min.js',
-            'resources/js/intlTelInput.js',
-            'resources/js/plyr-js.js',
-            'resources/js/owl.carousel.min.js',
-            'resources/js/ResizeSensor.js',
-            'resources/js/theia-sticky-sidebar.js',
-            'resources/js/script.js',
-        ])
+        <!-- Scripts -->
+        <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+        <script src="{{ asset('js/moment.min.js') }}"></script>
+        <script src="{{ asset('js/feather.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('js/apexcharts.min.js') }}"></script>
+        <script src="{{ asset('js/chart-data.js') }}"></script>
+        <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+        <script src="{{ asset('js/sweetalerts.min.js') }}"></script>
+        <script src="{{ asset('js/swiper.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
+        <script src="{{ asset('js/select2.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+        <script src="{{ asset('js/daterangepicker.js') }}"></script>
+        <script src="{{ asset('js/bootstrap-tagsinput.js') }}"></script>
+        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+        <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>
+        <script src="{{ asset('js/intlTelInput.js') }}"></script>
+        <script src="{{ asset('js/plyr-js.js') }}"></script>
+        <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('js/ResizeSensor.js') }}"></script>
+        <script src="{{ asset('js/theia-sticky-sidebar.js') }}"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
     </head>
     <body>
 

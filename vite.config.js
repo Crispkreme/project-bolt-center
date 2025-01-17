@@ -54,13 +54,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    css: {
-        devSourcemap: false,
-    },
-    build: {
-        sourcemap: false,
-    },
-    server: {
-        sourcemapIgnoreList: () => true,
-    },
 });

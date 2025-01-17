@@ -98,17 +98,17 @@
                                 </a>
                         </li>
                         <li class="">
-                                <a href="{{ route('admin.category.list') }}"><i
-                                    data-feather="codepen"></i>
-                                    <span>Category</span>
+                                <a href="{{ route('admin.category.list') }}">
+                                        <i data-feather="codepen"></i>
+                                        <span>Category</span>
                                 </a>
                         </li>
-                        {{-- <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/sub-categories">
+                        <li class="">
+                                <a href="{{ route('admin.sub.category.list') }}">
                                         <i data-feather="speaker"></i>
                                         <span>Sub Category</span>
                                 </a>
-                        </li> --}}
+                        </li>
                         {{-- <li class="">
                                 <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/brand-list">
                                         <i data-feather="tag"></i>
