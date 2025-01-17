@@ -19,3 +19,17 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# Handle Vite assets (if needed in production)
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|css|map)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
+
+# Handle Vite assets (if needed in production)
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|css|map)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>

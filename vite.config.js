@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
+    publicDir: 'public', 
     plugins: [
         laravel({
             input: [
@@ -62,5 +63,7 @@ export default defineConfig({
     },
     server: {
         sourcemapIgnoreList: () => true,
+        host: '0.0.0.0', 
+        port: 5173,    
     },
 });
