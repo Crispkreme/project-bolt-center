@@ -63,7 +63,5 @@ export default defineConfig({
     },
     server: {
         sourcemapIgnoreList: () => true,
-        host: 'batucanboltandnutcenter.store', 
-        port: 5173,    
     },
 });
