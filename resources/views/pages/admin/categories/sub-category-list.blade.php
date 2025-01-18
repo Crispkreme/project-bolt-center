@@ -29,7 +29,7 @@
                                 <a class="btn btn-filter" id="filter_search">
                                     <i data-feather="filter" class="filter-icon"></i>
                                     <span>
-                                        <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/closes.svg" alt="img">
+                                        <img src="{{ asset('images/svg/closes.svg') }}" alt="img">
                                     </span>
                                 </a>
                             </div>
@@ -42,6 +42,7 @@
                                 </select>
                             </div>
                         </div>
+
                         <!-- /Filter -->
                         <div class="card" id="filter_inputs">
                             <div class="card-body pb-0">
@@ -86,8 +87,9 @@
                             </div>
                         </div>
                         <!-- /Filter -->
+
                         <div class="table-responsive">
-                            <table class="table  datanew">
+                            <table class="table datanew">
                                 <thead>
                                     <tr>
                                         <th class="no-sort">
@@ -96,546 +98,52 @@
                                                 <span class="checkmarks"></span>
                                             </label>
                                         </th>
-                                        <th>Image</th>
                                         <th>Category</th>
-                                        <th>Parent category</th>
-                                        <th>Category Code</th>
+                                        <th>Parent Category</th>
+                                        <th>Slug</th>
                                         <th>Description</th>
                                         <th>Created By</th>
+                                        <th>Status</th>
+                                        <th>Created On</th>
                                         <th class="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product1.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Computers</td>
-                                        <td>Computers</td>
-                                        <td>CT001</td>
-                                        <td>Computers Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product2.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Fruits</td>
-                                        <td>Fruits</td>
-                                        <td>CT002</td>
-                                        <td>Fruits Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product3.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Fruits</td>
-                                        <td>Fruits</td>
-                                        <td>CT003</td>
-                                        <td>Fruits Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product4.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Fruits</td>
-                                        <td>Fruits</td>
-                                        <td>CT004</td>
-                                        <td>Fruits Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product5.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Accessories</td>
-                                        <td>Accessories</td>
-                                        <td>CT005</td>
-                                        <td>Accessories Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product6.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Shoes</td>
-                                        <td>Shoes</td>
-                                        <td>CT006</td>
-                                        <td>Shoes Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product7.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Fruits</td>
-                                        <td>Fruits</td>
-                                        <td>CT007</td>
-                                        <td>Fruits Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product8.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Fruits</td>
-                                        <td>Fruits</td>
-                                        <td>CT008</td>
-                                        <td>Fruits Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product9.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Computers</td>
-                                        <td>Computers</td>
-                                        <td>CT009</td>
-                                        <td>Computers Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product10.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Health Care </td>
-                                        <td>Health Care </td>
-                                        <td>CT0010</td>
-                                        <td>Health Care Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product4.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Fruits</td>
-                                        <td>Fruits</td>
-                                        <td>CT004</td>
-                                        <td>Fruits Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product5.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Accessories</td>
-                                        <td>Accessories</td>
-                                        <td>CT005</td>
-                                        <td>Accessories Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product6.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Shoes</td>
-                                        <td>Shoes</td>
-                                        <td>CT006</td>
-                                        <td>Shoes Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product7.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Fruits</td>
-                                        <td>Fruits</td>
-                                        <td>CT007</td>
-                                        <td>Fruits Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product8.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Fruits</td>
-                                        <td>Fruits</td>
-                                        <td>CT008</td>
-                                        <td>Fruits Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product9.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Computers</td>
-                                        <td>Computers</td>
-                                        <td>CT009</td>
-                                        <td>Computers Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/product10.jpg"
-                                                    alt="product">
-                                            </a>
-                                        </td>
-                                        <td>Health Care </td>
-                                        <td>Health Care </td>
-                                        <td>CT0010</td>
-                                        <td>Health Care Description</td>
-                                        <td>Admin</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-category">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
+                                    @foreach ($subCategories as $subCategory)
+                                        <tr>
+                                            <td>
+                                                <label class="checkboxs">
+                                                    <input type="checkbox" value="{{ $subCategory->id }}" />
+                                                    <span class="checkmarks"></span>
+                                                </label>
+                                            </td>
+                                            <td>{{ $subCategory->category }}</td> <!-- Parent category -->
+                                            <td>{{ $subCategory->sub_category }}</td> <!-- Sub category -->
+                                            <td>{{ $subCategory->sub_category_slug }}</td> <!-- Slug -->
+                                            <td>{{ $subCategory->description }}</td> <!-- Description -->
+                                            <td>{{ $subCategory->role }}</td> <!-- Created By (User Role) -->
+                                            <td>
+                                                <span class="badge {{ $subCategory->sub_category_status === 'Active' ? 'badge-linesuccess' : 'badge-linedanger' }}">
+                                                    {{ $subCategory->sub_category_status }}
+                                                </span>
+                                            </td>
+                                            <td>{{ \Carbon\Carbon::parse($subCategory->created_at)->format('F j, Y') }}</td> <!-- Created On -->
+                                            <td class="action-table-data">
+                                                <div class="edit-delete-action">
+                                                    <a class="me-2 p-2 edit-category" href="#" data-bs-toggle="modal" data-bs-target="#edit-category" data-id="{{ $subCategory->id }}">
+                                                        <i data-feather="edit" class="feather-edit"></i>
+                                                    </a>
+                                                    <a class="p-2 delete-category" href="#" data-id="{{ $subCategory->id }}">
+                                                        <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                    </a>                                                    
+                                                </div>
+                                            </td>                                 
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
+                            
                     </div>
                 </div>
                 <!-- /product list -->

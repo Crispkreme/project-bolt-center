@@ -23,12 +23,16 @@ class SubCategoryRepository implements SubCategoryContract
     {
         $data = DB::table('sub_categories')
             ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
+            ->join('users', 'sub_categories.user_id', '=', 'users.id')
             ->select(
+                'sub_categories.id',
                 'categories.category',
                 'sub_categories.sub_category',
-                'categories.category_slug',
                 'sub_categories.sub_category_slug',
                 'sub_categories.description',
+                'sub_categories.sub_category_status',
+                'users.role',
+                'sub_categories.created_at'
             )
             ->paginate($perPage);
 

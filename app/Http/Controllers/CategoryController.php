@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\CategoryContract;
+use App\Contracts\SubCategoryContract;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,13 +13,17 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     protected $categoryContract;
+    protected $subCategoryContract;
 
     public function __construct(
         CategoryContract $categoryContract,
+        SubCategoryContract $subCategoryContract,
     ) {
         $this->categoryContract = $categoryContract;
+        $this->subCategoryContract = $subCategoryContract;
     }
 
+    // LIST
     public function categoryList()
     {
         try {
@@ -32,6 +37,28 @@ class CategoryController extends Controller
         } catch (Exception $e) {
 
             Log::error('Error in categoryList: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        } 
+    }
+    public function subCategoryList()
+    {
+        try {
+            
+            $subCategories = $this->subCategoryContract->getAllSubCategory(10);
+            
+            return view('pages.admin.categories.sub-category-list', [
+                'subCategories' => $subCategories,
+            ]);
+
+        } catch (Exception $e) {
+
+            Log::error('Error in subCategoryList: ' . $e->getMessage());
 
             $notification = [
                 'alert-type' => 'danger',
