@@ -33,6 +33,10 @@ Route::post('/admin/unit/store', [UnitController::class, 'unitStore'])->name('ad
 
 // Category
 Route::get('/admin/category/list', [CategoryController::class, 'categoryList'])->name('admin.category.list');
+Route::get('/admin/category/{id}/edit', [CategoryController::class, 'editCategory'])->name('admin.category.edit');
+Route::post('/admin/category/update', [CategoryController::class, 'categoryUpdate'])->name('admin.category.update');
+Route::delete('/admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('admin.category.delete');
+
 Route::get('/admin/sub/category/list', [CategoryController::class, 'subCategoryList'])->name('admin.sub.category.list');
 Route::post('/admin/category/store', [CategoryController::class, 'categoryStore'])->name('admin.category.store');
 Route::post('/admin/sub/category/store', [CategoryController::class, 'categoryStore'])->name('admin.category.store');

@@ -6,4 +6,6 @@ interface CategoryContract {
 
     public function getAllCategory();
     public function updateOrCreateCategory($data);
+    public function findCategoryById($id);
+    public function deleteCategoryById($id);
 }

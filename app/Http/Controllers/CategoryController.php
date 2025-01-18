@@ -50,6 +50,7 @@ class CategoryController extends Controller
                 'category' => 'required|string|max:255',
                 'category_slug' => 'string|max:255|unique:categories,category_slug',
             ]);
+
             if (empty($data['category_slug'])) {
                 $data['category_slug'] = Str::slug($data['category']);
             }
@@ -77,5 +78,76 @@ class CategoryController extends Controller
                    ->back()
                    ->with($notification);
         } 
+    }
+
+    public function editCategory($id)
+    {
+        
+        $category = $this->categoryContract->findCategoryById($id);
+
+        if (!$category) {
+            return response()->json(['error' => 'Category not found'], 404);
+        }
+
+        return response()->json($category);
+    }
+
+    public function categoryUpdate(Request $request)
+    {
+        try {
+            
+            $data = $request->validate([
+                'category' => 'required|string|max:255',
+                'category_slug' => 'nullable|string|max:255|unique:categories,category_slug,' . $request->id,
+                'category_status' => 'required|in:Active,Deactivate',
+            ]);
+
+            if (empty($data['category_slug'])) {
+                $data['category_slug'] = Str::slug($data['category']);
+            }
+
+            $id = $request->id;
+            if($id) {
+                $data['id'] = $id;
+                $this->categoryContract->updateOrCreateCategory($data);
+            } else {
+                $this->categoryContract->updateOrCreateCategory($data);
+            }
+
+            return redirect()->route('admin.category.list')->with('success', 'Category updated successfully!');
+            
+        } catch (Exception $e) {
+            Log::error('Error in categoryUpdate: ' . $e->getMessage());
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function categoryDelete($id)
+    {
+        try {
+            
+            $this->categoryContract->deleteCategoryById($id);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Category deleted successfully!'
+            ]);
+            
+        } catch (Exception $e) {
+            
+            Log::error('Error in categoryDelete: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        }
     }
 }

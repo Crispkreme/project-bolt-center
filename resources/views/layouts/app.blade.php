@@ -92,7 +92,9 @@
 
         <x-modal.add-units />
 
-        <x-modal.add-units-category />
+        <x-modal.add-category />
+        <x-modal.edit-category />
+        <x-modal.delete-category />
     
         <x-modal.add-units-brand />
     
@@ -102,5 +104,7 @@
     
         <x-modal.view-notes />
 
+        @stack('scripts')
+        
     </body>
 </html>
