@@ -45,4 +45,9 @@ class CategoryRepository implements CategoryContract
             ]
         );
     }
+
+    public function findCategoryById($id)
+    {
+        return DB::table('categories')->find($id);
+    }
 }
