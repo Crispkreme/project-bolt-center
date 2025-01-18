@@ -173,17 +173,10 @@
                         success: function (response) {
                             if (response.success) {
                                 $('#add-sub-category').modal('hide');
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Success',
-                                    text: 'SubCategory has been added successfully.',
-                                    timer: 1500,
-                                    showConfirmButton: false,
-                                });
-        
-                                setTimeout(function () {
+                                
+                                Swal.fire('Success!', 'SubCategory added successfully.', 'success').then(() => {
                                     location.reload();
-                                }, 1500);
+                                });
                             } else {
                                 $('#add-sub-category').modal('hide');
                                 Swal.fire({
@@ -270,17 +263,10 @@
                         success: function (response) {
                             if (response.success) {
                                 $('#edit-sub-category').modal('hide');
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Success',
-                                    text: 'SubCategory updated successfully.',
-                                    timer: 1500,
-                                    showConfirmButton: false,
-                                });
-        
-                                setTimeout(function () {
+    
+                                Swal.fire('Success!', 'SubCategory updated successfully.', 'success').then(() => {
                                     location.reload();
-                                }, 1500);
+                                });
                             } else {
                                 Swal.fire({
                                     icon: 'error',
@@ -310,6 +296,55 @@
                     });
                 });
             });
-        </script>            
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.delete-category').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const subCategoryId = this.getAttribute('data-id');
+
+                        if (!subCategoryId) {
+                            console.error('Category ID is missing.');
+                            return;
+                        }
+
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: `/admin/sub/category/delete/${subCategoryId}`,
+                                    type: 'DELETE',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    },
+                                    success: function (response) {
+                                        if (response.success) {
+                                            Swal.fire('Deleted!', 'SubCategory has been deleted.', 'success').then(() => {
+                                                location.reload();
+                                            });
+                                            document.querySelector(`tr[data-id="${subCategoryId}"]`).remove();                                        
+                                        } else {
+                                            Swal.fire('Error!', response.message, 'error');
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.error('Error deleting category:', error);
+                                        Swal.fire('Error!', 'An error occurred while deleting the subcategory.', 'error');
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            });
+        </script>        
     @endpush
 </x-app-layout>

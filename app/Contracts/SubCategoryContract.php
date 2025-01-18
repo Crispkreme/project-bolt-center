@@ -6,5 +6,6 @@ interface SubCategoryContract {
 
     public function getAllSubCategory();
     public function findSubCategoryById($id);
+    public function deleteSubCategoryById($id);
     public function updateOrCreateSubCategory($data);
 }

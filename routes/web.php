@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/sub/category/store', [CategoryController::class, 'subCategoryStore'])->name('admin.sub.category.store');
     Route::get('/admin/sub/category/{id}/edit', [CategoryController::class, 'subCategoryEdit'])->name('admin.sub.category.edit');
     Route::post('/admin/sub/category/update', [CategoryController::class, 'subCategoryUpdate'])->name('admin.sub.category.update');
+    Route::delete('/admin/sub/category/delete/{id}', [CategoryController::class, 'subCategoryDelete'])->name('admin.category.delete');
 
 });
 
