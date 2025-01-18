@@ -14,17 +14,17 @@ return new class extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')
-                  ->unique()
                   ->nullable()
                   ->constrained('categories')
                   ->onDelete('cascade');
             $table->foreignId('user_id')
-                  ->unique()
                   ->nullable()
                   ->constrained('users')
                   ->onDelete('cascade');
             $table->string('sub_category');
             $table->string('description')->nullable();
+            $table->string('sub_category_slug')->nullable();
+            $table->enum('sub_category_status', [ 'Active', 'Deactivate']);
             $table->timestamps();
         });
     }

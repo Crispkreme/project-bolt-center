@@ -95,6 +95,10 @@
         <x-modal.add-category />
         <x-modal.edit-category />
         <x-modal.delete-category />
+
+        {{-- SUB CATEGORY --}}
+        <x-modal.add-sub-category />
+        <x-modal.edit-sub-category />
     
         <x-modal.add-units-brand />
     

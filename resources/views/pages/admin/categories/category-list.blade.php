@@ -199,7 +199,6 @@
                             type: 'GET',
                             dataType: 'json',
                             success: function (data) {
-                                console.log('data', data);
 
                                 const categoryIdInput = document.getElementById('edit-category-id');
                                 const categoryNameInput = document.getElementById('edit-category-name');
@@ -235,7 +234,6 @@
                             processData: false,
                             contentType: false,
                             success: function (response) {
-                                console.log('Category updated successfully:', response);
                                 editCategoryModal.hide();
 
                                 const categoryRow = document.querySelector(`.category-row[data-id="${response.id}"]`);
