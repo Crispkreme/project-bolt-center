@@ -26,9 +26,9 @@
                         <div class="search-path">
                             <a class="btn btn-filter" id="filter_search">
                                 <i data-feather="filter" class="filter-icon"></i>
-                                <span><img
-                                        src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/closes.svg"
-                                        alt="img" /></span>
+                                <span>
+                                    <img src="{{ asset('images/svg/closes.svg') }}" alt="img">
+                                </span>
                             </a>
                         </div>
                         <div class="form-sort">

@@ -47,9 +47,10 @@ class SubCategoryRepository implements SubCategoryContract
                 'id' => $data['id'] ?? null,
             ],
             [
-                'category' => $data['category'],
-                'category_slug' => $data['category_slug'],
-                'category_status' => $data['category_status'],
+                'category_id' => $data['category_id'],
+                'user_id' => $data['user_id'],
+                'sub_category' => $data['sub_category'],
+                'description' => $data['description'] ?? null,
                 'created_at' => Carbon::now(),
             ]
         );

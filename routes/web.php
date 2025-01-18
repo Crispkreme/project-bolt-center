@@ -33,7 +33,9 @@ Route::post('/admin/unit/store', [UnitController::class, 'unitStore'])->name('ad
 
 // Category
 Route::get('/admin/category/list', [CategoryController::class, 'categoryList'])->name('admin.category.list');
+Route::get('/admin/sub/category/list', [CategoryController::class, 'subCategoryList'])->name('admin.sub.category.list');
 Route::post('/admin/category/store', [CategoryController::class, 'categoryStore'])->name('admin.category.store');
+Route::post('/admin/sub/category/store', [CategoryController::class, 'categoryStore'])->name('admin.category.store');
 
 // sub category
 Route::get('/admin/sub/category/list', [SubCategoryController::class, 'subCategoryList'])->name('admin.sub.category.list');

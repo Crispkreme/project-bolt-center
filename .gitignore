@@ -1,14 +1,25 @@
+# PHPUnit cache
 /.phpunit.cache
+
+# Node.js modules
 /node_modules
+
+# Laravel build files
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
+
+# Composer dependencies
 /vendor
+
+# Environment files
 .env
 .env.backup
 .env.production
+
+# IDE and editor-specific files
 .phpactor.json
 .phpunit.result.cache
 Homestead.json
@@ -21,3 +32,15 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# Laravel resource files
+/resources/css/*
+/resources/js/*
+/resources/fonts/*
+/resources/images/*
+
+# Exclude build tools but keep source files
+!/resources/css/*
+!/resources/js/*
+!/resources/fonts/
+!/resources/images/

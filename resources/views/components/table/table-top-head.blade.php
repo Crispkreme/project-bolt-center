@@ -24,12 +24,12 @@
 
         <li>
             <a data-bs-toggle="tooltip" data-bs-placement="top" title="Pdf">
-                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/pdf.svg" alt="PDF">
+                <img src="{{ asset('images/svg/pdf.svg') }}" alt="PDF">
             </a>
         </li>
         <li>
             <a data-bs-toggle="tooltip" data-bs-placement="top" title="Excel">
-                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/excel.svg" alt="Excel">
+                <img src="{{ asset('images/svg/excel.svg') }}" alt="Excel">
             </a>
         </li>
         <li>
