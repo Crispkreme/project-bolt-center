@@ -126,4 +126,28 @@ class CategoryController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+
+    public function categoryDelete($id)
+    {
+        try {
+            
+            $this->categoryContract->deleteCategoryById($id);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Category deleted successfully!'
+            ]);
+            
+        } catch (Exception $e) {
+            
+            Log::error('Error in categoryDelete: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+    }
 }

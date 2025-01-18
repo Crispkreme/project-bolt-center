@@ -119,11 +119,11 @@
                                                     <a class="me-2 p-2 edit-category" href="#" data-bs-toggle="modal" data-bs-target="#edit-category" data-id="{{ $category->id }}">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
-                                                    <a class="confirm-text p-2" href="javascript:void(0);" data-id="{{ $category->id }}">
+                                                    <a class="p-2 delete-category" href="#" data-id="{{ $category->id }}">
                                                         <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                    </a>
+                                                    </a>                                                    
                                                 </div>
-                                            </td>                                            
+                                            </td>                                 
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -136,6 +136,53 @@
     </div>
 
     @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.delete-category').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const categoryId = this.getAttribute('data-id');
+
+                        if (!categoryId) {
+                            console.error('Category ID is missing.');
+                            return;
+                        }
+
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: `/admin/category/delete/${categoryId}`,
+                                    type: 'DELETE',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    },
+                                    success: function (response) {
+                                        if (response.success) {
+                                            Swal.fire('Deleted!', 'Category has been deleted.', 'success');
+                                            document.querySelector(`tr[data-id="${categoryId}"]`).remove();
+                                        } else {
+                                            Swal.fire('Error!', response.message, 'error');
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.error('Error deleting category:', error);
+                                        Swal.fire('Error!', 'An error occurred while deleting the category.', 'error');
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
         <script>
             const editCategoryModal = new bootstrap.Modal('#edit-category');
 
@@ -204,6 +251,7 @@
                     });
                 }
             });
+
         </script>
     @endpush
 
