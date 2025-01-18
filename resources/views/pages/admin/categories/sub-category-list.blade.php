@@ -117,20 +117,21 @@
                                                     <span class="checkmarks"></span>
                                                 </label>
                                             </td>
-                                            <td>{{ $subCategory->category }}</td> <!-- Parent category -->
-                                            <td>{{ $subCategory->sub_category }}</td> <!-- Sub category -->
-                                            <td>{{ $subCategory->sub_category_slug }}</td> <!-- Slug -->
-                                            <td>{{ $subCategory->description }}</td> <!-- Description -->
-                                            <td>{{ $subCategory->role }}</td> <!-- Created By (User Role) -->
+                                            <td>{{ $subCategory->category }}</td> 
+                                            <td>{{ $subCategory->sub_category }}</td>
+                                            <td>{{ $subCategory->sub_category_slug }}</td>
+                                            <td>{{ $subCategory->description }}</td>
+                                            <td>{{ $subCategory->role }}</td>
                                             <td>
                                                 <span class="badge {{ $subCategory->sub_category_status === 'Active' ? 'badge-linesuccess' : 'badge-linedanger' }}">
                                                     {{ $subCategory->sub_category_status }}
                                                 </span>
                                             </td>
-                                            <td>{{ \Carbon\Carbon::parse($subCategory->created_at)->format('F j, Y') }}</td> <!-- Created On -->
+                                            <td>{{ \Carbon\Carbon::parse($subCategory->created_at)->format('F j, Y') }}</td>
+                                            
                                             <td class="action-table-data">
                                                 <div class="edit-delete-action">
-                                                    <a class="me-2 p-2 edit-category" href="#" data-bs-toggle="modal" data-bs-target="#edit-category" data-id="{{ $subCategory->id }}">
+                                                    <a class="me-2 p-2y" href="#" data-bs-toggle="modal" data-bs-target="#edit-sub-category" data-id="{{ $subCategory->id }}">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
                                                     <a class="p-2 delete-category" href="#" data-id="{{ $subCategory->id }}">
@@ -218,6 +219,97 @@
                     $('#response-message').html('');
                 });
             });
-        </script>     
+        </script> 
+        <script>
+            $(document).ready(function () {
+                $(document).on('click', '.edit-delete-action a[data-bs-target="#edit-sub-category"]', function (e) {
+                    e.preventDefault();
+                    let subCategoryId = $(this).data('id');
+
+                    $.ajax({
+                        url: `/admin/sub/category/${subCategoryId}/edit`,
+                        method: 'GET',
+                        success: function (data) {
+
+                            const categoryIdSelect = document.getElementById('edit-category-id');
+                            const subCategoryIdInput = document.getElementById('edit-sub-category-id');
+                            const subCategoryInput = document.getElementById('sub-category');
+                            const descriptionInput = document.getElementById('edit-sub-description');
+                            const subCategoryStatusSelect = document.getElementById('edit-sub-category-status');
+
+                            if (subCategoryIdInput && categoryIdSelect && subCategoryInput && descriptionInput && subCategoryStatusSelect) {
+                                subCategoryIdInput.value = data.id;
+                                categoryIdSelect.value = data.category_id;
+                                subCategoryInput.value = data.sub_category;
+                                descriptionInput.value = data.description;
+                                subCategoryStatusSelect.value = data.sub_category_status;
+
+                                $('#edit-sub-category').modal('show');
+                            } else {
+                                console.error('Input fields are missing in the modal.');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'An unexpected error occurred. Please try again later.',
+                            });
+                        },
+                    });
+                });
+
+                $('#edit-sub-category-form').on('submit', function (e) {
+                    e.preventDefault();
+                    let formData = $(this).serialize();
+        
+                    $.ajax({
+                        url: '{{ route('admin.sub.category.update') }}',
+                        method: 'POST',
+                        data: formData,
+                        success: function (response) {
+                            if (response.success) {
+                                $('#edit-sub-category').modal('hide');
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    text: 'SubCategory updated successfully.',
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                });
+        
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1500);
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Failed to update subcategory. Please try again.',
+                                });
+                            }
+                        },
+                        error: function (xhr) {
+                            let errors = xhr.responseJSON?.errors;
+                            let errorMessages = '';
+        
+                            if (errors) {
+                                for (let field in errors) {
+                                    errorMessages += errors[field].join('<br>') + '<br>';
+                                }
+                            } else {
+                                errorMessages = 'An unexpected error occurred. Please try again later.';
+                            }
+        
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                html: errorMessages,
+                            });
+                        },
+                    });
+                });
+            });
+        </script>            
     @endpush
 </x-app-layout>

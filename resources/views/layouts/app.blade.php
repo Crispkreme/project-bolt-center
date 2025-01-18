@@ -98,6 +98,7 @@
 
         {{-- SUB CATEGORY --}}
         <x-modal.add-sub-category />
+        <x-modal.edit-sub-category />
     
         <x-modal.add-units-brand />
     

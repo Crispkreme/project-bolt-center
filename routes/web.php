@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,13 +32,16 @@ Route::middleware('auth')->group(function () {
     // Category
     Route::get('/admin/category/list', [CategoryController::class, 'categoryList'])->name('admin.category.list');
     Route::post('/admin/category/store', [CategoryController::class, 'categoryStore'])->name('admin.category.store');
-    Route::get('/admin/category/{id}/edit', [CategoryController::class, 'editCategory'])->name('admin.category.edit');
+    Route::get('/admin/category/{id}/edit', [CategoryController::class, 'categoryEdit'])->name('admin.category.edit');
     Route::post('/admin/category/update', [CategoryController::class, 'categoryUpdate'])->name('admin.category.update');
     Route::delete('/admin/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('admin.category.delete');
 
     // sub category
     Route::get('/admin/sub/category/list', [CategoryController::class, 'subCategoryList'])->name('admin.sub.category.list');
     Route::post('/admin/sub/category/store', [CategoryController::class, 'subCategoryStore'])->name('admin.sub.category.store');
+    Route::get('/admin/sub/category/{id}/edit', [CategoryController::class, 'subCategoryEdit'])->name('admin.sub.category.edit');
+    Route::post('/admin/sub/category/update', [CategoryController::class, 'subCategoryUpdate'])->name('admin.sub.category.update');
+
 });
 
 require __DIR__.'/auth.php';

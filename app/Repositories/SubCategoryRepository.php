@@ -62,4 +62,9 @@ class SubCategoryRepository implements SubCategoryContract
             ]
         );
     }
+
+    public function findSubCategoryById($id)
+    {
+        return DB::table('sub_categories')->find($id);
+    }
 }

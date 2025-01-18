@@ -144,16 +144,51 @@ class CategoryController extends Controller
         }
     }
 
-    public function editCategory($id)
+    public function categoryEdit($id)
     {
-        
-        $category = $this->categoryContract->findCategoryById($id);
+        try {
+            
+            $category = $this->categoryContract->findCategoryById($id);
 
-        if (!$category) {
-            return response()->json(['error' => 'Category not found'], 404);
+            if (!$category) {
+                return response()->json(['error' => 'Category not found'], 404);
+            }
+
+            return response()->json($category);
+            
+        } catch (Exception $e) {
+            
+            Log::error('Error in categoryEdit: ' . $e->getMessage());
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
         }
+    }
+    public function subCategoryEdit($id)
+    {
+        try {
+            
+            $subCategory = $this->subCategoryContract->findSubCategoryById($id);
+        
+            if (!$subCategory) {
+                return response()->json(['error' => 'SubCategory not found'], 404);
+            }
 
-        return response()->json($category);
+            return response()->json($subCategory);
+            
+        } catch (Exception $e) {
+
+            Log::error('Error in subCategoryEdit: ' . $e->getMessage());
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        }
     }
 
     public function categoryUpdate(Request $request)
@@ -188,6 +223,43 @@ class CategoryController extends Controller
             ];
 
             return redirect()->back()->with($notification);
+        }
+    }
+    public function subCategoryUpdate(Request $request)
+    {
+        try {
+            $data = $request->validate([
+                'category_id' => 'required|exists:categories,id',
+                'sub_category' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'sub_category_status' => 'required|in:Active,Deactivate',
+            ]);
+        
+            if (empty($data['sub_category_slug'])) {
+                $data['sub_category_slug'] = Str::slug($data['sub_category']);
+            }
+            $data['user_id'] = Auth::user()->id;
+            $data['id'] = $request->id;
+
+            $this->subCategoryContract->updateOrCreateSubCategory($data);
+        
+            return response()->json([
+                'success' => true,
+                'message' => 'Sub Category uodated successfully!'
+            ]);
+        
+        } catch (\Exception $e) {
+        
+            Log::error('Error in subCategoryStore: ' . $e->getMessage());
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+        
+            return response()->json([
+                'error' => true,
+                'message' => 'Please try again!'
+            ]);
         }
     }
 
