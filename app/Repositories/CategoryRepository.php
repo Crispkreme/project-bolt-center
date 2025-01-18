@@ -31,6 +31,11 @@ class CategoryRepository implements CategoryContract
         return $data;
     }
 
+    public function getCategory()
+    {
+        return DB::table('categories')->get();
+    }
+
     public function updateOrCreateCategory($data)
     {
         return $this->model->updateOrCreate(

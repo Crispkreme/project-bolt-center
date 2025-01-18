@@ -3,11 +3,12 @@
 namespace App\Repositories;
 
 use App\Contracts\SubCategoryContract;
-use App\Models\SubCategory;
 use App\Models\Log;
+use App\Models\SubCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class SubCategoryRepository implements SubCategoryContract
 {
@@ -43,7 +44,7 @@ class SubCategoryRepository implements SubCategoryContract
 
         return $data;
     }
-
+    
     public function updateOrCreateSubCategory($data)
     {
         return $this->model->updateOrCreate(
@@ -54,8 +55,10 @@ class SubCategoryRepository implements SubCategoryContract
                 'category_id' => $data['category_id'],
                 'user_id' => $data['user_id'],
                 'sub_category' => $data['sub_category'],
+                'sub_category_slug' => $data['sub_category_slug'] ?? Str::slug($data['sub_category']),
                 'description' => $data['description'] ?? null,
-                'created_at' => Carbon::now(),
+                'sub_category_status' => $data['sub_category_status'] ?? 'Active',
+                'updated_at' => Carbon::now(),
             ]
         );
     }

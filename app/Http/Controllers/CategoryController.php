@@ -51,7 +51,7 @@ class CategoryController extends Controller
         try {
             
             $subCategories = $this->subCategoryContract->getAllSubCategory(10);
-            
+
             return view('pages.admin.categories.sub-category-list', [
                 'subCategories' => $subCategories,
             ]);
@@ -105,6 +105,43 @@ class CategoryController extends Controller
                    ->back()
                    ->with($notification);
         } 
+    }
+    public function subCategoryStore(Request $request)
+    {
+        try {
+            $data = $request->validate([
+                'category_id' => 'required|exists:categories,id',
+                'sub_category' => 'required|string|max:255',
+                'description' => 'nullable|string',
+            ]);
+
+            if (empty($data['sub_category_slug'])) {
+                $data['sub_category_slug'] = Str::slug($data['sub_category']);
+            }
+            $data['user_id'] = Auth::user()->id;
+            $data['sub_category_status'] ='Active';
+            $data['id'] = null;
+
+            $this->subCategoryContract->updateOrCreateSubCategory($data);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Sub Category created successfully!'
+            ]);
+
+        } catch (\Exception $e) {
+
+            Log::error('Error in subCategoryStore: ' . $e->getMessage());
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return response()->json([
+                'error' => true,
+                'message' => 'Please try again!'
+            ]);
+        }
     }
 
     public function editCategory($id)

@@ -152,4 +152,72 @@
         </div>
     </div>
 
+    @push('scripts')
+        <script>
+            $(document).ready(function () {
+                $('#add-sub-category').on('show.bs.modal', function () {
+                    $('#add-sub-category-form')[0].reset();
+                    $('#response-message').html('');
+                });
+        
+                $('#add-sub-category-form').on('submit', function (e) {
+                    e.preventDefault();
+                    let formData = $(this).serialize();
+                    $('#response-message').html('');
+        
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        method: 'POST',
+                        data: formData,
+                        success: function (response) {
+                            if (response.success) {
+                                $('#add-sub-category').modal('hide');
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    text: 'SubCategory has been added successfully.',
+                                    timer: 1500,
+                                    showConfirmButton: false,
+                                });
+        
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1500);
+                            } else {
+                                $('#add-sub-category').modal('hide');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'An unexpected error occurred. Please try again.',
+                                });
+                            }
+                        },
+                        error: function (xhr) {
+                            let errors = xhr.responseJSON?.errors;
+                            let errorMessages = '';
+        
+                            if (errors) {
+                                for (let field in errors) {
+                                    errorMessages += errors[field].join('<br>') + '<br>';
+                                }
+                            } else {
+                                errorMessages = 'An unexpected error occurred. Please try again later.';
+                            }
+        
+                            $('#add-sub-category').modal('hide');
+                                Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                html: errorMessages,
+                            });
+                        },
+                    });
+                });
+        
+                $('#add-sub-category').on('hidden.bs.modal', function () {
+                    $('#response-message').html('');
+                });
+            });
+        </script>     
+    @endpush
 </x-app-layout>
