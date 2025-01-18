@@ -21,7 +21,16 @@ class SubCategoryRepository implements SubCategoryContract
 
     public function getAllSubCategory($perPage = 10)
     {
-        $data = DB::table('categories')->paginate($perPage);
+        $data = DB::table('sub_categories')
+            ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
+            ->select(
+                'categories.category',
+                'sub_categories.sub_category',
+                'categories.category_slug',
+                'sub_categories.sub_category_slug',
+                'sub_categories.description',
+            )
+            ->paginate($perPage);
 
         $data->transform(function ($item) {
             $item->created_at = Carbon::parse($item->created_at)->format('F j, Y');
