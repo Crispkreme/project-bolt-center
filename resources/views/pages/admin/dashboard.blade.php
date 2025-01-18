@@ -7,12 +7,12 @@
                     <div class="col-xl-3 col-sm-6 col-12 d-flex">
                         <div class="dash-widget w-100">
                             <div class="dash-widgetimg">
-                                <span><img
-                                        src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/dash1.svg"
-                                        alt="img"></span>
+                                <span>
+                                    <img src="{{ asset('images/svg/dashboard-1.svg') }}" alt="img">
+                                </span>
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5>$<span class="counters" data-count="307144.00">$307,144.00</span></h5>
+                                <h5>&#8369;<span class="counters" data-count="307144.00">&#8369;307,144.00</span></h5>
                                 <h6>Total Purchase Due</h6>
                             </div>
                         </div>
@@ -20,12 +20,12 @@
                     <div class="col-xl-3 col-sm-6 col-12 d-flex">
                         <div class="dash-widget dash1 w-100">
                             <div class="dash-widgetimg">
-                                <span><img
-                                        src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/dash2.svg"
-                                        alt="img"></span>
+                                <span>
+                                    <img src="{{ asset('images/svg/dashboard-2.svg') }}" alt="img">
+                                </span>
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5>$<span class="counters" data-count="4385.00">$4,385.00</span></h5>
+                                <h5>&#8369;<span class="counters" data-count="4385.00">&#8369;4,385.00</span></h5>
                                 <h6>Total Sales Due</h6>
                             </div>
                         </div>
@@ -33,12 +33,12 @@
                     <div class="col-xl-3 col-sm-6 col-12 d-flex">
                         <div class="dash-widget dash2 w-100">
                             <div class="dash-widgetimg">
-                                <span><img
-                                        src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/dash3.svg"
-                                        alt="img"></span>
+                                <span>
+                                    <img src="{{ asset('images/svg/dashboard-3.svg') }}" alt="img">
+                                </span>
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5>$<span class="counters" data-count="385656.50">$385,656.50</span></h5>
+                                <h5>&#8369;<span class="counters" data-count="385656.50">&#8369;385,656.50</span></h5>
                                 <h6>Total Sale Amount</h6>
                             </div>
                         </div>
@@ -46,12 +46,10 @@
                     <div class="col-xl-3 col-sm-6 col-12 d-flex">
                         <div class="dash-widget dash3 w-100">
                             <div class="dash-widgetimg">
-                                <span><img
-                                        src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/icons/dash4.svg"
-                                        alt="img"></span>
+                                <img src="{{ asset('images/svg/dashboard-4.svg') }}" alt="img">
                             </div>
                             <div class="dash-widgetcontent">
-                                <h5>$<span class="counters" data-count="40000.00">$400.00</span></h5>
+                                <h5>&#8369;<span class="counters" data-count="40000.00">&#8369;400.00</span></h5>
                                 <h6>Total Expense Amount</h6>
                             </div>
                         </div>
@@ -176,7 +174,7 @@
                                                         href="https://dreamspos.dreamstechnologies.com/laravel/template/public/product-list">Lenevo
                                                         3rd Generation</a>
                                                 </td>
-                                                <td>$12500</td>
+                                                <td>&#8369;12500</td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
@@ -190,7 +188,7 @@
                                                         href="https://dreamspos.dreamstechnologies.com/laravel/template/public/product-list">Bold
                                                         V3.2</a>
                                                 </td>
-                                                <td>$1600</td>
+                                                <td>&#8369;1600</td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
@@ -204,7 +202,7 @@
                                                         href="https://dreamspos.dreamstechnologies.com/laravel/template/public/product-list">Nike
                                                         Jordan</a>
                                                 </td>
-                                                <td>$2000</td>
+                                                <td>&#8369;2000</td>
                                             </tr>
                                             <tr>
                                                 <td>4</td>
@@ -218,7 +216,7 @@
                                                         href="https://dreamspos.dreamstechnologies.com/laravel/template/public/product-list">Apple
                                                         Series 5 Watch</a>
                                                 </td>
-                                                <td>$800</td>
+                                                <td>&#8369;800</td>
                                             </tr>
                                         </tbody>
                                     </table>
