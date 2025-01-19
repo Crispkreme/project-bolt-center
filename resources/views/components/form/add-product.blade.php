@@ -1,4 +1,4 @@
-<form id="add-product-form" action="{{ route('admin.product.store') }}" method="POST">
+<form id="add-product-form" action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card">
         <div class="card-body add-product pb-0">
@@ -187,14 +187,14 @@
                                                             <div class="add-choosen">
                                                                 <div class="input-blocks">
                                                                     <div class="image-upload">
-                                                                        <input type="file" id="image-upload-input" multiple accept="image/*">
+                                                                        <input type="file" id="image-upload-input" name="product_image[]" multiple accept="image/*">
                                                                         <div class="image-uploads">
                                                                             <i data-feather="plus-circle" class="plus-down-add me-0"></i>
                                                                             <h4>Add Images</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div id="image-repeater-container" class="mt-3">
+                                                                <div id="image-repeater-container" style="display: flex;">
                                                                     <!-- Image repeaters will dynamically appear here -->
                                                                 </div>
                                                             </div>
@@ -342,31 +342,33 @@
             Array.from(files).forEach((file) => {
                 if (file.type.startsWith('image/')) {
                     const reader = new FileReader();
-    
+
                     reader.onload = (e) => {
                         const repeaterDiv = document.createElement('div');
-                        repeaterDiv.classList.add('repeater-item', 'mb-3', 'p-2', 'border', 'rounded', 'position-relative');
-    
+                        repeaterDiv.classList.add('phone-img');
+
                         repeaterDiv.innerHTML = `
-                            <div class="d-flex align-items-center gap-3">
-                                <img src="${e.target.result}" alt="Uploaded image" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
-                                <button class="btn btn-danger btn-sm remove-image-btn" style="border-radius: 50%; padding: 0; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center;">
-                                    <span style="color: white; font-size: 14px;">&times;</span> <!-- X symbol -->
-                                </button>
-                            </div>
+                            <img src="${e.target.result}" alt="Uploaded image" style="width: 100px; height: 100px; object-fit: cover;">
+                            <a href="javascript:void(0);" class="remove-image-btn" style="display: flex; align-items: center; justify-content: center;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </a>
                         `;
 
                         imageRepeaterContainer.appendChild(repeaterDiv);
-    
+
                         const removeBtn = repeaterDiv.querySelector('.remove-image-btn');
                         removeBtn.addEventListener('click', () => {
                             repeaterDiv.remove();
                         });
                     };
-    
+
                     reader.readAsDataURL(file);
                 }
             });
+
         });
     </script>
 @endpush

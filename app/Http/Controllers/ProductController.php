@@ -3,23 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\ProductContract;
+use App\Contracts\ProductImageContract;
 use App\Contracts\StockContract;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     protected $productContract;
     protected $stockContract;
+    protected $productImageContract;
 
     public function __construct(
         ProductContract $productContract,
         StockContract $stockContract,
+        ProductImageContract $productImageContract,
     ) {
         $this->productContract = $productContract;
         $this->stockContract = $stockContract;
+        $this->productImageContract = $productImageContract;
     }
 
     public function checkUniqueItemCode(Request $request)
@@ -31,8 +36,8 @@ class ProductController extends Controller
     public function productStore(Request $request)
     {
         try {
-            
             $userId = Auth::user()->id;
+
             $productData = $request->validate([
                 'category_id'       => 'nullable|exists:categories,id',
                 'sub_category_id'   => 'nullable|exists:sub_categories,id',
@@ -44,7 +49,7 @@ class ProductController extends Controller
             ]);
             $productData['user_id'] = $userId;
             $productData['id'] = null;
-            
+
             $product = $this->productContract->updateOrCreateProduct($productData);
 
             $stockData = $request->validate([
@@ -60,25 +65,35 @@ class ProductController extends Controller
 
             $this->stockContract->updateOrCreateStock($stockData);
             
+            $productImageData = $request->validate([
+                'product_image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);        
+            
+            if ($request->hasFile('product_image')) {
+                $imagePaths = [];
+                foreach ($request->file('product_image') as $file) {
+                    $imagePath = $file->store('product_images', 'public');
+                    $imagePaths[] = $imagePath;
+                }
+                $productImageData['product_id'] = $product->id;
+                
+                foreach ($imagePaths as $imagePath) {
+                    $this->productImageContract->updateOrCreateProductImage($productImageData);
+                }
+            }
+
             return response()->json([
                 'success' => true,
-                'message' => 'Stock created successfully!'
+                'message' => 'Product and images saved successfully!',
             ]);
 
         } catch (Exception $e) {
-
             Log::error('Error in productStore: ' . $e->getMessage());
-
-            $notification = [
-                'alert-type' => 'danger',
-                'message' => 'Error occurred: ' . $e->getMessage(),
-            ];
 
             return response()->json([
                 'error' => true,
-                'message' => 'Please try again!'
+                'message' => 'Please try again!',
             ]);
         }
     }
-
 }
