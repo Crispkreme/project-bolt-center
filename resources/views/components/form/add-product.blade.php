@@ -270,8 +270,8 @@
                     data: formData,
                     success: function (response) {
                         if (response.success) {                            
-                            Swal.fire('Success!', 'SubCategory added successfully.', 'success').then(() => {
-                                location.reload();
+                            Swal.fire('Success!', 'Product added successfully.', 'success').then(() => {
+                                window.location.href = '{{ route('admin.product.list') }}';
                             });
                         } else {
                             Swal.fire({
