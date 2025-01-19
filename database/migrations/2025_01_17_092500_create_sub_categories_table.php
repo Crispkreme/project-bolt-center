@@ -21,10 +21,10 @@ return new class extends Migration
                   ->nullable()
                   ->constrained('users')
                   ->onDelete('cascade');
-            $table->string('item_code')->nullable();
-            $table->string('product_name');
+            $table->string('sub_category')->nullable();
             $table->string('description')->nullable();
-            $table->string('product_slug')->nullable();
+            $table->string('sub_category_slug')->nullable();
+            $table->enum('sub_category_status', ['Active', 'Deactivate']);
             $table->timestamps();
         });
     }
