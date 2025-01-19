@@ -72,4 +72,9 @@ class SubCategoryRepository implements SubCategoryContract
     {
         return DB::table('sub_categories')->where('id', $id)->delete();;
     }
+
+    public function getSubCategory()
+    {
+        return DB::table('sub_categories')->get();
+    }
 }

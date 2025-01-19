@@ -11,20 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_categories', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')
+            $table->foreignId('product_id')
                   ->nullable()
-                  ->constrained('categories')
+                  ->constrained('products')
                   ->onDelete('cascade');
             $table->foreignId('user_id')
                   ->nullable()
                   ->constrained('users')
                   ->onDelete('cascade');
-            $table->string('item_code')->nullable();
-            $table->string('product_name');
-            $table->string('description')->nullable();
-            $table->string('product_slug')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('selling_price')->nullable();
+            $table->string('buying_price')->nullable();
+            $table->string('discount')->nullable();
+            $table->string('quantity_alert')->nullable();
+            $table->enum('discount_type', ['Percentage', 'Cash']);
             $table->timestamps();
         });
     }
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sub_categories');
+        Schema::dropIfExists('stocks');
     }
 };

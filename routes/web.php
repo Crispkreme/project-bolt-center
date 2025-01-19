@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/sub/category/{id}/edit', [CategoryController::class, 'subCategoryEdit'])->name('admin.sub.category.edit');
     Route::post('/admin/sub/category/update', [CategoryController::class, 'subCategoryUpdate'])->name('admin.sub.category.update');
     Route::delete('/admin/sub/category/delete/{id}', [CategoryController::class, 'subCategoryDelete'])->name('admin.category.delete');
+
+    // PRODUCTS
+    Route::post('/admin/product/store', [ProductController::class, 'productStore'])->name('admin.product.store');
 
 });
 
