@@ -180,29 +180,22 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="collapseThree"
-                                                class="accordion-collapse collapse show"
-                                                aria-labelledby="headingThree"
-                                                data-bs-parent="#accordionExample3">
+                                            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample3">
                                                 <div class="accordion-body">
                                                     <div class="text-editor add-list add">
                                                         <div class="col-lg-12">
                                                             <div class="add-choosen">
                                                                 <div class="input-blocks">
                                                                     <div class="image-upload">
-                                                                        <input type="file">
+                                                                        <input type="file" id="image-upload-input" multiple accept="image/*">
                                                                         <div class="image-uploads">
-                                                                            <i data-feather="plus-circle"
-                                                                                class="plus-down-add me-0"></i>
+                                                                            <i data-feather="plus-circle" class="plus-down-add me-0"></i>
                                                                             <h4>Add Images</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="phone-img">
-                                                                    <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/phone-add-2.png" alt="image">
-                                                                    <a href="javascript:void(0);">
-                                                                        <i data-feather="x" class="x-square-add remove-product"></i>
-                                                                    </a>
+                                                                <div id="image-repeater-container" class="mt-3">
+                                                                    <!-- Image repeaters will dynamically appear here -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -338,5 +331,42 @@
             });
         });
 
+    </script>
+    <script>
+        const imageUploadInput = document.getElementById('image-upload-input');
+        const imageRepeaterContainer = document.getElementById('image-repeater-container');
+    
+        imageUploadInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+    
+            Array.from(files).forEach((file) => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+    
+                    reader.onload = (e) => {
+                        const repeaterDiv = document.createElement('div');
+                        repeaterDiv.classList.add('repeater-item', 'mb-3', 'p-2', 'border', 'rounded', 'position-relative');
+    
+                        repeaterDiv.innerHTML = `
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="${e.target.result}" alt="Uploaded image" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+                                <button class="btn btn-danger btn-sm remove-image-btn" style="border-radius: 50%; padding: 0; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center;">
+                                    <span style="color: white; font-size: 14px;">&times;</span> <!-- X symbol -->
+                                </button>
+                            </div>
+                        `;
+
+                        imageRepeaterContainer.appendChild(repeaterDiv);
+    
+                        const removeBtn = repeaterDiv.querySelector('.remove-image-btn');
+                        removeBtn.addEventListener('click', () => {
+                            repeaterDiv.remove();
+                        });
+                    };
+    
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
     </script>
 @endpush
