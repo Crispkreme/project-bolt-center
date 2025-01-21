@@ -96,4 +96,27 @@ class ProductController extends Controller
             ]);
         }
     }
+
+    public function getProductList()
+    {
+        try {
+            
+            $products = $this->productContract->getAllProduct(10);
+            
+            return view('pages.admin.products.product-list', [
+                'products' => $products,
+            ]);
+
+        } catch (Exception $e) {
+
+            Log::error('Error in getProductList: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        } 
+    }
 }
