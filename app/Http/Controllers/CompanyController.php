@@ -103,4 +103,63 @@ class CompanyController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+
+    public function companyEdit($id)
+    {
+        try {
+            
+            $company = $this->companyContract->findCompanyById($id);
+            
+            if (!$company) {
+                return response()->json(['error' => 'Company not found'], 404);
+            }
+
+            return response()->json($company);
+            
+        } catch (Exception $e) {
+            
+            Log::error('Error in companyEdit: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function companyUpdate(Request $request)
+    {
+        $user = Auth::user();
+
+        try {
+            $data = $request->validate([
+                'company_name' => 'required|string|max:255|unique:companies,company_name',
+                'company_email' => 'nullable|email',
+                'company_phone' => 'nullable|string|max:15',
+                'company_website' => 'nullable|url',
+                'address' => 'nullable|string|max:600',
+                'industry' => 'nullable|string|max:255',
+                'company_status' => 'required|in:Active,Deactivate',
+            ]);
+            $data['user_id'] = $user->id;
+            $data['id'] = $request->id;
+
+            $this->companyContract->updateOrCreateCompany($data);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Company created successfully!',
+            ]);
+
+        } catch (Exception $e) {
+            Log::error('Error in companyStore: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
 }

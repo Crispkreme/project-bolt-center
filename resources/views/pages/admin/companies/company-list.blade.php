@@ -250,10 +250,10 @@
                                             </td>
                                             <td class="action-table-data">
                                                 <div class="edit-delete-action">
-                                                    <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-details" data-id="{{ $company->id }}">
+                                                    <a class="me-2 p-2 edit-company" href="#" data-bs-toggle="modal" data-bs-target="#edit-company" data-id="{{ $company->id }}">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
-                                                    <a class="delete-category p-2" href="javascript:void(0);" data-id="{{ $company->id }}">
+                                                    <a class="delete-company p-2" href="javascript:void(0);" data-id="{{ $company->id }}">
                                                         <i data-feather="trash-2" class="feather-trash-2"></i>
                                                     </a>
                                                 </div>
@@ -272,7 +272,7 @@
     @push('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                document.querySelectorAll('.delete-category').forEach(button => {
+                document.querySelectorAll('.delete-company').forEach(button => {
                     button.addEventListener('click', function (e) {
                         e.preventDefault();
                         const companyId = this.getAttribute('data-id');
