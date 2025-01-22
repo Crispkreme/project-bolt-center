@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('sub_category_slug')->nullable();
             $table->enum('sub_category_status', ['Active', 'Deactivate']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

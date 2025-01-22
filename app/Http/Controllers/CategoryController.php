@@ -89,8 +89,11 @@ class CategoryController extends Controller
             } else {
                 $this->categoryContract->updateOrCreateCategory($data);
             }
-            
-            return redirect()->route('admin.category.list')->with('success', 'Category created successfully!');
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Category created successfully!'
+            ]);
 
         } catch (Exception $e) {
 
@@ -121,7 +124,6 @@ class CategoryController extends Controller
             $data['user_id'] = Auth::user()->id;
             $data['sub_category_status'] ='Active';
             $data['id'] = null;
-
             $this->subCategoryContract->updateOrCreateSubCategory($data);
 
             return response()->json([
@@ -129,7 +131,7 @@ class CategoryController extends Controller
                 'message' => 'Sub Category created successfully!'
             ]);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             Log::error('Error in subCategoryStore: ' . $e->getMessage());
             $notification = [
@@ -213,7 +215,10 @@ class CategoryController extends Controller
                 $this->categoryContract->updateOrCreateCategory($data);
             }
 
-            return redirect()->route('admin.category.list')->with('success', 'Category updated successfully!');
+            return response()->json([
+                'success' => true,
+                'message' => 'Category updated successfully!'
+            ]);
             
         } catch (Exception $e) {
             Log::error('Error in categoryUpdate: ' . $e->getMessage());

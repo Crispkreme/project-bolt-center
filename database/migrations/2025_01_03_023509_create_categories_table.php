@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('category_slug')->unique();
             $table->enum('category_status', ['Active', 'Deactivate']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
