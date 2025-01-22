@@ -92,20 +92,20 @@
 
         <x-modal.add-units />
 
+        {{-- CATEGORY --}}
         <x-modal.add-category />
         <x-modal.edit-category />
-        <x-modal.delete-category />
 
         {{-- SUB CATEGORY --}}
         <x-modal.add-sub-category />
         <x-modal.edit-sub-category />
-    
-        <x-modal.add-units-brand />
+        
+        {{-- COMPANY --}}
+        <x-modal.add-company />
+        <x-modal.edit-company />
     
         <x-modal.add-unit />
-    
         <x-modal.add-variation />
-    
         <x-modal.view-notes />
 
         @stack('scripts')

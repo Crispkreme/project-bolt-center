@@ -238,15 +238,19 @@
                         </li>
                         <li class="">
                                 <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/suppliers">
-                                        <i data-feather="users"></i><span>Suppliers</span></a>
+                                        <i data-feather="users"></i>
+                                        <span>Suppliers</span>
+                                </a>
                         </li>
-                        <li class="">
+                        {{-- <li class="">
                                 <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/store-list">
                                         <i data-feather="home"></i><span>Stores</span></a>
-                        </li>
+                        </li> --}}
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/warehouse">
-                                        <i data-feather="archive"></i><span>Warehouses</span></a>
+                                <a href="{{ route('admin.company.list') }}">
+                                        <i data-feather="archive"></i>
+                                        <span>Company</span>
+                                </a>
                         </li>
                     </ul>
                 </li>
