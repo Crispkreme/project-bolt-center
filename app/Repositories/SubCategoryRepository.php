@@ -22,7 +22,7 @@ class SubCategoryRepository implements SubCategoryContract
 
     public function getAllSubCategory($perPage = 10)
     {
-        $data = DB::table('sub_categories')
+        $data = $this->model
             ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
             ->join('users', 'sub_categories.user_id', '=', 'users.id')
             ->select(
@@ -65,16 +65,16 @@ class SubCategoryRepository implements SubCategoryContract
 
     public function findSubCategoryById($id)
     {
-        return DB::table('sub_categories')->find($id);
+        return $this->model->find($id);
     }
 
     public function deleteSubCategoryById($id)
     {
-        return DB::table('sub_categories')->where('id', $id)->delete();;
+        return $this->model->where('id', $id)->delete();;
     }
 
     public function getSubCategory()
     {
-        return DB::table('sub_categories')->get();
+        return $this->model->get();
     }
 }

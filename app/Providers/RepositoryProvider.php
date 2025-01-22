@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Contracts\CategoryContract;
+use App\Contracts\CompanyContract;
 use App\Contracts\ProductContract;
 use App\Contracts\ProductImageContract;
 use App\Contracts\StockContract;
 use App\Contracts\SubCategoryContract;
 use App\Contracts\UnitContract;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CompanyRepository;
 use App\Repositories\ProductImageRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\StockRepository;
@@ -25,6 +27,7 @@ class RepositoryProvider extends ServiceProvider
         ProductContract::class => ProductRepository::class,
         StockContract::class => StockRepository::class,
         ProductImageContract::class => ProductImageRepository::class,
+        CompanyContract::class => CompanyRepository::class,
     ];
 
     /**

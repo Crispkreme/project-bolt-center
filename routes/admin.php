@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UnitController;
@@ -20,7 +21,6 @@ Route::middleware('auth')->group(function () {
 
     // Category
     Route::get('/category/list', [CategoryController::class, 'categoryList'])->name('category.list');
-    
     Route::post('/category/store', [CategoryController::class, 'categoryStore'])->name('category.store');
     Route::get('/category/{id}/edit', [CategoryController::class, 'categoryEdit'])->name('category.edit');
     Route::post('/category/update', [CategoryController::class, 'categoryUpdate'])->name('category.update');
@@ -36,5 +36,12 @@ Route::middleware('auth')->group(function () {
     // PRODUCTS
     Route::get('/product/list', [ProductController::class, 'getProductList'])->name('product.list');
     Route::post('/product/store', [ProductController::class, 'productStore'])->name('product.store');
+
+    // COMPANY
+    Route::get('/company/list', [CompanyController::class, 'companyList'])->name('company.list');
+    Route::post('/company/store', [CompanyController::class, 'companyStore'])->name('company.store');
+    Route::delete('/company/delete/{id}', [CompanyController::class, 'companyDelete'])->name('company.delete');
+    Route::get('/company/{id}/edit', [CompanyController::class, 'companyEdit'])->name('company.edit');
+    Route::post('/company/update', [CompanyController::class, 'companyUpdate'])->name('company.update');
 
 });
