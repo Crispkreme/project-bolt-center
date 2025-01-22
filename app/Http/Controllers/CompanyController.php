@@ -79,4 +79,28 @@ class CompanyController extends Controller
             ], 500);
         }
     }
+
+    public function companyDelete($id)
+    {
+        try {
+            
+            $this->companyContract->deleteCompanyById($id);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Category deleted successfully!'
+            ]);
+            
+        } catch (Exception $e) {
+            
+            Log::error('Error in subCategoryDelete: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+    }
 }

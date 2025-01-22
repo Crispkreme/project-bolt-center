@@ -55,4 +55,9 @@ class CompanyRepository implements CompanyContract
 
         return $data;
     }
+
+    public function deleteCompanyById($id)
+    {
+        return $this->model->where('id', $id)->delete();
+    }
 }

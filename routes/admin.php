@@ -40,5 +40,5 @@ Route::middleware('auth')->group(function () {
     // COMPANY
     Route::get('/company/list', [CompanyController::class, 'companyList'])->name('company.list');
     Route::post('/company/store', [CompanyController::class, 'companyStore'])->name('company.store');
-
+    Route::delete('/company/delete/{id}', [CompanyController::class, 'companyDelete'])->name('company.delete');
 });

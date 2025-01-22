@@ -228,7 +228,7 @@
                                         <tr>
                                             <td>
                                                 <label class="checkboxs">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" value="{{ $company->id }}" />
                                                     <span class="checkmarks"></span>
                                                 </label>
                                             </td>
@@ -250,11 +250,10 @@
                                             </td>
                                             <td class="action-table-data">
                                                 <div class="edit-delete-action">
-                                                    <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                        data-bs-target="#edit-details">
+                                                    <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-details" data-id="{{ $company->id }}">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
-                                                    <a class="confirm-text p-2" href="javascript:void(0);">
+                                                    <a class="delete-category p-2" href="javascript:void(0);" data-id="{{ $company->id }}">
                                                         <i data-feather="trash-2" class="feather-trash-2"></i>
                                                     </a>
                                                 </div>
@@ -266,21 +265,61 @@
                         </div>
                     </div>
                 </div>
-                <!-- /product list -->
             </div>
         </div>
     </div>
-    <!-- /Main Wrapper -->
     
-    <div class="customizer-links" id="setdata">
-        <ul class="sticky-sidebar">
-            <li class="sidebar-icons">
-                <a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left"
-                    data-bs-original-title="Theme">
-                    <i data-feather="settings" class="feather-five"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.delete-category').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const companyId = this.getAttribute('data-id');
+
+                        if (!companyId) {
+                            console.error('Category ID is missing.');
+                            return;
+                        }
+
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: `/admin/company/delete/${companyId}`,
+                                    type: 'DELETE',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    },
+                                    success: function (response) {
+                                        if (response.success) {
+                                            Swal.fire('Deleted!', 'Category has been deleted.', 'success')
+                                            .then(() => {
+                                                location.reload();
+                                            });
+                                            document.querySelector(`tr[data-id="${companyId}"]`).remove();
+                                        } else {
+                                            Swal.fire('Error!', response.message, 'error');
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.error('Error deleting category:', error);
+                                        Swal.fire('Error!', 'An error occurred while deleting the category.', 'error');
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+    @endpush
 
 </x-app-layout>
