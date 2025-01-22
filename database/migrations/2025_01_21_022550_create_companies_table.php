@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                  ->unique()
                   ->nullable()
                   ->constrained('users')
                   ->onDelete('cascade');
@@ -25,6 +24,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('industry')->nullable();
             $table->enum('company_status', ['Active', 'Deactivate']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

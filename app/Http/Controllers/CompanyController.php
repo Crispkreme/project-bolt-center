@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\CompanyContract;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
@@ -40,44 +41,42 @@ class CompanyController extends Controller
         } 
     }
 
-    public function categoryStore(Request $request, $id = null)
+    public function companyStore(Request $request, $id = null)
     {
+        $user = Auth::user();
+
         try {
-
             $data = $request->validate([
-                'category' => 'required|string|max:255',
-                'category_slug' => 'string|max:255|unique:categories,category_slug',
+                'company_name' => 'required|string|max:255|unique:companies,company_name',
+                'company_email' => 'nullable|email',
+                'company_phone' => 'nullable|string|max:15',
+                'company_website' => 'nullable|url',
+                'address' => 'nullable|string|max:600',
+                'industry' => 'nullable|string|max:255',
             ]);
+            $data['user_id'] = $user->id;
+            $data['company_status'] = 'Active';
 
-            if (empty($data['category_slug'])) {
-                $data['category_slug'] = Str::slug($data['category']);
-            }
-            $data['category_status'] = 'Active';
-
-            if($id) {
+            if ($id) {
                 $data['id'] = $id;
                 $this->companyContract->updateOrCreateCompany($data);
             } else {
+                $data['id'] = null;
                 $this->companyContract->updateOrCreateCompany($data);
             }
 
             return response()->json([
                 'success' => true,
-                'message' => 'Category created successfully!'
+                'message' => 'Company created successfully!',
             ]);
 
         } catch (Exception $e) {
+            Log::error('Error in companyStore: ' . $e->getMessage());
 
-            Log::error('Error in categoryStore: ' . $e->getMessage());
-
-            $notification = [
-                'alert-type' => 'danger',
+            return response()->json([
+                'success' => false,
                 'message' => 'Error occurred: ' . $e->getMessage(),
-            ];
-
-            return redirect()
-                   ->back()
-                   ->with($notification);
-        } 
+            ], 500);
+        }
     }
 }

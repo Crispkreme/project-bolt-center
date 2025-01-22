@@ -29,15 +29,14 @@ class CompanyRepository implements CompanyContract
             ],
             [
                 'user_id' => $data['user_id'] ?? $userID,
-                'name' => $data['name'] ?? null,
-                'gender' => $data['gender'],
-                'birthday' => $data['birthday'],
-                'gender' => $data['gender'],
-                'civil_status' => $data['civil_status'],
-                'gender' => $data['gender'],
-                'religion' => $data['religion'],
-                'address' => $data['religion'],
-                'profile' => $data['profile'],
+                'company_name' => $data['company_name'],
+                'company_email' => $data['company_email'] ?? null,
+                'company_phone' => $data['company_phone'] ?? null,
+                'company_website' => $data['company_website'] ?? null,
+                'civil_status' => $data['civil_status'] ?? null,
+                'address' => $data['address'] ?? null,
+                'industry' => $data['industry'] ?? null,
+                'company_status' => $data['company_status'],
             ]
         );
     }
@@ -47,7 +46,10 @@ class CompanyRepository implements CompanyContract
         $data = $this->model->paginate($perPage);
 
         $data->transform(function ($item) {
+            $item->role = $item->user->role ?? 'Admin';
             $item->created_at = Carbon::parse($item->created_at)->format('F j, Y');
+            unset($item->deleted_at, $item->updated_at);
+        
             return $item;
         });
 

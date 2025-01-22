@@ -144,6 +144,7 @@
                                 </select>
                             </div>
                         </div>
+
                         <!-- /Filter -->
                         <div class="card" id="filter_inputs">
                             <div class="card-body pb-0">
@@ -200,6 +201,7 @@
                             </div>
                         </div>
                         <!-- /Filter -->
+
                         <div class="table-responsive">
                             <table class="table  datanew">
                                 <thead>
@@ -210,64 +212,55 @@
                                                 <span class="checkmarks"></span>
                                             </label>
                                         </th>
-                                        <th>Warehouse</th>
-                                        <th>Contact Person</th>
+                                        <th>Company</th>
                                         <th>Phone</th>
-                                        <th>Total Products</th>
-                                        <th>Stock</th>
-                                        <th>Qty</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>URL</th>
+                                        <th>Created By</th>
                                         <th>Created On</th>
                                         <th>Status</th>
                                         <th class="no-sort">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <label class="checkboxs">
-                                                <input type="checkbox">
-                                                <span class="checkmarks"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            Legendary
-                                        </td>
-                                        <td>
-                                            <div class="userimgname">
-                                                <a href="javascript:void(0);" class="product-img">
-                                                    <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/users/user-08.jpg"
-                                                        alt="product">
+                                    @foreach ($companies as $company)
+                                        <tr>
+                                            <td>
+                                                <label class="checkboxs">
+                                                    <input type="checkbox">
+                                                    <span class="checkmarks"></span>
+                                                </label>
+                                            </td>
+                                            <td>{{ $company->company_name }}</td>
+                                            <td>{{ $company->company_phone }}</td>
+                                            <td>{{ $company->company_email }}</td>
+                                            <td>{!! nl2br(e($company->address)) !!}</td>
+                                            <td>
+                                                <a href="{{ $company->company_website }}" target="_blank">
+                                                    {{ $company->company_website }}
                                                 </a>
-                                                <a href="javascript:void(0);">Steven</a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            +1 45445 4454
-                                        </td>
-                                        <td>04</td>
-                                        <td>
-                                            55
-                                        </td>
-                                        <td>600</td>
-                                        <td>04 Aug 2023</td>
-                                        <td><span class="badge badge-linesuccess">Active</span></td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 edit-icon p-2" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#edit-units">
-                                                    <i data-feather="eye" class="feather-eye"></i>
-                                                </a>
-                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-units">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
-                                            </div>
-
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td>{{ $company->role }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($company->created_at)->format('F j, Y') }}</td>
+                                            <td>
+                                                <span class="badge {{ $company->company_status === 'Active' ? 'badge-linesuccess' : 'badge-linedanger' }}">
+                                                    {{ $company->company_status }}
+                                                </span>
+                                            </td>
+                                            <td class="action-table-data">
+                                                <div class="edit-delete-action">
+                                                    <a class="me-2 p-2" href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#edit-details">
+                                                        <i data-feather="edit" class="feather-edit"></i>
+                                                    </a>
+                                                    <a class="confirm-text p-2" href="javascript:void(0);">
+                                                        <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
