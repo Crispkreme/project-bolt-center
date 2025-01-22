@@ -30,3 +30,84 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        const editCategoryModal = new bootstrap.Modal('#edit-category');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const editButtons = document.querySelectorAll('.edit-category');
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const categoryId = this.getAttribute('data-id');
+
+                    $.ajax({
+                        url: `/admin/category/${categoryId}/edit`,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+
+                            const categoryIdInput = document.getElementById('edit-category-id');
+                            const categoryNameInput = document.getElementById('edit-category-name');
+                            const categoryStatusSelect = document.getElementById('edit-category-status');
+
+                            if (categoryIdInput && categoryNameInput && categoryStatusSelect) {
+                                categoryIdInput.value = data.id;
+                                categoryNameInput.value = data.category;
+                                categoryStatusSelect.value = data.category_status || ''; 
+                                editCategoryModal.show();
+                            } else {
+                                console.error('Input fields are missing in the modal.');
+                            }
+                        },
+                        error: function (error) {
+                            console.error('Error fetching category data:', error);
+                        }
+                    });
+                });
+            });
+
+            const editCategoryForm = document.getElementById('editCategoryForm');
+            if (editCategoryForm) {
+                editCategoryForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(editCategoryForm);
+
+                    $.ajax({
+                        url: '{{ route('admin.category.update') }}',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            editCategoryModal.hide();
+                            const categoryRow = document.querySelector(`.category-row[data-id="${response.id}"]`);
+                            if (categoryRow) {
+                                categoryRow.querySelector('.category-name').textContent = response.category;
+                                categoryRow.querySelector('.category-status').textContent = response.status;
+                            }
+
+                            if (response.success) {
+                                Swal.fire('Success!', 'Category has been updated.', 'success')
+                                .then(() => {
+                                    location.reload();
+                                });
+                                document.querySelector('#edit-category .btn-cancel').click();
+                                editCategoryForm.reset();
+                            } else {
+                                alert(data.message || 'An error occurred. Please try again.');
+                            }
+                        },
+                        error: function (error) {
+                            console.error('Error updating category:', error);
+                        }
+                    });
+                });
+            }
+        });
+
+    </script>
+@endpush

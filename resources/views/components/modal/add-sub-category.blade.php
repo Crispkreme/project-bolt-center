@@ -24,13 +24,69 @@
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary" id="save-sub-category">Save Sub Category</button>
-                        <a href="javascript:void(0);" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</a>
+                        <a href="javascript:void(0);" class="btn btn-secondary btn-cancel" data-bs-dismiss="modal">Cancel</a>
                     </div>
                 </form>
-                <div id="response-message"></div>
+                <div id="response-message" class="mt-3"></div>
             </div>
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const subCategoryForm = document.getElementById('add-sub-category-form');
+            const responseMessage = document.getElementById('response-message');
+
+            subCategoryForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                responseMessage.innerHTML = '';
+                const formData = new FormData(subCategoryForm);
+                const url = subCategoryForm.getAttribute('action');
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Accept': 'application/json',
+                    },
+                    body: formData,
+                })
+                    .then(async response => {
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            if (response.status === 422) {
+                                const errors = errorData.errors || {};
+                                responseMessage.innerHTML = `
+                                    <div class="alert alert-danger">
+                                        ${Object.values(errors).flat().join('<br>')}
+                                    </div>`;
+                            } else {
+                                responseMessage.innerHTML = `<div class="alert alert-danger">An error occurred. Please try again.</div>`;
+                            }
+                            throw new Error('Response not OK');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire('Success!', 'Sub Category has been added successfully.', 'success')
+                                .then(() => {
+                                    location.reload();
+                                });
+                        } else {
+                            responseMessage.innerHTML = `<div class="alert alert-danger">${data.message || 'An error occurred.'}</div>`;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        responseMessage.innerHTML = `<div class="alert alert-danger">An unexpected error occurred. Please try again.</div>`;
+                    });
+            });
+        });
+    </script>
+@endpush
