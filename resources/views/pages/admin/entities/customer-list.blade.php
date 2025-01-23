@@ -111,12 +111,15 @@
                                             <td>
                                                 <div class="productimgname">
                                                     <a href="javascript:void(0);" class="product-img supplier-img">
-                                                        <img src="{{ asset('storage/' . $supplier['profile']) }}" alt="Supplier" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
-                                                    </a>                                                                                                       
+                                                        <img 
+                                                            src="{{ $supplier['profile'] && file_exists(storage_path('app/public/' . $supplier['profile'])) ? asset('storage/' . $supplier['profile']) : \Laravolt\Avatar\Facade::create($supplier['name'])->toBase64() }}" 
+                                                            alt="Supplier" 
+                                                            style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+                                                    </a>
                                                     <div>
                                                         <a href="javascript:void(0);" class="ms-2">{{ $supplier['name'] }}</a>
                                                     </div>
-                                                </div>
+                                                </div>                                                                                             
                                             </td>
                                             <td>{{ $supplier['email'] }}</td>
                                             <td>{{ $supplier['phone'] }}</td>
