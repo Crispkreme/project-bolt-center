@@ -25,17 +25,16 @@ class EntityRepository implements EntityContract
 
         return $this->model->updateOrCreate(
             [
-                'user_id' => $data['user_id'] ?? $userID,
+                'id' => $data['id'] ?? null,
             ],
             [
-                'name' => $data['name'] ?? null,
-                'gender' => $data['gender'],
-                'birthday' => $data['birthday'],
-                'gender' => $data['gender'],
-                'civil_status' => $data['civil_status'],
-                'gender' => $data['gender'],
-                'religion' => $data['religion'],
-                'address' => $data['religion'],
+                'user_id' => $data['user_id'] ?? $userID,
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'phone' => $data['phone'],
+                'address' => $data['address'],
+                'entity_type' => $data['entity_type'],
+                'entity_status' => $data['entity_status'],
                 'profile' => $data['profile'],
             ]
         );

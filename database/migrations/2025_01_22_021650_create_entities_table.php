@@ -18,11 +18,11 @@ return new class extends Migration
                   ->constrained('users')
                   ->onDelete('cascade');
             $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('address');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
             $table->enum('entity_type', ['Customer', 'Supplier']);
-            $table->string('profile');
+            $table->string('profile')->nullable();
             $table->enum('entity_status', ['Active', 'Deactivate']);
             $table->timestamps();
         });

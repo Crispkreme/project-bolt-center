@@ -103,7 +103,11 @@
         {{-- COMPANY --}}
         <x-modal.add-company />
         <x-modal.edit-company />
-    
+        
+        {{-- ENTITY --}}
+        <x-modal.add-entity />
+        <x-modal.edit-entity />
+
         <x-modal.add-unit />
         <x-modal.add-variation />
         <x-modal.view-notes />
