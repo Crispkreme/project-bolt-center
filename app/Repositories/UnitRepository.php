@@ -19,9 +19,9 @@ class UnitRepository implements UnitContract
         $this->model = $model;
     }
 
-    public function getAllUnit($perPage = 10)
+    public function getAllUnit()
     {
-        $data = DB::table('units')->paginate($perPage);
+        $data = DB::table('units')->get();
 
         $data->transform(function ($item) {
             $item->created_at = Carbon::parse($item->created_at)->format('F j, Y');

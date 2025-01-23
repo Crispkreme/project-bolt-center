@@ -19,9 +19,9 @@ class CategoryRepository implements CategoryContract
         $this->model = $model;
     }
 
-    public function getAllCategory($perPage = 10)
+    public function getAllCategory()
     {
-        $data = DB::table('categories')->paginate($perPage);
+        $data = DB::table('categories')->get();
 
         $data->transform(function ($item) {
             $item->created_at = Carbon::parse($item->created_at)->format('F j, Y');

@@ -43,7 +43,7 @@ class ProductRepository implements ProductContract
         );
     }
 
-    public function getAllProduct($perPage = 10)
+    public function getAllProduct()
     {
         $data = DB::table('products')
             ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
@@ -59,7 +59,7 @@ class ProductRepository implements ProductContract
                 'users.role as created_by',
                 'products.created_at'
             )
-            ->paginate($perPage);
+            ->get();
     
         $data->transform(function ($item) {
             $item->created_on = Carbon::parse($item->created_at)->format('F j, Y');

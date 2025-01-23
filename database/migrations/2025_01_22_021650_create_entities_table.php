@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('entities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                  ->nullable()
+                  ->constrained('users')
+                  ->onDelete('cascade');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
             $table->string('address');
             $table->enum('entity_type', ['Customer', 'Supplier']);
             $table->string('profile');
+            $table->enum('entity_status', ['Active', 'Deactivate']);
             $table->timestamps();
         });
     }
