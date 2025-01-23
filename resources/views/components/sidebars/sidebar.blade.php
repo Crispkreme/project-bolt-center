@@ -233,25 +233,27 @@
                     <h6 class="submenu-hdr">Peoples</h6>
                     <ul>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/customers">
-                                        <i data-feather="user"></i><span>Customers</span></a>
+                                <a href="{{ route('admin.customer.list') }}">
+                                        <i data-feather="user"></i>
+                                        <span>Customers</span>
+                                </a>
                         </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/suppliers">
+                                <a href="{{ route('admin.supplier.list') }}">
                                         <i data-feather="users"></i>
                                         <span>Suppliers</span>
                                 </a>
                         </li>
-                        {{-- <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/store-list">
-                                        <i data-feather="home"></i><span>Stores</span></a>
-                        </li> --}}
                         <li class="">
                                 <a href="{{ route('admin.company.list') }}">
                                         <i data-feather="archive"></i>
                                         <span>Company</span>
                                 </a>
                         </li>
+                        {{-- <li class="">
+                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/store-list">
+                                        <i data-feather="home"></i><span>Stores</span></a>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="submenu-open">
