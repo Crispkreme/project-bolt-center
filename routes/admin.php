@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EntityController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UnitController;
@@ -44,4 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/company/{id}/edit', [CompanyController::class, 'companyEdit'])->name('company.edit');
     Route::post('/company/update', [CompanyController::class, 'companyUpdate'])->name('company.update');
 
+    // ENTITY
+    Route::get('/customer/list', [EntityController::class, 'getAllCustomer'])->name('customer.list');
+    Route::get('/supplier/list', [EntityController::class, 'getAllSupplier'])->name('supplier.list');
+    Route::post('/entity/store', [EntityController::class, 'entityStore'])->name('entity.store');
 });
