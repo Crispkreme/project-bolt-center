@@ -12,7 +12,7 @@
                         </button>
                     </div>
                     <div class="modal-body custom-modal-body">
-                        <form action="suppliers" method="POST" enctype="multipart/form-data">
+                        <form id="addEntityForm" action="{{ route('admin.entity.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
@@ -20,15 +20,16 @@
                                     <div class="new-employee-field">
                                         <span>Avatar</span>
                                         <div class="profile-pic-upload mb-2">
-                                            <div class="profile-pic">
-                                                <span>
+                                            <div class="profile-pic" id="profile-pic" style="position: relative; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                                                <img id="profile-pic-preview" src="" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                                                <span id="default-text" style="position: absolute; text-align: center; color: #aaa;">
                                                     <i data-feather="plus-circle" class="plus-down-add"></i>
                                                     Profile Photo
                                                 </span>
                                             </div>
                                             <div class="input-blocks mb-0">
                                                 <div class="image-upload mb-0">
-                                                    <input type="file" name="profile" accept="image/*">
+                                                    <input type="file" id="profile" name="profile" accept="image/*" onchange="previewImage(event)">
                                                     <div class="image-uploads">
                                                         <h4>Change Image</h4>
                                                     </div>
@@ -51,7 +52,6 @@
                                         <input type="email" class="form-control" name="email" required>
                                     </div>
                                 </div>
-
                                 <div class="col-lg-6">
                                     <div class="input-blocks">
                                         <label>Phone</label>
@@ -90,3 +90,69 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                const preview = document.getElementById('profile-pic-preview');
+                const defaultText = document.getElementById('default-text');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+                defaultText.style.display = 'none';
+            };
+
+            if (input.files && input.files[0]) {
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const addEntityForm = document.getElementById('addEntityForm');
+
+            addEntityForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(addEntityForm);
+                const url = addEntityForm.getAttribute('action');
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Accept': 'application/json',
+                        },
+                        body: formData,
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        if (response.status === 422) {
+                            Swal.fire('Error!', 'Validation error occurred. Please check the input fields.', 'error');
+                            return;
+                        }
+                        Swal.fire('Error!', 'An unexpected error occurred. Please try again.', 'error');
+                        return;
+                    }
+
+                    const data = await response.json();
+                    if (data.success) {
+                        Swal.fire('Success!', 'Entity has been added successfully.', 'success')
+                            .then(() => {
+                                location.reload();
+                            });
+                    } else {
+                        Swal.fire('Error!', data.message || 'An error occurred.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    Swal.fire('Error!', 'An unexpected error occurred. Please try again.', 'error');
+                }
+            });
+        });
+    </script>
+@endpush

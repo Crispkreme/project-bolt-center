@@ -111,8 +111,8 @@
                                             <td>
                                                 <div class="productimgname">
                                                     <a href="javascript:void(0);" class="product-img supplier-img">
-                                                        <img src="{{ $supplier['profile'] }}" alt="Supplier">
-                                                    </a>
+                                                        <img src="{{ asset('storage/' . $supplier['profile']) }}" alt="Supplier" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
+                                                    </a>                                                                                                       
                                                     <div>
                                                         <a href="javascript:void(0);" class="ms-2">{{ $supplier['name'] }}</a>
                                                     </div>
