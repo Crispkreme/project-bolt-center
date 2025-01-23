@@ -41,9 +41,9 @@ class CompanyRepository implements CompanyContract
         );
     }
 
-    public function getAllCompany($perPage = 10)
+    public function getAllCompany()
     {
-        $data = $this->model->paginate($perPage);
+        $data = $this->model->get();
 
         $data->transform(function ($item) {
             $item->role = $item->user->role ?? 'Admin';

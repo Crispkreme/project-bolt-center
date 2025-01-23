@@ -20,7 +20,7 @@ class SubCategoryRepository implements SubCategoryContract
         $this->model = $model;
     }
 
-    public function getAllSubCategory($perPage = 10)
+    public function getAllSubCategory()
     {
         $data = $this->model
             ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
@@ -35,7 +35,7 @@ class SubCategoryRepository implements SubCategoryContract
                 'users.role',
                 'sub_categories.created_at'
             )
-            ->paginate($perPage);
+            ->get();
 
         $data->transform(function ($item) {
             $item->created_at = Carbon::parse($item->created_at)->format('F j, Y');
