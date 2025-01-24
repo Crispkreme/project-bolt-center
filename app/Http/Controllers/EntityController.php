@@ -63,7 +63,6 @@ class EntityController extends Controller
             return redirect()->back()->with($notification);
         } 
     }
-
     public function entityStore(Request $request)
     {
         try {
@@ -98,6 +97,29 @@ class EntityController extends Controller
                 'success' => false,
                 'message' => 'An error occurred while creating the entity: ' . $e->getMessage(),
             ], 500);
+        }
+    }
+    public function entityEdit($id)
+    {
+        try {
+            
+            $entity = $this->entityContract->findEntityById($id);
+
+            if (!$entity) {
+                return response()->json(['error' => 'Entity not found'], 404);
+            }
+
+            return response()->json($entity);
+            
+        } catch (Exception $e) {
+            
+            Log::error('Error in entityEdit: ' . $e->getMessage());
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
         }
     }
 }

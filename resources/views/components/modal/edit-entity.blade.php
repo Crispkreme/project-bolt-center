@@ -1,33 +1,35 @@
-<div class="modal fade" id="edit-units">
+<div class="modal fade" id="edit-entity" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered custom-modal-two">
         <div class="modal-content">
             <div class="page-wrapper-new p-0">
                 <div class="content">
                     <div class="modal-header border-0 custom-modal-header">
                         <div class="page-title">
-                            <h4>Edit Supplier</h4>
+                            <h4>Edit Supplier/Customer</h4>
                         </div>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body custom-modal-body">
-                        <form action="suppliers">
+                        <form id="editEntityForm" action="{{ route('admin.entity.update') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id" id="edit-entity-id">
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="new-employee-field">
-                                        <span>Avatar</span>
-                                        <div class="profile-pic-upload edit-pic">
-                                            <div class="profile-pic">
-                                                <span><img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/supplier/edit-supplier.jpg"
-                                                        alt=""></span>
-                                                <div class="close-img">
-                                                    <i data-feather="x" class="info-img"></i>
-                                                </div>
+                                        <div class="profile-pic-upload mb-2">
+                                            <div class="profile-pic" id="profile-pic" style="position: relative; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                                                <img id="profile-pic-preview" src="" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                                                <span id="default-text" style="position: absolute; text-align: center; color: #aaa;">
+                                                    <i data-feather="plus-circle" class="plus-down-add"></i>
+                                                    Profile Photo
+                                                </span>
                                             </div>
                                             <div class="input-blocks mb-0">
                                                 <div class="image-upload mb-0">
-                                                    <input type="file">
+                                                    <input type="file" id="profile" name="profile" accept="image/*" onchange="previewImage(event)">
                                                     <div class="image-uploads">
                                                         <h4>Change Image</h4>
                                                     </div>
@@ -36,59 +38,49 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="input-blocks">
-                                        <label>Supplier Name</label>
-                                        <input type="text" placeholder="Apex Computers">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="input-blocks">
-                                        <label>Email</label>
-                                        <input type="email" placeholder="apexcomputers@example.com">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="input-blocks">
-                                        <label>Phone</label>
-                                        <input type="text" placeholder="+12163547758 ">
-                                    </div>
-                                </div>
+
                                 <div class="col-lg-12">
                                     <div class="input-blocks">
-                                        <label>Address</label>
-                                        <input type="text" placeholder="Budapester Strasse 2027259 ">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="name" id="edit-entity-name" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-sm-10 col-10">
+
+                                <div class="col-lg-6">
                                     <div class="input-blocks">
-                                        <label>City</label>
-                                        <select class="select">
-                                            <option>Varrel</option>
-                                        </select>
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" name="email" id="edit-entity-email" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-sm-10 col-10">
+                                <div class="col-lg-6">
                                     <div class="input-blocks">
-                                        <label>Country</label>
-                                        <select class="select">
-                                            <option>Germany</option>
-                                            <option>France</option>
-                                            <option>Mexico</option>
+                                        <label>Phone</label>
+                                        <input type="text" class="form-control" name="phone" id="edit-entity-phone" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="input-blocks">
+                                        <label>Type</label>
+                                        <select class="select form-control" name="entity_type" id="edit-entity-type">
+                                            <option value="" disabled>Choose</option>
+                                            <option value="Customer">Customer</option>
+                                            <option value="Supplier">Supplier</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="mb-0 input-blocks">
-                                    <label class="form-label">Descriptions</label>
-                                    <textarea class="form-control mb-1"></textarea>
-                                    <p>Maximum 600 Characters</p>
+                                <div class="col-md-12">
+                                    <div class="input-blocks">
+                                        <label>Address</label>
+                                        <textarea class="form-control mb-1" name="address" id="edit-entity-address" maxlength="600"></textarea>
+                                        <p>Maximum 600 Characters</p>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="modal-footer-btn">
-                                <button type="button" class="btn btn-cancel me-2"
-                                    data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-submit">Submit</button>
                             </div>
                         </form>
@@ -98,3 +90,100 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                const preview = document.getElementById('profile-pic-preview');
+                const defaultText = document.getElementById('default-text');
+                preview.src = reader.result;
+                preview.style.display = 'block';
+                defaultText.style.display = 'none';
+            };
+
+            if (input.files && input.files[0]) {
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        const editEntityModal = new bootstrap.Modal('#edit-entity');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const editButtons = document.querySelectorAll('.edit-entity');
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const entityId = this.getAttribute('data-id');
+
+                    $.ajax({
+                        url: `/admin/entity/${entityId}/edit`,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+
+                            document.getElementById('edit-entity-id').value = data.id;
+                            document.getElementById('edit-entity-name').value = data.name;
+                            document.getElementById('edit-entity-email').value = data.email;
+                            document.getElementById('edit-entity-phone').value = data.phone;
+                            document.getElementById('edit-entity-type').value = data.entity_type;
+                            document.getElementById('edit-entity-address').value = data.address;
+                            
+                            if (data.profile_picture) {
+                                document.getElementById('profile-pic-preview').src = data.profile_picture;
+                                document.getElementById('profile-pic-preview').style.display = 'block';
+                                document.getElementById('default-text').style.display = 'none';
+                            }
+
+                            editEntityModal.show();
+                        },
+                        error: function (error) {
+                            console.error('Error fetching entity data:', error);
+                        }
+                    });
+                });
+            });
+
+            const editEntityForm = document.getElementById('editEntityForm');
+            if (editEntityForm) {
+                editEntityForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(editEntityForm);
+
+                    $.ajax({
+                        url: '{{ route('admin.entity.update') }}',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            
+                            editEntityModal.hide();
+                            const entityRow = document.querySelector(`.entity-row[data-id="${response.id}"]`);
+                            
+                            if (entityRow) {
+                                entityRow.querySelector('.entity-name').textContent = response.name;
+                                entityRow.querySelector('.entity-type').textContent = response.entity_type;
+                            }
+
+                            Swal.fire('Success!', 'Customer/Supplier has been updated.', 'success')
+                                .then(() => {
+                                    location.reload();
+                                });
+                            document.querySelector('#edit-entity .btn-cancel').click();
+                            editEntityForm.reset();
+                        },
+                        error: function (error) {
+                            console.error('Error updating entity:', error);
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+@endpush

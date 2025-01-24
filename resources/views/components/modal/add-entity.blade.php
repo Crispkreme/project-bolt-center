@@ -18,7 +18,6 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="new-employee-field">
-                                        <span>Avatar</span>
                                         <div class="profile-pic-upload mb-2">
                                             <div class="profile-pic" id="profile-pic" style="position: relative; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
                                                 <img id="profile-pic-preview" src="" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover;">

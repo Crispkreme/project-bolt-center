@@ -64,4 +64,14 @@ class EntityRepository implements EntityContract
 
         return $suppliers;
     }
+
+    public function findEntityById($id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function deleteEntityById($id)
+    {
+        return $this->model->where('id', $id)->delete();
+    }
 }

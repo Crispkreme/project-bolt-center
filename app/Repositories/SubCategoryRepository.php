@@ -70,7 +70,7 @@ class SubCategoryRepository implements SubCategoryContract
 
     public function deleteSubCategoryById($id)
     {
-        return $this->model->where('id', $id)->delete();;
+        return $this->model->where('id', $id)->delete();
     }
 
     public function getSubCategory()

@@ -49,4 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/list', [EntityController::class, 'getAllCustomer'])->name('customer.list');
     Route::get('/supplier/list', [EntityController::class, 'getAllSupplier'])->name('supplier.list');
     Route::post('/entity/store', [EntityController::class, 'entityStore'])->name('entity.store');
+    Route::get('/entity/{id}/edit', [EntityController::class, 'entityEdit'])->name('entity.edit');
+    Route::post('/entity/update', [EntityController::class, 'entityUpdate'])->name('entity.update');
 });
