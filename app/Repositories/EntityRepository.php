@@ -57,8 +57,8 @@ class EntityRepository implements EntityContract
                 'address' => $supplier->address,
                 'profile' => $supplier->profile,
                 'entity_status' => $supplier->entity_status,
-                'created_by' => optional($supplier->user)->email ?? 'N/A', // Use optional() to avoid errors if user is null
-                'created_at' => Carbon::parse($supplier->created_at)->format('F j, Y'), // Format created_at date
+                'created_by' => optional($supplier->user)->email ?? 'N/A',
+                'created_at' => Carbon::parse($supplier->created_at)->format('F j, Y'),
             ];
         });
 
@@ -74,4 +74,13 @@ class EntityRepository implements EntityContract
     {
         return $this->model->where('id', $id)->delete();
     }
+
+    public function getAllSupplier()
+    {
+        return $this->model
+            ->where('entity_type', 'Supplier')
+            ->select('id', 'name')
+            ->get();
+    }
+
 }

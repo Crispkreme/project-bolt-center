@@ -36,7 +36,7 @@
                             </div>
                             <div class="addservice-info">
                                 <div class="row">
-                                    <div class="col-lg-4 col-sm-6 col-12">
+                                    <div class="col-lg-3 col-sm-6 col-12">
                                         <div class="mb-3 add-product">
                                             <div class="add-newplus">
                                                 <label class="form-label">Category</label>
@@ -54,7 +54,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-sm-6 col-12">
+                                    <div class="col-lg-3 col-sm-6 col-12">
                                         <div class="mb-3 add-product">
                                             <div class="add-newplus">
                                                 <label class="form-label">Sub Category</label>
@@ -72,7 +72,25 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-sm-6 col-12">
+                                    <div class="col-lg-3 col-sm-6 col-12">
+                                        <div class="mb-3 add-product">
+                                            <div class="add-newplus">
+                                                <label class="form-label">Supplier</label>
+                                                <a href="javascript:void(0);" data-bs-toggle="modal"
+                                                    data-bs-target="#add-entity">
+                                                    <i data-feather="plus-circle" class="plus-down-add"></i>
+                                                    <span>Add New</span>
+                                                </a>
+                                            </div>
+                                            <select class="select" name="supplier_id">
+                                                <option>Choose</option>
+                                                @foreach ($suppliers as $supplier)
+                                                    <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-12">
                                         <div class="input-blocks add-product list">
                                             <label>Item Code</label>
                                             <input type="text" id="item-code" name="product_code" class="form-control list" placeholder="Please Enter Item Code" readonly>
@@ -163,43 +181,43 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="accordion-card-one accordion" id="accordionExample3">
-                                        <div class="accordion-item">
-                                            <div class="accordion-header" id="headingThree">
-                                                <div class="accordion-button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseThree"
-                                                    aria-controls="collapseThree">
-                                                    <div class="addproduct-icon list">
-                                                        <h5>
-                                                            <i data-feather="image" class="add-info"></i>
-                                                            <span>Images</span>
-                                                        </h5>
-                                                        <a href="javascript:void(0);">
-                                                            <i data-feather="chevron-down" class="chevron-down-add"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample3">
-                                                <div class="accordion-body">
-                                                    <div class="text-editor add-list add">
-                                                        <div class="col-lg-12">
-                                                            <div class="add-choosen">
-                                                                <div class="input-blocks">
-                                                                    <div class="image-upload">
-                                                                        <input type="file" id="image-upload-input" name="product_image[]" multiple accept="image/*">
-                                                                        <div class="image-uploads">
-                                                                            <i data-feather="plus-circle" class="plus-down-add me-0"></i>
-                                                                            <h4>Add Images</h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div id="image-repeater-container" style="display: flex;">
-                                                                    <!-- Image repeaters will dynamically appear here -->
-                                                                </div>
-                                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-card-one accordion" id="accordionExample3">
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="headingThree">
+                                <div class="accordion-button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree"
+                                    aria-controls="collapseThree">
+                                    <div class="addproduct-icon list">
+                                        <h5>
+                                            <i data-feather="image" class="add-info"></i>
+                                            <span>Images</span>
+                                        </h5>
+                                        <a href="javascript:void(0);">
+                                            <i data-feather="chevron-down" class="chevron-down-add"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample3">
+                                <div class="accordion-body">
+                                    <div class="text-editor add-list add">
+                                        <div class="col-lg-12">
+                                            <div class="add-choosen">
+                                                <div class="input-blocks">
+                                                    <div class="image-upload">
+                                                        <input type="file" id="image-upload-input" name="product_image[]" multiple accept="image/*">
+                                                        <div class="image-uploads">
+                                                            <i data-feather="plus-circle" class="plus-down-add me-0"></i>
+                                                            <h4>Add Images</h4>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div id="image-repeater-container" style="display: flex;">
+                                                    <!-- Image repeaters will dynamically appear here -->
                                                 </div>
                                             </div>
                                         </div>
@@ -262,8 +280,6 @@
                 e.preventDefault();
                 let formData = $(this).serialize();
                 
-                console.log('formData', formData);
-
                 $.ajax({
                     url: '{{ route('admin.product.store') }}',
                     method: 'POST',

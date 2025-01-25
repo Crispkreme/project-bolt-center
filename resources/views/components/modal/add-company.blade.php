@@ -26,6 +26,14 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
+                                        <label class="form-label">Supplier</label>
+                                        <select class="select" name="supplier_id">
+                                            <option value="">Choose Supplier</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
                                         <label class="form-label">Company Name</label>
                                         <input type="text" class="form-control" name="company_name" required>
                                     </div>
@@ -136,6 +144,36 @@
                     responseMessage.innerHTML = `<div class="alert alert-danger">An unexpected error occurred. Please try again.</div>`;
                 });
             });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            function fetchSuppliers() {
+                $.ajax({
+                    url: '{{ route('fetch.supplier') }}',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log('response', response);
+                        if (response.success && response.suppliers.length > 0) {
+                            let supplierOptions = '<option value="">Choose Supplier</option>';
+                            response.suppliers.forEach(supplier => {
+                                supplierOptions += `<option value="${supplier.id}">${supplier.name}</option>`;
+                            });
+                            $('.select').html(supplierOptions);
+                        } else {
+                            alert('No suppliers found.');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error fetching suppliers:', error);
+                        alert('Unable to fetch suppliers. Please try again later.');
+                    }
+                });
+            }
+
+            fetchSuppliers();
         });
     </script>
 @endpush

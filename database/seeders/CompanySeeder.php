@@ -18,7 +18,8 @@ class CompanySeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             DB::table('companies')->insert([
-                'user_id' => null,
+                'user_id' => $faker->numberBetween(1, 2),
+                'supplier_id' => $faker->numberBetween(1, 10),
                 'company_name' => $faker->company,
                 'company_email' => $faker->unique()->companyEmail,
                 'company_phone' => $faker->phoneNumber,

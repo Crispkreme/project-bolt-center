@@ -122,4 +122,22 @@ class EntityController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+    public function getSupplierList()
+    {
+        try {
+            $suppliers = $this->entityContract->getAllSupplier();
+
+            return response()->json([
+                'success' => true,
+                'suppliers' => $suppliers,
+            ]);
+        } catch (Exception $e) {
+            Log::error('Error in getSupplierList: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
 }

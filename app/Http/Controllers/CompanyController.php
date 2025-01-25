@@ -23,7 +23,7 @@ class CompanyController extends Controller
         try {
             
             $companies = $this->companyContract->getAllCompany(10);
-            
+
             return view('pages.admin.companies.company-list', [
                 'companies' => $companies,
             ]);
@@ -54,6 +54,7 @@ class CompanyController extends Controller
                 'address' => 'nullable|string|max:600',
                 'industry' => 'nullable|string|max:255',
             ]);
+            $data['supplier_id'] = $request->supplier_id;
             $data['user_id'] = $user->id;
             $data['company_status'] = 'Active';
 

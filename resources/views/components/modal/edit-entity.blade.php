@@ -21,7 +21,7 @@
                                     <div class="new-employee-field">
                                         <div class="profile-pic-upload mb-2">
                                             <div class="profile-pic" id="profile-pic" style="position: relative; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
-                                                <img id="profile-pic-preview" src="" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                                                <img id="profile-pic-preview" src="" alt="Profile Preview" style="display: none; width: 100%; height: 100%; object-fit: cover;">
                                                 <span id="default-text" style="position: absolute; text-align: center; color: #aaa;">
                                                     <i data-feather="plus-circle" class="plus-down-add"></i>
                                                     Profile Photo
@@ -125,65 +125,57 @@
                         type: 'GET',
                         dataType: 'json',
                         success: function (data) {
-
+                            // Fill modal fields with entity data
                             document.getElementById('edit-entity-id').value = data.id;
                             document.getElementById('edit-entity-name').value = data.name;
                             document.getElementById('edit-entity-email').value = data.email;
                             document.getElementById('edit-entity-phone').value = data.phone;
                             document.getElementById('edit-entity-type').value = data.entity_type;
                             document.getElementById('edit-entity-address').value = data.address;
-                            
+
                             if (data.profile_picture) {
-                                document.getElementById('profile-pic-preview').src = data.profile_picture;
-                                document.getElementById('profile-pic-preview').style.display = 'block';
+                                const preview = document.getElementById('profile-pic-preview');
+                                preview.src = data.profile_picture;
+                                preview.style.display = 'block';
                                 document.getElementById('default-text').style.display = 'none';
+                            } else {
+                                document.getElementById('profile-pic-preview').style.display = 'none';
+                                document.getElementById('default-text').style.display = 'flex';
                             }
 
                             editEntityModal.show();
                         },
                         error: function (error) {
                             console.error('Error fetching entity data:', error);
+                            Swal.fire('Error', 'Failed to fetch entity data. Please try again.', 'error');
                         }
                     });
                 });
             });
 
             const editEntityForm = document.getElementById('editEntityForm');
-            if (editEntityForm) {
-                editEntityForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
+            editEntityForm.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-                    const formData = new FormData(editEntityForm);
+                const formData = new FormData(editEntityForm);
 
-                    $.ajax({
-                        url: '{{ route('admin.entity.update') }}',
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function (response) {
-                            
-                            editEntityModal.hide();
-                            const entityRow = document.querySelector(`.entity-row[data-id="${response.id}"]`);
-                            
-                            if (entityRow) {
-                                entityRow.querySelector('.entity-name').textContent = response.name;
-                                entityRow.querySelector('.entity-type').textContent = response.entity_type;
-                            }
-
-                            Swal.fire('Success!', 'Customer/Supplier has been updated.', 'success')
-                                .then(() => {
-                                    location.reload();
-                                });
-                            document.querySelector('#edit-entity .btn-cancel').click();
-                            editEntityForm.reset();
-                        },
-                        error: function (error) {
-                            console.error('Error updating entity:', error);
-                        }
-                    });
+                $.ajax({
+                    url: '{{ route('admin.entity.update') }}',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        editEntityModal.hide();
+                        Swal.fire('Success!', 'Entity updated successfully.', 'success')
+                            .then(() => location.reload());
+                    },
+                    error: function (error) {
+                        console.error('Error updating entity:', error);
+                        Swal.fire('Error', 'Failed to update entity. Please try again.', 'error');
+                    }
                 });
-            }
+            });
         });
     </script>
 @endpush

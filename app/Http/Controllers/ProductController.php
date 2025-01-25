@@ -101,7 +101,7 @@ class ProductController extends Controller
     {
         try {
             
-            $products = $this->productContract->getAllProduct(10);
+            $products = $this->productContract->getAllProduct();
             
             return view('pages.admin.products.product-list', [
                 'products' => $products,

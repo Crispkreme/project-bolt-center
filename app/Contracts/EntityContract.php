@@ -8,4 +8,5 @@ interface EntityContract {
     public function getAllEntityByType($entity_type);
     public function findEntityById($id);
     public function deleteEntityById($id);
+    public function getAllSupplier();
 }
