@@ -21,6 +21,10 @@ return new class extends Migration
                   ->nullable()
                   ->constrained('users')
                   ->onDelete('cascade');
+            $table->foreignId('supplier_id')
+                  ->nullable()
+                  ->constrained('entities')
+                  ->onDelete('cascade');
             $table->string('quantity')->nullable();
             $table->string('selling_price')->nullable();
             $table->string('buying_price')->nullable();

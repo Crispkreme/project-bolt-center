@@ -75,12 +75,12 @@ class EntityRepository implements EntityContract
         return $this->model->where('id', $id)->delete();
     }
 
-    public function getAllSupplier()
+    public function getSupplierSelect()
     {
         return $this->model
             ->where('entity_type', 'Supplier')
+            ->where('entity_status', 'Active')
             ->select('id', 'name')
             ->get();
     }
-
 }

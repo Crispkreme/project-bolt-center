@@ -17,7 +17,7 @@ class EntityController extends Controller
         $this->entityContract = $entityContract;
     }
 
-    public function getAllSupplier()
+    public function getSupplierSelect()
     {
         try {
             
@@ -30,7 +30,7 @@ class EntityController extends Controller
             
         } catch (Exception $e) {
 
-            Log::error('Error in getAllSupplier: ' . $e->getMessage());
+            Log::error('Error in getSupplierSelect: ' . $e->getMessage());
 
             $notification = [
                 'alert-type' => 'danger',
@@ -125,7 +125,7 @@ class EntityController extends Controller
     public function getSupplierList()
     {
         try {
-            $suppliers = $this->entityContract->getAllSupplier();
+            $suppliers = $this->entityContract->getSupplierSelect();
 
             return response()->json([
                 'success' => true,

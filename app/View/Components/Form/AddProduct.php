@@ -32,9 +32,9 @@ class AddProduct extends Component
      */
     public function render(): View|Closure|string
     {
-        $categories = $this->categoryContract->getCategory();
-        $subCategories = $this->subCategoryContract->getSubCategory();
-        $suppliers = $this->entityContract->getAllSupplier();
+        $categories = $this->categoryContract->getCategorySelect();
+        $subCategories = $this->subCategoryContract->getSubCategorySelect();
+        $suppliers = $this->entityContract->getSupplierSelect();
 
         return view('components.form.add-product', [
             'categories' => $categories,

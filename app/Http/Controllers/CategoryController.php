@@ -314,4 +314,42 @@ class CategoryController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+    public function getCategoryList()
+    {
+        try {
+            $categories = $this->categoryContract->getCategorySelect();
+
+            return response()->json([
+                'success' => true,
+                'categories' => $categories,
+            ]);
+
+        } catch (Exception $e) {
+            Log::error('Error in getCategoryList: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+    public function getSubCategoryList()
+    {
+        try {
+            $subCategories = $this->subCategoryContract->getSubCategorySelect();
+
+            return response()->json([
+                'success' => true,
+                'subCategories' => $subCategories,
+            ]);
+            
+        } catch (Exception $e) {
+            Log::error('Error in getSubCategoryList: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
 }

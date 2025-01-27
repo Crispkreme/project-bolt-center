@@ -77,4 +77,12 @@ class SubCategoryRepository implements SubCategoryContract
     {
         return $this->model->get();
     }
+
+    public function getSubCategorySelect()
+    {
+        return $this->model
+            ->where('sub_category_status', 'Active')
+            ->select('id', 'sub_category')
+            ->get();
+    }
 }

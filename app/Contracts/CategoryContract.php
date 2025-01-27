@@ -9,4 +9,5 @@ interface CategoryContract {
     public function updateOrCreateCategory($data);
     public function findCategoryById($id);
     public function deleteCategoryById($id);
+    public function getCategorySelect();
 }

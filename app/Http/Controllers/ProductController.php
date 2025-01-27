@@ -35,6 +35,7 @@ class ProductController extends Controller
 
     public function productStore(Request $request)
     {
+        dd($request);
         try {
             $userId = Auth::user()->id;
 
@@ -118,5 +119,10 @@ class ProductController extends Controller
 
             return redirect()->back()->with($notification);
         } 
+    }
+
+    public function addProduct()
+    {
+        return view('pages.admin.products.add-product');
     }
 }

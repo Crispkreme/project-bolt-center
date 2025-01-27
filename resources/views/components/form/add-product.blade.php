@@ -47,7 +47,7 @@
                                                 </a>
                                             </div>
                                             <select class="select" name="category_id">
-                                                <option>Choose</option>
+                                                <option>Choose Category</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->category }}</option>
                                                 @endforeach
@@ -65,7 +65,7 @@
                                                 </a>
                                             </div>
                                             <select class="select" name="sub_category_id">
-                                                <option>Choose</option>
+                                                <option>Choose Sub Category</option>
                                                 @foreach ($subCategories as $subCategory)
                                                     <option value="{{ $subCategory->id }}">{{ $subCategory->sub_category }}</option>
                                                 @endforeach
@@ -83,7 +83,7 @@
                                                 </a>
                                             </div>
                                             <select class="select" name="supplier_id">
-                                                <option>Choose</option>
+                                                <option>Choose Supplier</option>
                                                 @foreach ($suppliers as $supplier)
                                                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                                 @endforeach

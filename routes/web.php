@@ -25,7 +25,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/categories', [CategoryController::class, 'getCategories']);
-Route::get('/fetch/category', [CategoryController::class, 'fetchCategory'])->name('fetch.category');
+Route::get('/fetch/sub/category', [CategoryController::class, 'getSubCategoryList'])->name('fetch.sub.category');
+Route::get('/fetch/category', [CategoryController::class, 'getCategoryList'])->name('fetch.category');
 Route::get('/fetch/supplier', [EntityController::class, 'getSupplierList'])->name('fetch.supplier');
 
 require __DIR__.'/auth.php';
