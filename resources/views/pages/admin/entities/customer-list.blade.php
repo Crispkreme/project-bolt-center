@@ -111,10 +111,7 @@
                                             <td>
                                                 <div class="productimgname">
                                                     <a href="javascript:void(0);" class="product-img supplier-img">
-                                                        <img 
-                                                            src="{{ $supplier['profile'] && file_exists(storage_path('app/public/' . $supplier['profile'])) ? asset('storage/' . $supplier['profile']) : \Laravolt\Avatar\Facade::create($supplier['name'])->toBase64() }}" 
-                                                            alt="Supplier" 
-                                                            style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+                                                        <img src="{{ $supplier['profile'] && file_exists(storage_path('app/public/' . $supplier['profile'])) ? asset('storage/' . $supplier['profile']) : \Laravolt\Avatar\Facade::create($supplier['name'])->toBase64() }}" alt="Supplier" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
                                                     </a>
                                                     <div>
                                                         <a href="javascript:void(0);" class="ms-2">{{ $supplier['name'] }}</a>
@@ -133,10 +130,7 @@
                                             <td>{{ $supplier['created_at'] }}</td>
                                             <td class="action-table-data">
                                                 <div class="edit-delete-action">
-                                                    <a class="me-2 p-2 mb-0" href="javascript:void(0);">
-                                                        <i data-feather="eye" class="action-eye"></i>
-                                                    </a>
-                                                    <a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-supplier">
+                                                    <a class="me-2 p-2 mb-0 edit-entity" data-bs-toggle="modal" data-bs-target="#edit-entity">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
                                                     <a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">

@@ -58,6 +58,14 @@ class CategoryRepository implements CategoryContract
 
     public function deleteCategoryById($id)
     {
-        return DB::table('categories')->where('id', $id)->delete();;
+        return DB::table('categories')->where('id', $id)->delete();
+    }
+
+    public function getCategorySelect()
+    {
+        return $this->model
+            ->where('category_status', 'Active')
+            ->select('id', 'category')
+            ->get();
     }
 }

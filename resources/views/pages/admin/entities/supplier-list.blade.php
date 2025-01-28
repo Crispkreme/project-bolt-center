@@ -133,10 +133,7 @@
                                             <td>{{ $supplier['created_at'] }}</td>
                                             <td class="action-table-data">
                                                 <div class="edit-delete-action">
-                                                    <a class="me-2 p-2 mb-0" href="javascript:void(0);">
-                                                        <i data-feather="eye" class="action-eye"></i>
-                                                    </a>
-                                                    <a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-supplier">
+                                                    <a class="me-2 p-2 mb-0 edit-entity" data-bs-toggle="modal" data-bs-target="#edit-entity" data-id="{{ $supplier['id'] }}">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
                                                     <a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">

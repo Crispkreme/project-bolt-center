@@ -15,6 +15,7 @@ class Company extends Model
 
     protected $fillable = [
         'user_id',
+        'supplier_id',
         'company_name',
         'company_email',
         'company_phone',
@@ -31,5 +32,10 @@ class Company extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Entity::class);
     }
 }

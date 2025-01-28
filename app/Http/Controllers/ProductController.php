@@ -42,13 +42,19 @@ class ProductController extends Controller
                 'category_id'       => 'nullable|exists:categories,id',
                 'sub_category_id'   => 'nullable|exists:sub_categories,id',
                 'user_id'           => 'nullable|exists:users,id',
-                'product'           => 'required|string|max:255',
+                'product'           => 'required|string|unique:products,product|max:255',
                 'description'       => 'nullable|string|max:1000',
                 'product_code'      => 'nullable|string|unique:products,product_code|max:100',
                 'product_slug'      => 'nullable|string|unique:products,product_slug|max:100',
             ]);
             $productData['user_id'] = $userId;
             $productData['id'] = null;
+
+            if (empty($productData['product_code'])) {
+                do {
+                    $productData['product_code'] = 'PRD-' . random_int(100000000, 999999999);
+                } while ($this->productContract->checkProductItemCode($productData['product_code']));
+            }
 
             $product = $this->productContract->updateOrCreateProduct($productData);
 
@@ -66,18 +72,20 @@ class ProductController extends Controller
             $this->stockContract->updateOrCreateStock($stockData);
             
             $productImageData = $request->validate([
-                'product_image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'product_image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);        
             
             if ($request->hasFile('product_image')) {
+                
                 $imagePaths = [];
                 foreach ($request->file('product_image') as $file) {
                     $imagePath = $file->store('product_images', 'public');
                     $imagePaths[] = $imagePath;
                 }
-                $productImageData['product_id'] = $product->id;
                 
                 foreach ($imagePaths as $imagePath) {
+                    $productImageData['product_id'] = $product->id;
+                    dd($productImageData);
                     $this->productImageContract->updateOrCreateProductImage($productImageData);
                 }
             }
@@ -101,7 +109,7 @@ class ProductController extends Controller
     {
         try {
             
-            $products = $this->productContract->getAllProduct(10);
+            $products = $this->productContract->getAllProduct();
             
             return view('pages.admin.products.product-list', [
                 'products' => $products,
@@ -118,5 +126,10 @@ class ProductController extends Controller
 
             return redirect()->back()->with($notification);
         } 
+    }
+
+    public function addProduct()
+    {
+        return view('pages.admin.products.add-product');
     }
 }

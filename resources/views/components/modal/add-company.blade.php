@@ -26,6 +26,17 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
+                                        <label class="form-label">Supplier</label>
+                                        <select class="select" name="supplier_id">
+                                            <option>Choose Supplier</option>
+                                            @foreach ($suppliers as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
                                         <label class="form-label">Company Name</label>
                                         <input type="text" class="form-control" name="company_name" required>
                                     </div>

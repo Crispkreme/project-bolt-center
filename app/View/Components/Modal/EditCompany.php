@@ -2,18 +2,20 @@
 
 namespace App\View\Components\Modal;
 
+use App\Contracts\EntityContract;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class EditCompany extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    protected $entityContract;
+
+    public function __construct(
+        EntityContract $entityContract
+    )
     {
-        //
+        $this->entityContract = $entityContract;
     }
 
     /**
@@ -21,6 +23,10 @@ class EditCompany extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.modal.edit-company');
+        $suppliers = $this->entityContract->getSupplierSelect();
+
+        return view('components.modal.edit-company', [
+            'suppliers' => $suppliers,
+        ]);
     }
 }

@@ -17,6 +17,10 @@ return new class extends Migration
                   ->nullable()
                   ->constrained('users')
                   ->onDelete('cascade');
+            $table->foreignId('supplier_id')
+                  ->nullable()
+                  ->constrained('entities')
+                  ->onDelete('cascade');
             $table->string('company_name')->unique();
             $table->string('company_email')->nullable(); 
             $table->string('company_phone')->nullable();

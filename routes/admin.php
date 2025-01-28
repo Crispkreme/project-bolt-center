@@ -12,9 +12,12 @@ Route::middleware('auth')->group(function () {
     
     // ADMIN PAGE
     Route::get('/dashboard', function () { return view('pages.admin.dashboard');})->name('dashboard');
-    Route::get('/product/add', function () { return view('pages.admin.products.add-product');})->name('product.add');
     Route::get('/stock/low', function () { return view('pages.admin.stocks.stock-low');})->name('stock.low');
     Route::get('/stock/list', function () { return view('pages.admin.stocks.stock-list');})->name('stock.list');
+
+    // PRODUCT
+    Route::get('/product/add', [ProductController::class, 'addProduct'])->name('product.add');
+
 
     // Unit
     Route::get('/unit/list', [UnitController::class, 'unitList'])->name('unit.list');
@@ -47,6 +50,8 @@ Route::middleware('auth')->group(function () {
 
     // ENTITY
     Route::get('/customer/list', [EntityController::class, 'getAllCustomer'])->name('customer.list');
-    Route::get('/supplier/list', [EntityController::class, 'getAllSupplier'])->name('supplier.list');
+    Route::get('/supplier/list', [EntityController::class, 'getSupplierSelect'])->name('supplier.list');
     Route::post('/entity/store', [EntityController::class, 'entityStore'])->name('entity.store');
+    Route::get('/entity/{id}/edit', [EntityController::class, 'entityEdit'])->name('entity.edit');
+    Route::post('/entity/update', [EntityController::class, 'entityUpdate'])->name('entity.update');
 });

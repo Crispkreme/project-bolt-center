@@ -213,6 +213,7 @@
                                             </label>
                                         </th>
                                         <th>Company</th>
+                                        <th>Representative</th>
                                         <th>Phone</th>
                                         <th>Email</th>
                                         <th>Address</th>
@@ -233,6 +234,7 @@
                                                 </label>
                                             </td>
                                             <td>{{ $company->company_name }}</td>
+                                            <td>{{ $company->representative }}</td>
                                             <td>{{ $company->company_phone }}</td>
                                             <td>{{ $company->company_email }}</td>
                                             <td>{!! nl2br(e($company->address)) !!}</td>
@@ -241,7 +243,7 @@
                                                     {{ $company->company_website }}
                                                 </a>
                                             </td>
-                                            <td>{{ $company->role }}</td>
+                                            <td>{{ $company->created_by }}</td>
                                             <td>{{ \Carbon\Carbon::parse($company->created_at)->format('F j, Y') }}</td>
                                             <td>
                                                 <span class="badge {{ $company->company_status === 'Active' ? 'badge-linesuccess' : 'badge-linedanger' }}">
