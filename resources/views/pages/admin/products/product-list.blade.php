@@ -116,12 +116,10 @@
                                             </label>
                                         </th>
                                         <th>Product</th>
-                                        <th>SKU</th>
+                                        <th>Product Code</th>
                                         <th>Category</th>
-                                        <th>Brand</th>
-                                        <th>Price</th>
-                                        <th>Unit</th>
-                                        <th>Qty</th>
+                                        <th>Sub Category</th>
+                                        <th>Description</th>
                                         <th>Created by</th>
                                         <th class="no-sort">Action</th>
                                     </tr>
@@ -144,24 +142,19 @@
                                             <td>{{ $product->category }}</td>
                                             <td>{{ $product->sub_category }}</td>
                                             <td>{{ $product->description }}</td>
-                                            <td>${{ number_format(4547, 2) }}</td> <!-- Example price -->
-                                            <td>Kg</td> <!-- Example unit -->
                                             <td>
                                                 <div class="userimgname">
-                                                    <a href="javascript:void(0);" class="product-img">
-                                                        <img src="https://via.placeholder.com/50x50" alt="user">
+                                                    <a href="javascript:void(0);">
+                                                        <img src="{{ \Laravolt\Avatar\Facade::create($product->created_by)->toBase64() }}" alt="Supplier" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
                                                     </a>
                                                     <a href="javascript:void(0);">{{ $product->created_by }}</a>
                                                 </div>
                                             </td>
                                             <td class="action-table-data">
                                                 <div class="edit-delete-action">
-                                                    <a class="me-2 edit-icon p-2"
-                                                        href="{{ route('admin.product.details', ['id' => $product->id]) }}">
-                                                        <i data-feather="eye" class="action-eye"></i>
-                                                    </a>
                                                     <a class="me-2 p-2"
-                                                        href="{{ route('admin.product.edit', ['id' => $product->id]) }}">
+                                                        {{-- {{ route('admin.product.edit', ['id' => $product->id]) }} --}}
+                                                        href="">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
                                                     <a class="confirm-text p-2" href="javascript:void(0);">

@@ -12,13 +12,16 @@
                 <ul class="table-top-head">
                     <li>
                         <div class="page-btn">
-                            <a href="product-list" class="btn btn-secondary"><i data-feather="arrow-left"
-                                    class="me-2"></i>Back to Product</a>
+                            <a href="product-list" class="btn btn-secondary">
+                                <i data-feather="arrow-left" class="me-2"></i>
+                                Back to Product
+                            </a>
                         </div>
                     </li>
                     <li>
-                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse"
-                            id="collapse-header"><i data-feather="chevron-up" class="feather-chevron-up"></i></a>
+                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header">
+                            <i data-feather="chevron-up" class="feather-chevron-up"></i>
+                        </a>
                     </li>
                 </ul>
             </div>

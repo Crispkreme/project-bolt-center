@@ -240,6 +240,40 @@
 
 @push('scripts')
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("add-product-form");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const url = form.action;
+
+                fetch(url, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.success) {
+                            alert("Product saved successfully!");
+                            form.reset();
+                        } else {
+                            alert("Failed to save product. Please check the input.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        alert("An error occurred while saving the product.");
+                    });
+            });
+        });
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const productNameInput = document.getElementById('product-name');
             const slugInput = document.getElementById('slug');
@@ -353,8 +387,10 @@
         const imageRepeaterContainer = document.getElementById('image-repeater-container');
     
         imageUploadInput.addEventListener('change', (event) => {
+            
             const files = event.target.files;
-    
+            console.log(event.target.files);
+
             Array.from(files).forEach((file) => {
                 if (file.type.startsWith('image/')) {
                     const reader = new FileReader();
