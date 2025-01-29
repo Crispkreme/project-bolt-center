@@ -59,6 +59,7 @@ class ProductController extends Controller
             $product = $this->productContract->updateOrCreateProduct($productData);
 
             $stockData = $request->validate([
+                'supplier_id'      => 'nullable|exists:entities,id',
                 'quantity'         => 'nullable|numeric|min:0',
                 'selling_price'    => 'nullable|numeric|min:0',
                 'buying_price'     => 'nullable|numeric|min:0',
@@ -85,7 +86,6 @@ class ProductController extends Controller
                 
                 foreach ($imagePaths as $imagePath) {
                     $productImageData['product_id'] = $product->id;
-                    dd($productImageData);
                     $this->productImageContract->updateOrCreateProductImage($productImageData);
                 }
             }

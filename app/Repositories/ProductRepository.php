@@ -45,8 +45,7 @@ class ProductRepository implements ProductContract
 
     public function getAllProduct()
     {
-        $data = DB::table('products')
-            ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+        $data = $this->model->leftJoin('categories', 'products.category_id', '=', 'categories.id')
             ->leftJoin('sub_categories', 'products.sub_category_id', '=', 'sub_categories.id')
             ->leftJoin('users', 'products.user_id', '=', 'users.id')
             ->select(

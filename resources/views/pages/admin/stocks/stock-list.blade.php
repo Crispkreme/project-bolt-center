@@ -197,184 +197,64 @@
                                             <span class="checkmarks"></span>
                                         </label>
                                     </th>
-                                    <th>Warehouse</th>
-                                    <th>Shop</th>
                                     <th>Product</th>
-                                    <th>Date</th>
-                                    <th>Person</th>
+                                    <th>Description</th>
+                                    <th>Product Code</th>
+                                    <th>Category</th>
+                                    <th>Sub-Category</th>
                                     <th>Quantity</th>
+                                    <th>Selling Price</th>
+                                    <th>Buying Price</th>
+                                    <th>Discount</th>
+                                    <th>Supplier</th>
+                                    <th>Created By</th>
+                                    <th>Created On</th>
                                     <th class="no-sort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <label class="checkboxs">
-                                            <input type="checkbox">
-                                            <span class="checkmarks"></span>
-                                        </label>
-                                    </td>
-                                    <td>Lobar Handy </td>
-                                    <td>Selosy </td>
-                                    <td>
-                                        <div class="productimgname">
-                                            <a href="javascript:void(0);" class="product-img stock-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/stock-img-02.png"
-                                                    alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);">Nike Jordan</a>
-                                        </div>
-                                    </td>
-                                    <td>25 Jul 2023</td>
-                                    <td>
-                                        <div class="userimgname">
-                                            <a href="javascript:void(0);" class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/users/user-08.jpg"
-                                                    alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);">Steven</a>
-                                        </div>
-                                    </td>
-                                    <td>120</td>
-                                    <td class="action-table-data">
-                                        <div class="edit-delete-action">
-                                            <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#edit-units">
-                                                <i data-feather="edit" class="feather-edit"></i>
-                                            </a>
-                                            <a class="confirm-text p-2" href="javascript:void(0);">
-                                                <i data-feather="trash-2" class="feather-trash-2"></i>
-                                            </a>
-                                        </div>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="checkboxs">
-                                            <input type="checkbox">
-                                            <span class="checkmarks"></span>
-                                        </label>
-                                    </td>
-                                    <td>Quaint Warehouse </td>
-                                    <td>Logerro </td>
-                                    <td>
-                                        <div class="productimgname">
-                                            <a href="javascript:void(0);" class="product-img stock-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/stock-img-03.png"
-                                                    alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);">Apple Series 5 Watch</a>
-                                        </div>
-                                    </td>
-                                    <td>28 Jul 2023</td>
-                                    <td>
-                                        <div class="userimgname">
-                                            <a href="javascript:void(0);" class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/users/user-04.jpg"
-                                                    alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);">Gravely</a>
-                                        </div>
-                                    </td>
-                                    <td>130</td>
-                                    <td class="action-table-data">
-                                        <div class="edit-delete-action">
-                                            <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#edit-units">
-                                                <i data-feather="edit" class="feather-edit"></i>
-                                            </a>
-                                            <a class="confirm-text p-2" href="javascript:void(0);">
-                                                <i data-feather="trash-2" class="feather-trash-2"></i>
-                                            </a>
-                                        </div>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="checkboxs">
-                                            <input type="checkbox">
-                                            <span class="checkmarks"></span>
-                                        </label>
-                                    </td>
-                                    <td>Traditional Warehouse </td>
-                                    <td>Vesloo </td>
-                                    <td>
-                                        <div class="productimgname">
-                                            <a href="javascript:void(0);" class="product-img stock-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/stock-img-04.png"
-                                                    alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);">Amazon Echo Dot</a>
-                                        </div>
-                                    </td>
-                                    <td>24 Jul 2023</td>
-                                    <td>
-                                        <div class="userimgname">
-                                            <a href="javascript:void(0);" class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/users/user-09.jpg"
-                                                    alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);">Kevin</a>
-                                        </div>
-                                    </td>
-                                    <td>140</td>
-                                    <td class="action-table-data">
-                                        <div class="edit-delete-action">
-                                            <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#edit-units">
-                                                <i data-feather="edit" class="feather-edit"></i>
-                                            </a>
-                                            <a class="confirm-text p-2" href="javascript:void(0);">
-                                                <i data-feather="trash-2" class="feather-trash-2"></i>
-                                            </a>
-                                        </div>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="checkboxs">
-                                            <input type="checkbox">
-                                            <span class="checkmarks"></span>
-                                        </label>
-                                    </td>
-                                    <td>Cool Warehouse </td>
-                                    <td>Crompy</td>
-                                    <td>
-                                        <div class="productimgname">
-                                            <a href="javascript:void(0);" class="product-img stock-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/stock-img-05.png"
-                                                    alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);">Lobar Handy</a>
-                                        </div>
-                                    </td>
-                                    <td>15 Jul 2023</td>
-                                    <td>
-                                        <div class="userimgname">
-                                            <a href="javascript:void(0);" class="product-img">
-                                                <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/users/user-10.jpg"
-                                                    alt="product">
-                                            </a>
-                                            <a href="javascript:void(0);">Grillo</a>
-                                        </div>
-                                    </td>
-                                    <td>150</td>
-                                    <td class="action-table-data">
-                                        <div class="edit-delete-action">
-                                            <a class="me-2 p-2" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#edit-units">
-                                                <i data-feather="edit" class="feather-edit"></i>
-                                            </a>
-                                            <a class="confirm-text p-2" href="javascript:void(0);">
-                                                <i data-feather="trash-2" class="feather-trash-2"></i>
-                                            </a>
-                                        </div>
-
-                                    </td>
-                                </tr>
+                                @foreach ($stocks as $stock)
+                                    <tr>
+                                        <td>
+                                            <label class="checkboxs">
+                                                <input type="checkbox">
+                                                <span class="checkmarks"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{ $stock['product_name'] }}</td>
+                                        <td>{{ $stock['description'] }}</td>
+                                        <td>{{ $stock['product_code'] }}</td>
+                                        <td>{{ $stock['category_name'] }}</td>
+                                        <td>{{ $stock['sub_category_name'] }}</td>
+                                        <td>{{ $stock['quantity'] }}</td>
+                                        <td>{{ $stock['selling_price'] }}</td>
+                                        <td>{{ $stock['buying_price'] }}</td>
+                                        <td>{{ $stock['discount'] }}</td>
+                                        <td>
+                                            <div class="productimgname">
+                                                <a href="javascript:void(0);" class="product-img stock-img">
+                                                    <img src="{{ $stock['supplier_profile'] && file_exists(storage_path('app/public/' . $stock['supplier_profile'])) ? asset('storage/' . $stock['supplier_profile']) : \Laravolt\Avatar\Facade::create($stock['supplier'])->toBase64() }}" alt="Supplier" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+                                                </a>
+                                                <div>
+                                                    <a href="javascript:void(0);" class="ms-2">{{ $stock['supplier'] }}</a>
+                                                </div>
+                                            </div>         
+                                        </td>
+                                        <td>{{ $stock['created_by'] }}</td>
+                                        <td>{{ $stock['created_on'] }}</td>
+                                        <td class="action-table-data">
+                                            <div class="edit-delete-action">
+                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#edit-units">
+                                                    <i data-feather="edit" class="feather-edit"></i>
+                                                </a>
+                                                <a class="confirm-text p-2" href="javascript:void(0);">
+                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
