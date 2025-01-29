@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EntityController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,8 +13,10 @@ Route::middleware('auth')->group(function () {
     
     // ADMIN PAGE
     Route::get('/dashboard', function () { return view('pages.admin.dashboard');})->name('dashboard');
-    Route::get('/stock/low', function () { return view('pages.admin.stocks.stock-low');})->name('stock.low');
-    Route::get('/stock/list', function () { return view('pages.admin.stocks.stock-list');})->name('stock.list');
+
+    // STOCK
+    Route::get('/stock/list', [StockController::class, 'stockList'])->name('stock.list');
+    Route::get('/stock/low', [StockController::class, 'lowStockList'])->name('stock.low');
 
     // PRODUCT
     Route::get('/product/add', [ProductController::class, 'addProduct'])->name('product.add');
