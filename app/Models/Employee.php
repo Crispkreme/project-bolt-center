@@ -13,8 +13,11 @@ class Employee extends Model
         'account_id',
         'experience',
         'salary',
-        'vacation',
-        'city',
+        'leave',
+        'hired_date',
+        'resign_date',
+        'isActive',
+        'status',
     ];
 
     public function employee() {

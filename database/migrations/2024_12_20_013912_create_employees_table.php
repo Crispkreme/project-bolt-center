@@ -20,9 +20,11 @@ return new class extends Migration
                   ->onDelete('cascade');
             $table->string('experience')->nullable();
             $table->string('salary')->nullable();
-            $table->string('vacation')->nullable();
-            $table->string('city')->nullable();
+            $table->string('leave')->nullable();
+            $table->date('hired_date')->nullable();
+            $table->date('resign_date')->nullable();
             $table->boolean('isActive')->nullable()->default(true);
+            $table->enum('status', ['Employed', 'Resign'])->default('Employed');
             $table->timestamps();
         });
     }
