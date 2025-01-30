@@ -144,9 +144,6 @@
                                             <td>{{ $product->description }}</td>
                                             <td>
                                                 <div class="userimgname">
-                                                    <a href="javascript:void(0);">
-                                                        <img src="{{ \Laravolt\Avatar\Facade::create($product->created_by)->toBase64() }}" alt="Supplier" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
-                                                    </a>
                                                     <a href="javascript:void(0);">{{ $product->created_by }}</a>
                                                 </div>
                                             </td>
