@@ -190,12 +190,17 @@
                     <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/manage-stocks"
                             class=""><span>Manage Stock</span></a>
                     </li>
-                    <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/stock-adjustment"
-                            class=""><span>Stock
-                                Adjustment</span></a></li>
-                    <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/stock-transfer"
-                            class=""><span>Stock
-                                Transfer</span></a></li>
+                    <li>
+                        <a href="{{ route('admin.stock.adjustment') }}" class="">
+                                <i data-feather="clipboard"></i>
+                                <span>Stock Adjustment</span>
+                        </a>
+                    </li>
+                {{-- <li>
+                        <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/stock-transfer"class="">
+                                <span>Stock Transfer</span>
+                        </a>
+                </li> --}}
                     <li class="submenu">
                         <a href="javascript:void(0);" class=""><span>Expenses</span><span
                                 class="menu-arrow"></span></a>

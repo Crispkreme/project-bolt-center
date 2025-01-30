@@ -12,62 +12,6 @@
                                         <span>Dashboard</span>
                                 </a>
                         </li>
-                        {{-- <li class="submenu">
-                                <a href="javascript:void(0);" class="active subdrop">
-                                        <i data-feather="grid"></i>
-                                        <span>Dashboard</span>
-                                        <span class="menu-arrow"></span>
-                                </a>
-                            <ul>
-                                <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/index"
-                                        class="active">Admin Dashboard</a></li>
-                                <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/sales-dashboard"
-                                        class="">Sales Dashboard</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class=" "><i
-                                    data-feather="smartphone"></i><span>Application</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/chat"
-                                        class="">Chat</a></li>
-                                <li class="submenu submenu-two"><a href="javascript:void(0);" class="">Call<span
-                                            class="menu-arrow inside-submenu"></span></a>
-                                    <ul>
-                                        <li><a class=""
-                                                href="https://dreamspos.dreamstechnologies.com/laravel/template/public/video-call">Video
-                                                Call</a></li>
-                                        <li><a class=""
-                                                href="https://dreamspos.dreamstechnologies.com/laravel/template/public/audio-call">Audio
-                                                Call</a></li>
-                                        <li><a class=""
-                                                href="https://dreamspos.dreamstechnologies.com/laravel/template/public/call-history">Call
-                                                History</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class=""
-                                        href="https://dreamspos.dreamstechnologies.com/laravel/template/public/calendar">Calendar</a>
-                                </li>
-                                <li><a class=""
-                                        href="https://dreamspos.dreamstechnologies.com/laravel/template/public/email">Email</a>
-                                </li>
-                                <li><a class=""
-                                        href="https://dreamspos.dreamstechnologies.com/laravel/template/public/todo">To
-                                        Do</a></li>
-                                <li><a class=""
-                                        href="https://dreamspos.dreamstechnologies.com/laravel/template/public/notes">Notes</a>
-                                </li>
-                                <li><a class=""
-                                        href="https://dreamspos.dreamstechnologies.com/laravel/template/public/file-manager">File
-                                        Manager</a></li>
-                                <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/social-feed"
-                                        class="">Social Feed</a></li>
-                                <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/kanban-view"
-                                        class="">Kanban</a></li>
-                            </ul>
-                        </li> --}}
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -85,12 +29,6 @@
                                 <span>Create Product</span>
                             </a>
                         </li>
-                        {{-- <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expired-products">
-                                        <i data-feather="codesandbox"></i>
-                                        <span>Expired Products</span>
-                                </a>
-                        </li> --}}
                         <li class="">
                                 <a href="{{ route('admin.stock.low') }}">
                                         <i data-feather="trending-down"></i>
@@ -109,42 +47,12 @@
                                         <span>Sub Category</span>
                                 </a>
                         </li>
-                        {{-- <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/brand-list">
-                                        <i data-feather="tag"></i>
-                                        <span>Brands</span>
-                                </a>
-                        </li> --}}
                         <li class="">
                                 <a href="{{ route('admin.unit.list') }}">
                                         <i data-feather="speaker"></i>
                                         <span>Units</span>
                                 </a>
                         </li>
-                        {{-- <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/varriant-attributes">
-                                        <i data-feather="layers"></i>
-                                        <span>Variant Attributes</span>
-                                </a>
-                        </li> --}}
-                        {{-- <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/warranty">
-                                        <i data-feather="bookmark"></i>
-                                        <span>Warranties</span>
-                                </a>
-                        </li> --}}
-                        {{-- <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/barcode">
-                                        <i data-feather="align-justify"></i>
-                                        <span>Print Barcode</span>
-                                </a>
-                        </li> --}}
-                        {{-- <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/qrcode">
-                                        <i data-feather="maximize"></i>
-                                        <span>Print QR Code</span>
-                                </a>
-                        </li> --}}
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -156,14 +64,12 @@
                                         <span>Manage Stock</span>
                                 </a>
                         </li>
-                        <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/stock-adjustment">
-                                        <i data-feather="clipboard"></i><span>Stock
-                                    Adjustment</span></a></li>
-                        <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/stock-transfer">
-                                        <i data-feather="truck"></i><span>Stock
-                                    Transfer</span></a></li>
+                        <li>
+                                <a href="{{ route('admin.stock.adjustment') }}" class="">
+                                        <i data-feather="clipboard"></i>
+                                        <span>Stock Adjustment</span>
+                                </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
