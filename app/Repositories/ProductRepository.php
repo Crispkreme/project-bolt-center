@@ -68,4 +68,9 @@ class ProductRepository implements ProductContract
     
         return $data;
     }
+
+    public function deleteProductById($id)
+    {
+        return $this->model->where('id', $id)->delete();
+    }
 }

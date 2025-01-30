@@ -1,6 +1,5 @@
 <x-app-layout>
 
-    <!-- Main Wrapper -->
     <div class="main-wrapper">
         <div class="page-wrapper">
             <div class="content">
@@ -43,7 +42,6 @@
                             </div>
                         </div>
 
-                        <!-- /Filter -->
                         <div class="card mb-0" id="product_filter_inputs">
                             <div class="card-body pb-0">
                                 <div class="row">
@@ -103,7 +101,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /Filter -->
 
                         <div class="table-responsive product-list">
                             <table class="table datanew">
@@ -149,14 +146,13 @@
                                             </td>
                                             <td class="action-table-data">
                                                 <div class="edit-delete-action">
-                                                    <a class="me-2 p-2"
+                                                    <a class="me-2 p-2" href="">
                                                         {{-- {{ route('admin.product.edit', ['id' => $product->id]) }} --}}
-                                                        href="">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
-                                                    <a class="confirm-text p-2" href="javascript:void(0);">
+                                                    <a class="p-2 delete-product" href="#" data-id="{{ $product->id }}">
                                                         <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                    </a>
+                                                    </a> 
                                                 </div>
                                             </td>
                                         </tr>
@@ -167,9 +163,61 @@
                         </div>
                     </div>
                 </div>
-                <!-- /product list -->
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.delete-product').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const productId = this.getAttribute('data-id');
+
+                        if (!productId) {
+                            console.error('Product ID is missing.');
+                            return;
+                        }
+
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: `/admin/category/delete/${productId}`,
+                                    type: 'DELETE',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    },
+                                    success: function (response) {
+                                        if (response.success) {
+                                            Swal.fire('Deleted!', 'Product has been deleted.', 'success')
+                                            .then(() => {
+                                                location.reload();
+                                            });
+                                            document.querySelector(`tr[data-id="${productId}"]`).remove();
+                                        } else {
+                                            Swal.fire('Error!', response.message, 'error');
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.error('Error deleting product:', error);
+                                        Swal.fire('Error!', 'An error occurred while deleting the product.', 'error');
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+    @endpush
     
 </x-app-layout>

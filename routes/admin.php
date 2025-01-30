@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     // PRODUCTS
     Route::get('/product/list', [ProductController::class, 'getProductList'])->name('product.list');
     Route::post('/product/store', [ProductController::class, 'productStore'])->name('product.store');
+    Route::delete('/product/delete/{id}', [ProductController::class, 'productDelete'])->name('product.delete');
 
     // COMPANY
     Route::get('/company/list', [CompanyController::class, 'companyList'])->name('company.list');

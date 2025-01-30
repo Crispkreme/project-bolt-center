@@ -124,4 +124,28 @@ class ProductController extends Controller
     {
         return view('pages.admin.products.add-product');
     }
+
+    public function productDelete($id)
+    {
+        try {
+            
+            $this->productContract->deleteProductById($id);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product deleted successfully!'
+            ]);
+            
+        } catch (Exception $e) {
+            
+            Log::error('Error in productDelete: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+    }
 }

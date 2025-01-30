@@ -78,7 +78,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /Filter -->
 
                         <div class="table-responsive category-list">
                             <table class="table datanew">
