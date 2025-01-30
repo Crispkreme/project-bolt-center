@@ -58,4 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/entity/store', [EntityController::class, 'entityStore'])->name('entity.store');
     Route::get('/entity/{id}/edit', [EntityController::class, 'entityEdit'])->name('entity.edit');
     Route::post('/entity/update', [EntityController::class, 'entityUpdate'])->name('entity.update');
+
+    // EMPLOYEES
+    Route::get('/employee/list', [EntityController::class, 'getAllEmployees'])->name('employee.list');
 });
