@@ -108,6 +108,9 @@
         <x-modal.add-entity />
         <x-modal.edit-entity />
 
+        {{-- STOCK --}}
+        <x-modal.add-stock />
+
         <x-modal.add-unit />
         <x-modal.add-variation />
         <x-modal.view-notes />

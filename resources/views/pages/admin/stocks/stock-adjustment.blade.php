@@ -4,8 +4,8 @@
         <div class="content">
 
             <x-table.table-top-head 
-                title="Manage Stock" 
-                subtitle="Manage your stocks" 
+                title="Stock Adjustment" 
+                subtitle="Manage your stock adjustment" 
                 addTitleText="Add New Stock" 
                 importTitleText="Import Stock" 
                 isModal="true" 
@@ -209,6 +209,7 @@
                                     <th>Supplier</th>
                                     <th>Created By</th>
                                     <th>Created On</th>
+                                    <th class="no-sort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -241,6 +242,16 @@
                                         </td>
                                         <td>{{ $stock['created_by'] }}</td>
                                         <td>{{ $stock['created_on'] }}</td>
+                                        <td class="action-table-data">
+                                            <div class="edit-delete-action">
+                                                <a class="me-2 p-2 mb-0 edit-entity" data-bs-toggle="modal" data-bs-target="#edit-entity" data-id="{{ $stock['id'] }}">
+                                                    <i data-feather="edit" class="feather-edit"></i>
+                                                </a>
+                                                <a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
+                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                </a>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

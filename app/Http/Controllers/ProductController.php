@@ -35,6 +35,8 @@ class ProductController extends Controller
 
     public function productStore(Request $request)
     {
+
+        dd($request->hasFile('product_image'));
         try {
             $userId = Auth::user()->id;
 
@@ -44,7 +46,7 @@ class ProductController extends Controller
                 'user_id'           => 'nullable|exists:users,id',
                 'product'           => 'required|string|unique:products,product|max:255',
                 'description'       => 'nullable|string|max:1000',
-                'product_code'      => 'nullable|string|unique:products,product_code|max:100',
+                'product_code'      => 'nullable|string|max:100',
                 'product_slug'      => 'nullable|string|unique:products,product_slug|max:100',
             ]);
             $productData['user_id'] = $userId;
@@ -75,7 +77,8 @@ class ProductController extends Controller
             $productImageData = $request->validate([
                 'product_image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);        
-            
+            $productImageData['product_id'] = $product->id;
+
             if ($request->hasFile('product_image')) {
                 
                 $imagePaths = [];
@@ -85,7 +88,6 @@ class ProductController extends Controller
                 }
                 
                 foreach ($imagePaths as $imagePath) {
-                    $productImageData['product_id'] = $product->id;
                     $this->productImageContract->updateOrCreateProductImage($productImageData);
                 }
             }
