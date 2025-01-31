@@ -77,6 +77,20 @@ class StockRepository implements StockContract
 
     public function getStockById($id)
     {
-        return $this->model->where('product_id', $id)->first();
+        return $this->model
+            ->where('product_id', $id)
+            ->select(
+                'id as stock_id',
+                'product_id',
+                'user_id',
+                'supplier_id',
+                'quantity',
+                'selling_price',
+                'buying_price',
+                'discount',
+                'quantity_alert',
+                'discount_type'
+            )
+            ->first();
     }
 }
