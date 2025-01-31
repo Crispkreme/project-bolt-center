@@ -130,6 +130,8 @@
             $(document).on('click', '.product-item', function() {
                 let productId = $(this).data('product-id');
                 
+                $('#selected-products-body .dataTables_empty').remove();
+
                 if ($(`#selected-products-body tr[data-product-id="${productId}"]`).length === 0) {
                     
                     let category = $(this).data('product-category');
@@ -179,6 +181,14 @@
 
             $(document).on('click', '.remove-product', function() {
                 $(this).closest('tr').remove();
+
+                if ($('#selected-products-body tr').length === 0) {
+                    $('#selected-products-body').html(`
+                        <tr>
+                            <td valign="top" colspan="7" class="dataTables_empty">No data available in table</td>
+                        </tr>
+                    `);
+                }
             });
 
             $(document).on('click', '.increment', function() {
