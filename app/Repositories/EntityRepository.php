@@ -83,4 +83,13 @@ class EntityRepository implements EntityContract
             ->select('id', 'name')
             ->get();
     }
+
+    public function getEntityById($id, $role)
+    {
+        return $this->model
+            ->where('id', $id)
+            ->where('entity_type', $role)
+            ->where('entity_status', 'Active')
+            ->first();
+    }
 }

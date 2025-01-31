@@ -146,8 +146,7 @@
                                             </td>
                                             <td class="action-table-data">
                                                 <div class="edit-delete-action">
-                                                    <a class="me-2 p-2" href="">
-                                                        {{-- {{ route('admin.product.edit', ['id' => $product->id]) }} --}}
+                                                    <a class="me-2 p-2" href="{{ route('admin.product.edit', ['id' => $product->id]) }}">
                                                         <i data-feather="edit" class="feather-edit"></i>
                                                     </a>
                                                     <a class="p-2 delete-product" href="#" data-id="{{ $product->id }}">

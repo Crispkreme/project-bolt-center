@@ -32,4 +32,9 @@ class ProductImageRepository implements ProductImageContract
             ]
         );
     }
+
+    public function getProductImageById($id)
+    {
+        return $this->model->where('product_id', $id)->get();
+    }
 }

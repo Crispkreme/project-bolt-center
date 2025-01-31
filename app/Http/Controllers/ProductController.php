@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\EntityContract;
 use App\Contracts\ProductContract;
 use App\Contracts\ProductImageContract;
 use App\Contracts\StockContract;
@@ -16,15 +17,18 @@ class ProductController extends Controller
     protected $productContract;
     protected $stockContract;
     protected $productImageContract;
+    protected $entityContract;
 
     public function __construct(
         ProductContract $productContract,
         StockContract $stockContract,
         ProductImageContract $productImageContract,
+        EntityContract $entityContract,
     ) {
         $this->productContract = $productContract;
         $this->stockContract = $stockContract;
         $this->productImageContract = $productImageContract;
+        $this->entityContract = $entityContract;
     }
 
     public function checkUniqueItemCode(Request $request)
@@ -118,6 +122,41 @@ class ProductController extends Controller
 
             return redirect()->back()->with($notification);
         } 
+    }
+
+    public function productEdit($id)
+    {
+        try {
+            $product = $this->productContract->getProductById($id);
+            $productStock = $this->stockContract->getStockById($id);
+            $supplier = $this->entityContract->getEntityById($productStock->supplier_id, 'Supplier');
+            $productImages = $this->productImageContract->getProductImageById($id);
+
+            if ($productStock) {
+                $productStock->product_image = $productImages;
+            }
+
+            $productArray = collect($product->toArray())->except(['created_at', 'updated_at', 'deleted_at'])->toArray();
+            $productStockArray = collect($productStock->toArray())->except(['created_at', 'updated_at', 'deleted_at'])->toArray();
+            $supplierArray = collect($supplier->toArray())->except(['created_at', 'updated_at', 'deleted_at'])->toArray();
+
+            $mergedData = (object) array_merge($productArray, $productStockArray, $supplierArray);
+            $mergedData->product_image = $productImages;
+            
+            return view('pages.admin.products.edit-product', [
+                'productData' => $mergedData,
+            ]);
+
+        } catch (Exception $e) {
+            Log::error('Error in productEdit: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        }
     }
 
     public function addProduct()

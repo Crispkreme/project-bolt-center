@@ -25,8 +25,8 @@
                     </li>
                 </ul>
             </div>
-
-            <x-form.add-product />
+            
+            <x-form.edit-product :productData="$productData"/>
 
         </div>
     </div>
