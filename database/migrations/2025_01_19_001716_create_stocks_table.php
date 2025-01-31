@@ -14,22 +14,22 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')
-                  ->nullable()
-                  ->constrained('products')
-                  ->onDelete('cascade');
+                    ->nullable()
+                    ->constrained('products')
+                    ->onDelete('cascade');
             $table->foreignId('user_id')
-                  ->nullable()
-                  ->constrained('users')
-                  ->onDelete('cascade');
+                    ->nullable()
+                    ->constrained('users')
+                    ->onDelete('cascade');
             $table->foreignId('supplier_id')
-                  ->nullable()
-                  ->constrained('entities')
-                  ->onDelete('cascade');
-            $table->string('quantity')->nullable();
-            $table->string('selling_price')->nullable();
-            $table->string('buying_price')->nullable();
-            $table->string('discount')->nullable();
-            $table->string('quantity_alert')->nullable();
+                    ->nullable()
+                    ->constrained('entities')
+                    ->onDelete('cascade');
+            $table->integer('quantity')->nullable();
+            $table->decimal('selling_price', 10, 2)->nullable();
+            $table->decimal('buying_price', 10, 2)->nullable();
+            $table->decimal('discount', 10, 2)->nullable();
+            $table->integer('quantity_alert')->nullable();
             $table->enum('discount_type', ['Percentage', 'Cash']);
             $table->timestamps();
         });

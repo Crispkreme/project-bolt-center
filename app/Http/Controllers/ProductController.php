@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -162,6 +163,80 @@ class ProductController extends Controller
     public function addProduct()
     {
         return view('pages.admin.products.add-product');
+    }
+
+    public function productUpdate(Request $request)
+    {
+        try {
+
+            $userId = Auth::user()->id;
+            $productData = $request->validate([
+                'category_id'       => 'nullable|exists:categories,id',
+                'sub_category_id'   => 'nullable|exists:sub_categories,id',
+                'user_id'           => 'nullable|exists:users,id',
+                'product'           => 'required|string|max:255',
+                'description'       => 'nullable|string|max:255',
+                'product_code'      => [
+                    'nullable',
+                    'string',
+                    'max:100',
+                    Rule::unique('products', 'product_code')->ignore($request->product_id),
+                ],
+                'product_slug'      => 'nullable|string|max:100',
+            ]);
+            $productData['user_id'] = $userId;
+            $productData['id'] = $request->product_id;
+
+            $product = $this->productContract->updateOrCreateProduct($productData);
+
+            $stockData = $request->validate([
+                'supplier_id'      => 'nullable|exists:entities,id',
+                'quantity'         => 'nullable|numeric|min:0',
+                'selling_price'    => 'nullable|numeric|min:0',
+                'buying_price'     => 'nullable|numeric|min:0',
+                'discount'         => 'nullable|numeric|min:0',
+                'quantity_alert'   => 'nullable|numeric|min:0',
+                'discount_type'    => 'required|in:Percentage,Cash',
+            ]);
+            
+            $stockData['user_id'] = $userId;
+            $stockData['product_id'] = $product->id;
+            $stockData['id'] = $request->stock_id;
+            
+            $this->stockContract->updateOrCreateStock($stockData);          
+
+            if ($request->hasFile('product_image')) {
+                $existingImages = $product->images;
+            
+                foreach ($existingImages as $image) {
+                    Storage::disk('public')->delete($image->product_image);
+                    $image->delete();
+                }
+            
+                foreach ($request->file('product_image') as $file) {
+                    $imagePath = $file->store('product_images', 'public');
+            
+                    $this->productImageContract->updateOrCreateProductImage([
+                        'id'    => $product->id,
+                        'product_id'    => $product->product_id,
+                        'product_image' => $imagePath,
+                    ]);
+                }
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product saved successfully!',
+            ]);
+
+        } catch (Exception $e) {
+            Log::error('Error in productStore: ' . $e->getMessage());
+
+            return response()->json([
+                'error' => true,
+                'message' => 'Please try again!',
+            ]);
+        }
     }
 
     public function productDelete($id)

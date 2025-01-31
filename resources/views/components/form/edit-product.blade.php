@@ -1,7 +1,8 @@
-<form id="edit-product-form" action="" method="POST" enctype="multipart/form-data">
+<form id="edit-product-form" action="{{ route('admin.product.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="product_id" value="{{ $productData->product_id }}">
     <input type="hidden" name="user_id" value="{{ $productData->user_id }}">
+    <input type="hidden" name="stock_id" value="{{ $productData->id }}">
 
     <div class="card">
         <div class="card-body add-product pb-0">
@@ -243,6 +244,41 @@
 </form>
 
 @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const editProductForm = document.getElementById('edit-product-form');
+
+            if (editProductForm) {
+                editProductForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(editProductForm);
+                    const formAction = editProductForm.getAttribute('action');
+
+                    $.ajax({
+                        url: formAction,
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            if (response.success) {
+                                Swal.fire('Success!', 'Product has been updated.', 'success').then(() => {
+                                    window.location.href = '{{ route('admin.product.list') }}';
+                                });
+                            } else {
+                                alert(response.message || 'An error occurred. Please try again.');
+                            }
+                        },
+                        error: function (xhr) {
+                            console.error('Error updating product:', xhr);
+                            Swal.fire('Error!', 'Something went wrong. Please try again.', 'error');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const productNameInput = document.getElementById('product-name');
