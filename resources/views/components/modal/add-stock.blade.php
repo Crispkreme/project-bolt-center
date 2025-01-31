@@ -1,4 +1,3 @@
-<!-- Add Adjustment -->
 <div class="modal fade" id="add-stock">
     <div class="modal-dialog modal-dialog-centered stock-adjust-modal">
         <div class="modal-content">
@@ -16,30 +15,11 @@
                         <form action="stock-adjustment">
                             <div class="input-blocks search-form">
                                 <label>Product</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="search-product" id="search-product">
                                 <i data-feather="search" class="feather-search"></i>
-                            </div>
+                                <ul id="product-search-results" class="dropdown-menu" style="display: none;"></ul>
+                            </div>                            
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="input-blocks">
-                                        <label>Warehouse</label>
-                                        <select class="select">
-                                            <option>Choose</option>
-                                            <option>Lobar Handy</option>
-                                            <option>Quaint Warehouse</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="input-blocks">
-                                        <label>Warehouse</label>
-                                        <select class="select">
-                                            <option>Choose</option>
-                                            <option>Lobar Handy</option>
-                                            <option>Quaint Warehouse</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="col-lg-12">
                                     <div class="modal-body-table">
                                         <div class="table-responsive">
@@ -99,20 +79,30 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="input-blocks">
-                                        <label>Responsible Person</label>
-                                        <select class="select">
-                                            <option>Choose</option>
-                                            <option>Steven</option>
-                                            <option>Gravely</option>
+                                        <label>Supplier</label>
+                                        <select class="select" name="supplier_id">
+                                            <option>Choose Supplier</option>
+                                            @foreach ($suppliers as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="col-lg-12">
-                                <div class="input-blocks summer-description-box">
-                                    <label>Notes</label>
-                                    <textarea class="form-control"></textarea>
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Discount Type</label>
+                                        <select class="select" name="discount_type">
+                                            <option>Choose</option>
+                                            <option value="Percentage">Percentage</option>
+                                            <option value="Cash">Cash</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Discount Value</label>
+                                        <input type="text" placeholder="Discount" id="discount-value" name="discount">
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer-btn">
@@ -126,4 +116,42 @@
         </div>
     </div>
 </div>
-<!-- /Add Adjustment -->
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#search-product').on('keyup', function() {
+                let query = $(this).val();
+
+                if (query.length > 2) { 
+                    $.ajax({
+                        url: '/search/products',
+                        method: 'GET',
+                        data: { query: query },
+                        success: function(response) {
+                            let resultHtml = '';
+                            
+                            if (response.length > 0) {
+                                response.forEach(function(product) {
+                                    resultHtml += `<li class="dropdown-item product-item" data-product-id="${product.id}">${product.product}</li>`;
+                                });
+                                $('#product-search-results').html(resultHtml).show();
+                            } else {
+                                $('#product-search-results').html('<li class="dropdown-item">No products found</li>').show();
+                            }
+                        }
+                    });
+                } else {
+                    $('#product-search-results').hide();
+                }
+            });
+
+            $(document).on('click', '.product-item', function() {
+                let productName = $(this).text();
+                $('#search-product').val(productName);
+                $('#product-search-results').hide();
+            });
+        });
+
+    </script>
+@endpush

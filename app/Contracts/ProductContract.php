@@ -9,4 +9,5 @@ interface ProductContract {
     public function getAllProduct();
     public function deleteProductById($id);
     public function getProductById($id);
+    public function searchProduct($query);
 }

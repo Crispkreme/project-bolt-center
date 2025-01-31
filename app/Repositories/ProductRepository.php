@@ -78,4 +78,11 @@ class ProductRepository implements ProductContract
     {
         return $this->model->where('id', $id)->delete();
     }
+
+    public function searchProduct($query)
+    {
+        return $this->model->where('product', 'like', '%' . $query . '%')
+                       ->orWhere('product_code', 'like', '%' . $query . '%')
+                       ->get();
+    }
 }
