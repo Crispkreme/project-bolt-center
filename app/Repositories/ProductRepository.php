@@ -78,4 +78,25 @@ class ProductRepository implements ProductContract
     {
         return $this->model->where('id', $id)->delete();
     }
+
+    public function searchProduct($query)
+    {
+        return $this->model
+            ->leftJoin('categories', 'products.category_id', '=', 'categories.id')
+            ->leftJoin('sub_categories', 'products.sub_category_id', '=', 'sub_categories.id')
+            ->leftJoin('users', 'products.user_id', '=', 'users.id')
+            ->where(function ($q) use ($query) {
+                $q->where('products.product', 'like', '%' . $query . '%')
+                ->orWhere('products.product_code', 'like', '%' . $query . '%');
+            })
+            ->select(
+                'products.id',
+                'products.product',
+                'categories.category as category',
+                'sub_categories.sub_category as sub_category',
+                'products.description',
+                'products.product_code'
+            )
+            ->get();
+    }
 }

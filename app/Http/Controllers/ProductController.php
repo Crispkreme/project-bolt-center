@@ -262,4 +262,11 @@ class ProductController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+
+    public function searchProducts(Request $request)
+    {
+        $query = $request->get('query');
+        $products = $this->productContract->searchProduct($query);
+        return response()->json($products);
+    }
 }

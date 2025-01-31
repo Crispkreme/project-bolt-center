@@ -2,25 +2,28 @@
 
 namespace App\View\Components\Modal;
 
+use App\Contracts\EntityContract;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class AddStock extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+    protected $entityContract;
 
-    /**
-     * Get the view / contents that represent the component.
-     */
+    public function __construct(
+        EntityContract $entityContract
+    )
+    {
+        $this->entityContract = $entityContract;
+    }
+    
     public function render(): View|Closure|string
     {
-        return view('components.modal.add-stock');
+        $suppliers = $this->entityContract->getSupplierSelect();
+
+        return view('components.modal.add-stock', [
+            'suppliers' => $suppliers,
+        ]);
     }
 }
