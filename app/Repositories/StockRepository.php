@@ -74,4 +74,9 @@ class StockRepository implements StockContract
 
         return $data;
     }
+
+    public function getStockById($id)
+    {
+        return $this->model->where('product_id', $id)->first();
+    }
 }

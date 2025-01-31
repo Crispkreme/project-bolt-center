@@ -12,7 +12,7 @@
                         </button>
                     </div>
                     <div class="modal-body custom-modal-body">
-                        <div id="response-message"></div> <!-- Added for displaying response messages -->
+                        <div id="response-message"></div>
                         <form id="categoryForm" action="{{ route('admin.category.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">

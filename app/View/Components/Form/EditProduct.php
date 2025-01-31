@@ -5,26 +5,28 @@ namespace App\View\Components\Form;
 use App\Contracts\CategoryContract;
 use App\Contracts\EntityContract;
 use App\Contracts\SubCategoryContract;
-use App\Models\SubCategory;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class AddProduct extends Component
+class EditProduct extends Component
 {
     protected $categoryContract;
     protected $subCategoryContract;
     protected $entityContract;
+    public $productData;
 
     public function __construct(
         CategoryContract $categoryContract,
         SubCategoryContract $subCategoryContract,
-        EntityContract $entityContract
+        EntityContract $entityContract,
+        $productData
     )
     {
         $this->categoryContract = $categoryContract;
         $this->subCategoryContract = $subCategoryContract;
         $this->entityContract = $entityContract;
+        $this->productData = $productData;
     }
 
     public function render(): View|Closure|string
@@ -33,10 +35,11 @@ class AddProduct extends Component
         $subCategories = $this->subCategoryContract->getSubCategorySelect();
         $suppliers = $this->entityContract->getSupplierSelect();
 
-        return view('components.form.add-product', [
+        return view('components.form.edit-product', [
             'categories' => $categories,
             'subCategories' => $subCategories,
             'suppliers' => $suppliers,
+            'productData' => $this->productData,
         ]);
     }
 }

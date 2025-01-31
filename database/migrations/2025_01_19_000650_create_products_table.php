@@ -25,10 +25,11 @@ return new class extends Migration
                   ->nullable()
                   ->constrained('users')
                   ->onDelete('cascade');
-            $table->string('product')->unique();
+            $table->string('product');
             $table->string('description')->nullable();
             $table->string('product_code')->unique()->nullable();
             $table->string('product_slug')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

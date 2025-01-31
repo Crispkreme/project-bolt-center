@@ -260,10 +260,16 @@
                     .then((response) => response.json())
                     .then((data) => {
                         if (data.success) {
-                            alert("Product saved successfully!");
                             form.reset();
+                            Swal.fire('Success!', 'Product added successfully.', 'success').then(() => {
+                                window.location.href = '{{ route('admin.product.list') }}';
+                            });
                         } else {
-                            alert("Failed to save product. Please check the input.");
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'An unexpected error occurred. Please try again.',
+                            });
                         }
                     })
                     .catch((error) => {
@@ -308,46 +314,6 @@
         });
     </script>
     <script>
-        $(document).ready(function () { 
-            $('#add-product-form').on('submit', function (e) {
-
-                e.preventDefault();
-                let formData = $(this).serialize();
-                
-                $.ajax({
-                    url: '{{ route('admin.product.store') }}',
-                    method: 'POST',
-                    data: formData,
-                    success: function (response) {
-                        if (response.success) {                            
-                            Swal.fire('Success!', 'Product added successfully.', 'success').then(() => {
-                                window.location.href = '{{ route('admin.product.list') }}';
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: 'An unexpected error occurred. Please try again.',
-                            });
-                        }
-                    },
-                    error: function (xhr) {
-                        let errors = xhr.responseJSON?.errors;
-                        let errorMessages = '';
-    
-                        if (errors) {
-                            for (let field in errors) {
-                                errorMessages += errors[field].join('<br>') + '<br>';
-                            }
-                        } else {
-                            errorMessages = 'An unexpected error occurred. Please try again later.';
-                        }
-                    },
-                });
-            });
-        });
-    </script>
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const numericFields = [
                 'quantity',
@@ -387,40 +353,46 @@
         const imageRepeaterContainer = document.getElementById('image-repeater-container');
     
         imageUploadInput.addEventListener('change', (event) => {
-            
             const files = event.target.files;
-            console.log(event.target.files);
-
+            const maxSize = 2 * 1024 * 1024;
+    
             Array.from(files).forEach((file) => {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-
-                    reader.onload = (e) => {
-                        const repeaterDiv = document.createElement('div');
-                        repeaterDiv.classList.add('phone-img');
-
-                        repeaterDiv.innerHTML = `
-                            <img src="${e.target.result}" alt="Uploaded image" style="width: 100px; height: 100px; object-fit: cover;">
-                            <a href="javascript:void(0);" class="remove-image-btn" style="display: flex; align-items: center; justify-content: center;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </a>
-                        `;
-
-                        imageRepeaterContainer.appendChild(repeaterDiv);
-
-                        const removeBtn = repeaterDiv.querySelector('.remove-image-btn');
-                        removeBtn.addEventListener('click', () => {
-                            repeaterDiv.remove();
-                        });
-                    };
-
-                    reader.readAsDataURL(file);
+                if (!file.type.startsWith('image/')) {
+                    alert("Only image files are allowed.");
+                    return;
                 }
+    
+                if (file.size > maxSize) {
+                    alert(`"${file.name}" is too large. Maximum size allowed is 2MB.`);
+                    return;
+                }
+    
+                const reader = new FileReader();
+    
+                reader.onload = (e) => {
+                    const repeaterDiv = document.createElement('div');
+                    repeaterDiv.classList.add('phone-img');
+    
+                    repeaterDiv.innerHTML = `
+                        <img src="${e.target.result}" alt="Uploaded image" style="width: 100px; height: 100px; object-fit: cover;">
+                        <a href="javascript:void(0);" class="remove-image-btn" style="display: flex; align-items: center; justify-content: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </a>
+                    `;
+    
+                    imageRepeaterContainer.appendChild(repeaterDiv);
+    
+                    const removeBtn = repeaterDiv.querySelector('.remove-image-btn');
+                    removeBtn.addEventListener('click', () => {
+                        repeaterDiv.remove();
+                    });
+                };
+    
+                reader.readAsDataURL(file);
             });
-
         });
     </script>
 @endpush

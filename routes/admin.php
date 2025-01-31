@@ -21,7 +21,11 @@ Route::middleware('auth')->group(function () {
 
     // PRODUCT
     Route::get('/product/add', [ProductController::class, 'addProduct'])->name('product.add');
-
+    Route::get('/product/list', [ProductController::class, 'getProductList'])->name('product.list');
+    Route::post('/product/store', [ProductController::class, 'productStore'])->name('product.store');
+    Route::delete('/product/delete/{id}', [ProductController::class, 'productDelete'])->name('product.delete');
+    Route::get('/product/{id}/edit', [ProductController::class, 'productEdit'])->name('product.edit');
+    Route::post('/product/update', [ProductController::class, 'productUpdate'])->name('product.update');
 
     // Unit
     Route::get('/unit/list', [UnitController::class, 'unitList'])->name('unit.list');
@@ -40,11 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/sub/category/{id}/edit', [CategoryController::class, 'subCategoryEdit'])->name('sub.category.edit');
     Route::post('/sub/category/update', [CategoryController::class, 'subCategoryUpdate'])->name('sub.category.update');
     Route::delete('/sub/category/delete/{id}', [CategoryController::class, 'subCategoryDelete'])->name('category.delete');
-
-    // PRODUCTS
-    Route::get('/product/list', [ProductController::class, 'getProductList'])->name('product.list');
-    Route::post('/product/store', [ProductController::class, 'productStore'])->name('product.store');
-
+    
     // COMPANY
     Route::get('/company/list', [CompanyController::class, 'companyList'])->name('company.list');
     Route::post('/company/store', [CompanyController::class, 'companyStore'])->name('company.store');
