@@ -17,65 +17,28 @@
                                 <label>Product</label>
                                 <input type="text" class="form-control" name="search-product" id="search-product">
                                 <i data-feather="search" class="feather-search"></i>
-                                <ul id="product-search-results" class="dropdown-menu" style="display: none;"></ul>
+                                <ul id="product-search-results" class="dropdown-menu" style="display:none; width:100%;"></ul>
                             </div>                            
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="modal-body-table">
                                         <div class="table-responsive">
-                                            <table class="table  datanew">
+                                            <table class="table datanew" id="selected-products-table">
                                                 <thead>
                                                     <tr>
                                                         <th>Product</th>
-                                                        <th>SKU</th>
                                                         <th>Category</th>
+                                                        <th>Sub Category</th>
+                                                        <th>SKU</th>
+                                                        <th>Description</th>
                                                         <th>Qty</th>
-                                                        <th>Type</th>
                                                         <th class="no-sort">Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="productimgname">
-                                                                <a href="javascript:void(0);" class="product-img stock-img">
-                                                                    <img src="https://dreamspos.dreamstechnologies.com/laravel/template/public/build/img/products/stock-img-02.png" alt="product">
-                                                                </a>
-                                                                <a href="javascript:void(0);">Nike Jordan</a>
-                                                            </div>												
-                                                        </td>
-                                                        <td>PT002</td>
-                                                        <td>Nike</td>
-                                                        <td>
-                                                            <div class="product-quantity">
-                                                                <span class="quantity-btn"><i data-feather="minus-circle" class="feather-search"></i></span>
-                                                                <input type="text" class="quntity-input" value="2">
-                                                                <span class="quantity-btn">+<i data-feather="plus-circle" class="plus-circle"></i></span>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <select class="select">
-                                                                <option>Addition</option>
-                                                                <option>Addition</option>
-                                                                <option>Addition</option>
-                                                            </select>
-                                                        </td>
-                                                        <td class="action-table-data">
-                                                            <div class="edit-delete-action">
-                                                                <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-                                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                                </a>
-                                                                <a class="confirm-text p-2" href="javascript:void(0);">
-                                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
+                                                <tbody id="selected-products-body"></tbody>
                                             </table>
                                         </div>
                                     </div>
-                                    
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="input-blocks">
@@ -119,22 +82,40 @@
 
 @push('scripts')
     <script>
+        function toTitleCase(str) {
+            return str.replace(/\b\w/g, char => char.toUpperCase());
+        }
+    </script>
+    <script>
         $(document).ready(function() {
             $('#search-product').on('keyup', function() {
                 let query = $(this).val();
 
-                if (query.length > 2) { 
+                if (query.length > 2) {
                     $.ajax({
                         url: '/search/products',
                         method: 'GET',
                         data: { query: query },
                         success: function(response) {
                             let resultHtml = '';
-                            
+
                             if (response.length > 0) {
                                 response.forEach(function(product) {
-                                    resultHtml += `<li class="dropdown-item product-item" data-product-id="${product.id}">${product.product}</li>`;
+                                    let capitalizedProduct = toTitleCase(product.product);
+
+                                    resultHtml += `
+                                        <li class="dropdown-item product-item" 
+                                            data-product-id="${product.id}" 
+                                            data-product-name="${product.product}" 
+                                            data-product-sku="${product.product_code}" 
+                                            data-product-description="${product.description}"
+                                            data-product-category="${product.category}"
+                                            data-product-sub_category="${product.sub_category}"
+                                        >
+                                            ${capitalizedProduct}
+                                        </li>`;
                                 });
+                                
                                 $('#product-search-results').html(resultHtml).show();
                             } else {
                                 $('#product-search-results').html('<li class="dropdown-item">No products found</li>').show();
@@ -147,11 +128,71 @@
             });
 
             $(document).on('click', '.product-item', function() {
-                let productName = $(this).text();
-                $('#search-product').val(productName);
+                let productId = $(this).data('product-id');
+                
+                if ($(`#selected-products-body tr[data-product-id="${productId}"]`).length === 0) {
+                    
+                    let category = $(this).data('product-category');
+                    let subCategory = $(this).data('product-sub_category');
+                    let productName = $(this).data('product-name');
+                    let productSKU = $(this).data('product-sku');
+                    let productDescription = $(this).data('product-description');
+
+                    let productRow = `
+                        <tr data-product-id="${productId}">
+                            <td>
+                                <div class="productimgname">
+                                    <a href="javascript:void(0);">${productName}</a>
+                                </div>
+                            </td>
+                            <td>${category}</td>
+                            <td>${subCategory}</td>
+                            <td>${productSKU}</td>
+                            <td>${productDescription}</td>
+                            <td>
+                                <div class="product-quantity">
+                                    <a href="javascript:void(0);" class="quantity-btn decrement">
+                                        <img src="{{ asset('images/svg/minus.svg') }}" alt="Minus">
+                                    </a>
+                                    <input type="text" class="quntity-input" value="1">
+                                    <a href="javascript:void(0);" class="quantity-btn increment">
+                                        <img src="{{ asset('images/svg/plus.svg') }}" alt="Plus">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="action-table-data">
+                                <div class="edit-delete-action">
+                                    <a href="javascript:void(0);" class="p-2 remove-product" style="background-color:red; text-decoration:none;">
+                                        <img src="{{ asset('images/svg/trash.svg') }}" alt="Trash" style="filter: invert(100%); width: 15px; height: 15px;">
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+
+                    $('#selected-products-body').append(productRow);
+                }
+
                 $('#product-search-results').hide();
+                $('#search-product').val('');
+            });
+
+            $(document).on('click', '.remove-product', function() {
+                $(this).closest('tr').remove();
+            });
+
+            $(document).on('click', '.increment', function() {
+                let qtyInput = $(this).siblings('.quantity-input');
+                qtyInput.val(parseInt(qtyInput.val()) + 1);
+            });
+
+            $(document).on('click', '.decrement', function() {
+                let qtyInput = $(this).siblings('.quantity-input');
+                let currentVal = parseInt(qtyInput.val());
+                if (currentVal > 1) {
+                    qtyInput.val(currentVal - 1);
+                }
             });
         });
-
     </script>
 @endpush

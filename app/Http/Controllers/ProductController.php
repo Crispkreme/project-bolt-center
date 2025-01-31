@@ -267,7 +267,6 @@ class ProductController extends Controller
     {
         $query = $request->get('query');
         $products = $this->productContract->searchProduct($query);
-
         return response()->json($products);
     }
 }
