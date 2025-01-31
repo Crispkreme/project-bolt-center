@@ -2,7 +2,7 @@
     @csrf
     <input type="hidden" name="product_id" value="{{ $productData->product_id }}">
     <input type="hidden" name="user_id" value="{{ $productData->user_id }}">
-    <input type="hidden" name="stock_id" value="{{ $productData->id }}">
+    <input type="hidden" name="stock_id" value="{{ $productData->stock_id }}">
 
     <div class="card">
         <div class="card-body add-product pb-0">
