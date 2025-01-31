@@ -1,6 +1,7 @@
 <form id="edit-product-form" action="" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="product_id" value="{{ $productData->product_id }}">
+    <input type="hidden" name="user_id" value="{{ $productData->user_id }}">
 
     <div class="card">
         <div class="card-body add-product pb-0">
@@ -208,19 +209,17 @@
                                                 </div>
                                             </div>
                                             <div id="image-repeater-container" style="display: flex;">
-                                                @if(isset($productData->product_image) && is_array($productData->product_image))
-                                                    @foreach ($productData->product_image as $image)
-                                                        <div class="phone-img">
-                                                            <img src="{{ asset('storage/'.$image->filename) }}" alt="Uploaded image" style="width: 100px; height: 100px; object-fit: cover;">
-                                                            <a href="javascript:void(0);" class="remove-image-btn">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                                </svg>
-                                                            </a>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
+                                                @foreach ($productData->product_image as $image)
+                                                    <div class="phone-img">
+                                                        <img src="{{ asset('storage/'.$image->product_image) }}" alt="Uploaded image" style="width: 100px; height: 100px; object-fit: cover;">
+                                                        <a href="javascript:void(0);" class="remove-image-btn">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
