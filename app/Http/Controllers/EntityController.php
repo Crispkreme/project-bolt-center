@@ -171,7 +171,7 @@ class EntityController extends Controller
                     $data['profile'] = $filePath;
                 }
             }
-
+            $data['id'] = $id;
             $this->entityContract->updateOrCreateEntity($data);
 
             return response()->json([
