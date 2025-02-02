@@ -9,7 +9,7 @@
                     addTitleText="Add New Supplier" 
                     importTitleText="Import Supplier" 
                     isModal="false" 
-                    modalTarget="#add-supplier" 
+                    modalTarget="#add-entity" 
                     routeTarget="" 
                 />
 

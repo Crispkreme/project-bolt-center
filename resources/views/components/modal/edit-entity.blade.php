@@ -15,6 +15,7 @@
                         <form id="editEntityForm" action="{{ route('admin.entity.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" id="edit-entity-id">
+                            <input type="hidden" name="entity_type" id="edit-entity-type">
 
                             <div class="row">
                                 <div class="col-lg-12">
@@ -59,22 +60,22 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12">
-                                    <div class="input-blocks">
-                                        <label>Type</label>
-                                        <select class="select form-control" name="entity_type" id="edit-entity-type">
-                                            <option value="" disabled>Choose</option>
-                                            <option value="Customer">Customer</option>
-                                            <option value="Supplier">Supplier</option>
-                                        </select>
-                                    </div>
-                                </div>
-
                                 <div class="col-md-12">
                                     <div class="input-blocks">
                                         <label>Address</label>
                                         <textarea class="form-control mb-1" name="address" id="edit-entity-address" maxlength="600"></textarea>
                                         <p>Maximum 600 Characters</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="input-blocks">
+                                        <label>Status</label>
+                                        <select class="select form-control" name="entity_status" id="edit-entity-status">
+                                            <option value="" disabled>Choose</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Deactivate">Deactivate</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -125,12 +126,13 @@
                         type: 'GET',
                         dataType: 'json',
                         success: function (data) {
-                            // Fill modal fields with entity data
+
                             document.getElementById('edit-entity-id').value = data.id;
                             document.getElementById('edit-entity-name').value = data.name;
                             document.getElementById('edit-entity-email').value = data.email;
                             document.getElementById('edit-entity-phone').value = data.phone;
                             document.getElementById('edit-entity-type').value = data.entity_type;
+                            document.getElementById('edit-entity-status').value = data.entity_status;
                             document.getElementById('edit-entity-address').value = data.address;
 
                             if (data.profile_picture) {
@@ -167,7 +169,7 @@
                     contentType: false,
                     success: function (response) {
                         editEntityModal.hide();
-                        Swal.fire('Success!', 'Entity updated successfully.', 'success')
+                        Swal.fire('Success!', 'Supplier/Customer updated successfully.', 'success')
                             .then(() => location.reload());
                     },
                     error: function (error) {

@@ -140,7 +140,7 @@
 
                     const data = await response.json();
                     if (data.success) {
-                        Swal.fire('Success!', 'Entity has been added successfully.', 'success')
+                        Swal.fire('Success!', 'Supplier/Customer has been added successfully.', 'success')
                             .then(() => {
                                 location.reload();
                             });

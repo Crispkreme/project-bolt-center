@@ -32,8 +32,8 @@ class StockRepository implements StockContract
                 'quantity' => $data['quantity'] ?? 0,
                 'selling_price' => $data['selling_price'] ?? 0,
                 'buying_price' => $data['buying_price'] ?? 0,
-                'discount' => $data['discount'],
-                'quantity_alert' => $data['quantity_alert'],
+                'discount' => $data['discount'] ?? 0,
+                'quantity_alert' => $data['quantity_alert'] ?? 0,
                 'discount_type' => $data['discount_type'] ?? 'Percentage',
                 'updated_at' => Carbon::now(),
             ]
