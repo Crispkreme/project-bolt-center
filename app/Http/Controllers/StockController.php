@@ -86,37 +86,53 @@ class StockController extends Controller
     }
     public function addStock(Request $request)
     {
-        $stockData = $request->validate([
-            'supplier_id' => 'required|exists:entities,id',
-            'discount_type' => 'required|string|in:Percentage,Cash',
-            'discount' => 'nullable|numeric',
-            'products' => 'required|array',
-            'products.*.id' => 'required|exists:products,id',
-            'products.*.quantity' => 'required|integer|min:1',
-            'products.*.selling_price' => 'nullable|numeric|min:0',
-            'products.*.buying_price' => 'nullable|numeric|min:0',
-            'products.*.quantity_alert' => 'nullable|integer|min:0',
-        ]);
+        try {
+            
+            $userId = Auth::id();
+            $stockData = $request->validate([
+                'supplier_id' => 'required|exists:entities,id',
+                'discount_type' => 'required|string|in:Percentage,Cash',
+                'discount' => 'nullable|numeric',
+                'products' => 'required|array',
+                'products.*.id' => 'required|exists:products,id',
+                'products.*.quantity' => 'required|integer|min:1',
+                'products.*.selling_price' => 'nullable|numeric|min:0',
+                'products.*.buying_price' => 'nullable|numeric|min:0',
+                'products.*.quantity_alert' => 'nullable|integer|min:0',
+            ]);
 
-        foreach ($stockData['products'] as $product) {
-
-            $stockData['user_id'] = Auth::user()->id;
-            $stockData['product_id'] = $product['id'];
-            $stockData['quantity'] = $product['quantity'];
-            $stockData['selling_price'] = $product['selling_price'];
-            $stockData['buying_price'] = $product['buying_price'];
-
-            $productAvailable = $this->stockContract->getStockById($product['id']);
-            if ($productAvailable) {
-
-                $stockData['id'] = $productAvailable->id;
-                $this->stockContract->updateOrCreateStock($stockData);
-
-            } else {
-                $this->stockContract->updateOrCreateStock($stockData);
+            foreach ($stockData['products'] as $productId => $product) {
+                $productAvailable = $this->stockContract->getStockById($product['id']);
+                $newQuantity = $productAvailable->quantity + $product['quantity'];
+                $stockEntry = [
+                    'id' => $productAvailable->stock_id,
+                    'user_id' => $userId,
+                    'product_id' => $product['id'],
+                    'quantity' => $newQuantity,
+                    'selling_price' => $product['selling_price'] ?? 0,
+                    'buying_price' => $product['buying_price'] ?? 0,
+                    'supplier_id' => $stockData['supplier_id'],
+                    'discount_type' => $stockData['discount_type'],
+                    'discount' => $stockData['discount'] ?? 0,
+                    'quantity_alert' => $product['quantity_alert'] ?? 0,
+                ];
+                $this->stockContract->updateOrCreateStock($stockEntry);
             }
-        }
 
-        return response()->json(['success' => true, 'message' => 'Stock added successfully']);
+            return response()->json([
+                'success' => true, 
+            ]);
+            
+        } catch (Exception $e) {
+
+            Log::error('Error in addStock: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        } 
     }
 }
