@@ -161,53 +161,6 @@
                     $('#response-message').html('');
                 });
         
-                $('#add-sub-category-form').on('submit', function (e) {
-                    e.preventDefault();
-                    let formData = $(this).serialize();
-                    $('#response-message').html('');
-        
-                    $.ajax({
-                        url: $(this).attr('action'),
-                        method: 'POST',
-                        data: formData,
-                        success: function (response) {
-                            if (response.success) {
-                                $('#add-sub-category').modal('hide');
-                                
-                                Swal.fire('Success!', 'SubCategory added successfully.', 'success').then(() => {
-                                    location.reload();
-                                });
-                            } else {
-                                $('#add-sub-category').modal('hide');
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error',
-                                    text: 'An unexpected error occurred. Please try again.',
-                                });
-                            }
-                        },
-                        error: function (xhr) {
-                            let errors = xhr.responseJSON?.errors;
-                            let errorMessages = '';
-        
-                            if (errors) {
-                                for (let field in errors) {
-                                    errorMessages += errors[field].join('<br>') + '<br>';
-                                }
-                            } else {
-                                errorMessages = 'An unexpected error occurred. Please try again later.';
-                            }
-        
-                            $('#add-sub-category').modal('hide');
-                                Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                html: errorMessages,
-                            });
-                        },
-                    });
-                });
-        
                 $('#add-sub-category').on('hidden.bs.modal', function () {
                     $('#response-message').html('');
                 });
