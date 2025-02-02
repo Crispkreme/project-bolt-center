@@ -18,6 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/stock/list', [StockController::class, 'stockList'])->name('stock.list');
     Route::get('/stock/low', [StockController::class, 'lowStockList'])->name('stock.low');
     Route::get('/stock/adjustment', [StockController::class, 'stockAdjustmentList'])->name('stock.adjustment');
+    Route::get('/stock/add', [StockController::class, 'addStock'])->name('stock.add');
 
     // PRODUCT
     Route::get('/product/add', [ProductController::class, 'addProduct'])->name('product.add');

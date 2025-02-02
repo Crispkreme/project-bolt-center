@@ -12,7 +12,7 @@
                         </button>
                     </div>
                     <div class="modal-body custom-modal-body">
-                        <form action="stock-adjustment">
+                        <form action="{{ route('admin.stock.add') }}" id="add-stock-form">
                             <div class="input-blocks search-form">
                                 <label>Product</label>
                                 <input type="text" class="form-control" name="search-product" id="search-product">
@@ -23,6 +23,8 @@
                                 <div class="col-lg-12">
                                     <div class="modal-body-table">
                                         <div class="table-responsive">
+
+                                            // i want to save the data here
                                             <table class="table datanew" id="selected-products-table">
                                                 <thead>
                                                     <tr>
@@ -32,6 +34,8 @@
                                                         <th>SKU</th>
                                                         <th>Description</th>
                                                         <th>Qty</th>
+                                                        <th>Price</th>
+                                                        <th>Srp</th>
                                                         <th class="no-sort">Action</th>
                                                     </tr>
                                                 </thead>
@@ -129,11 +133,10 @@
 
             $(document).on('click', '.product-item', function() {
                 let productId = $(this).data('product-id');
-                
+
                 $('#selected-products-body .dataTables_empty').remove();
 
                 if ($(`#selected-products-body tr[data-product-id="${productId}"]`).length === 0) {
-                    
                     let category = $(this).data('product-category');
                     let subCategory = $(this).data('product-sub_category');
                     let productName = $(this).data('product-name');
@@ -142,11 +145,7 @@
 
                     let productRow = `
                         <tr data-product-id="${productId}">
-                            <td>
-                                <div class="productimgname">
-                                    <a href="javascript:void(0);">${productName}</a>
-                                </div>
-                            </td>
+                            <td>${productName} <input type="hidden" name="products[${productId}][id]" value="${productId}"></td>
                             <td>${category}</td>
                             <td>${subCategory}</td>
                             <td>${productSKU}</td>
@@ -156,18 +155,26 @@
                                     <a href="javascript:void(0);" class="quantity-btn decrement">
                                         <img src="{{ asset('images/svg/minus.svg') }}" alt="Minus">
                                     </a>
-                                    <input type="text" class="quntity-input" value="1">
+                                    <input type="text" class="quantity-input" name="products[${productId}][quantity]" value="1">
                                     <a href="javascript:void(0);" class="quantity-btn increment">
                                         <img src="{{ asset('images/svg/plus.svg') }}" alt="Plus">
                                     </a>
                                 </div>
                             </td>
-                            <td class="action-table-data">
-                                <div class="edit-delete-action">
-                                    <a href="javascript:void(0);" class="p-2 remove-product" style="background-color:red; text-decoration:none;">
-                                        <img src="{{ asset('images/svg/trash.svg') }}" alt="Trash" style="filter: invert(100%); width: 15px; height: 15px;">
-                                    </a>
+                            <td>
+                                <div class="product-buying-price">
+                                    <input type="text" class="buying-price-input" name="products[${productId}][buying_price]" value="">
                                 </div>
+                            </td>
+                            <td>
+                                <div class="product-selling-price">
+                                    <input type="text" class="selling-price-input" name="products[${productId}][selling_price]" value="">
+                                </div>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" class="p-2 remove-product" style="background-color:red; text-decoration:none;">
+                                    <img src="{{ asset('images/svg/trash.svg') }}" alt="Trash" style="filter: invert(100%); width: 15px; height: 15px;">
+                                </a>
                             </td>
                         </tr>
                     `;
@@ -201,6 +208,39 @@
                 let currentVal = parseInt(qtyInput.val());
                 if (currentVal > 1) {
                     qtyInput.val(currentVal - 1);
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#add-stock-form').on('submit', function(e) {
+            e.preventDefault();
+
+            let formData = new FormData(this);
+
+            $.ajax({
+                url: '{{ route("admin.stock.add") }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire('Success!', 'Stock has been added.', 'success')
+                            .then(() => location.reload());
+                    } else {
+                        Swal.fire('Error', response.message || 'An error occurred.', 'error');
+                    }
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON.errors;
+                    let errorMessage = 'An error occurred. Please check the form.';
+
+                    if (errors) {
+                        errorMessage = Object.values(errors).map(error => error.join('<br>')).join('<br>');
+                    }
+
+                    Swal.fire('Validation Error', errorMessage, 'error');
                 }
             });
         });

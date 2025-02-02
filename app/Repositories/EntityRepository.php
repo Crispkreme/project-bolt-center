@@ -35,7 +35,7 @@ class EntityRepository implements EntityContract
                 'address' => $data['address'],
                 'entity_type' => $data['entity_type'],
                 'entity_status' => $data['entity_status'],
-                'profile' => $data['profile'],
+                'profile' => $data['profile'] ?? null,
             ]
         );
     }

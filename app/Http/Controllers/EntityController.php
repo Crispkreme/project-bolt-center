@@ -90,7 +90,7 @@ class EntityController extends Controller
                 'message' => 'Customer/Supplier created successfully!',
             ]);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error('Error in entityStore: ' . $e->getMessage());
 
             return response()->json([
@@ -104,7 +104,7 @@ class EntityController extends Controller
         try {
             
             $entity = $this->entityContract->findEntityById($id);
-
+            
             if (!$entity) {
                 return response()->json(['error' => 'Entity not found'], 404);
             }
@@ -140,4 +140,53 @@ class EntityController extends Controller
             ], 500);
         }
     }
+    public function entityUpdate(Request $request)
+    {
+        try {
+            $data = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'nullable|email|max:255',
+                'phone' => 'nullable|string|max:15',
+                'address' => 'nullable|string|max:600',
+                'entity_type' => 'required|in:Customer,Supplier',
+                'entity_status' => 'required|in:Active,Deactivate',
+                'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+            $id = $request->id;
+            if ($id) {
+                $entity = $this->entityContract->findEntityById($id);
+
+                if ($entity && $entity->profile) {
+                    $oldProfilePath = storage_path('app/public/' . $entity->profile);
+                    if (file_exists($oldProfilePath)) {
+                        unlink($oldProfilePath);
+                    }
+                }
+
+                if ($request->hasFile('profile')) {
+                    $file = $request->file('profile');
+                    $filename = time() . '_' . $file->getClientOriginalName();
+                    $filePath = $file->storeAs('profiles', $filename, 'public');
+                    $data['profile'] = $filePath;
+                }
+            }
+            $data['id'] = $id;
+            $this->entityContract->updateOrCreateEntity($data);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Customer/Supplier created successfully!',
+            ]);
+
+        } catch (Exception $e) {
+            Log::error('Error in entityUpdate: ' . $e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while creating the entity: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
 }
