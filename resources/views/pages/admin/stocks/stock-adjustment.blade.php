@@ -247,9 +247,6 @@
                                                 <a class="me-2 p-2 mb-0 edit-entity" data-bs-toggle="modal" data-bs-target="#edit-entity" data-id="{{ $stock['id'] }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
-                                                <a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
-                                                </a>
                                             </div>
                                         </td>
                                     </tr>

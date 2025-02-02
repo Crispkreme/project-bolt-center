@@ -12,6 +12,7 @@
                         </button>
                     </div>
                     <div class="modal-body custom-modal-body">
+                        <div id="response-message"></div>
                         <form action="{{ route('admin.stock.add') }}" id="add-stock-form">
                             <div class="input-blocks search-form">
                                 <label>Product</label>
@@ -24,7 +25,6 @@
                                     <div class="modal-body-table">
                                         <div class="table-responsive">
 
-                                            // i want to save the data here
                                             <table class="table datanew" id="selected-products-table">
                                                 <thead>
                                                     <tr>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="modal-footer-btn">
                                 <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-submit">Create Adjustment</button>
+                                <button type="submit" class="btn btn-submit">Create Stock</button>
                             </div>
                         </form>
                     </div>
@@ -162,13 +162,27 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="product-buying-price">
-                                    <input type="text" class="buying-price-input" name="products[${productId}][buying_price]" value="">
+                                <div class="input-blocks product-buying-price" style="margin-bottom: 0px !important;">
+                                    <input 
+                                        type="text" 
+                                        class="buying-price-input" 
+                                        name="products[${productId}][buying_price]"
+                                        placeholder="0" 
+                                        value=""
+                                        style="width: 100px;"
+                                    >
                                 </div>
                             </td>
                             <td>
-                                <div class="product-selling-price">
-                                    <input type="text" class="selling-price-input" name="products[${productId}][selling_price]" value="">
+                                <div class="input-blocks product-selling-price" style="margin-bottom: 0px !important;">
+                                    <input 
+                                        type="text" 
+                                        class="selling-price-input" 
+                                        name="products[${productId}][selling_price]" 
+                                        value=""
+                                        placeholder="0" 
+                                        style="width: 100px;"
+                                    >
                                 </div>
                             </td>
                             <td>
@@ -213,34 +227,62 @@
         });
     </script>
     <script>
-        $('#add-stock-form').on('submit', function(e) {
-            e.preventDefault();
-
-            let formData = new FormData(this);
-
-            $.ajax({
-                url: '{{ route("admin.stock.add") }}',
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.success) {
-                        Swal.fire('Success!', 'Stock has been added.', 'success')
-                            .then(() => location.reload());
+        document.addEventListener('DOMContentLoaded', function () {
+            const stockForm = document.getElementById('add-stock-form');
+            const responseMessage = document.getElementById('response-message');
+    
+            stockForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+    
+                responseMessage.innerHTML = '';
+                const formData = new FormData(stockForm);
+                const url = stockForm.getAttribute('action');
+    
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Accept': 'application/json',
+                        },
+                        body: formData,
+                    });
+    
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        if (response.status === 422) {
+                            const errors = errorData.errors || {};
+                            responseMessage.innerHTML = `
+                                <div class="alert alert-danger">
+                                    ${Object.values(errors).flat().join('<br>')}
+                                </div>`;
+                        } else {
+                            responseMessage.innerHTML = `
+                                <div class="alert alert-danger">
+                                    An error occurred. Please try again.
+                                </div>`;
+                        }
+                        return;
+                    }
+    
+                    const data = await response.json();
+                    if (data.success) {
+                        Swal.fire('Success!', 'Stock has been added successfully.', 'success')
+                            .then(() => {
+                                location.reload();
+                            });
                     } else {
-                        Swal.fire('Error', response.message || 'An error occurred.', 'error');
+                        responseMessage.innerHTML = `
+                            <div class="alert alert-danger">
+                                ${data.message || 'An error occurred.'}
+                            </div>`;
                     }
-                },
-                error: function(xhr) {
-                    let errors = xhr.responseJSON.errors;
-                    let errorMessage = 'An error occurred. Please check the form.';
-
-                    if (errors) {
-                        errorMessage = Object.values(errors).map(error => error.join('<br>')).join('<br>');
-                    }
-
-                    Swal.fire('Validation Error', errorMessage, 'error');
+                } catch (error) {
+                    console.error('Error:', error);
+                    responseMessage.innerHTML = `
+                        <div class="alert alert-danger">
+                            An unexpected error occurred. Please try again.
+                        </div>`;
                 }
             });
         });
