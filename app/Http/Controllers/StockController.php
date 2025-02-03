@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\StockAdjustmentContract;
 use App\Contracts\StockContract;
 use Exception;
 use Illuminate\Http\Request;
@@ -11,11 +12,14 @@ use Illuminate\Support\Facades\Log;
 class StockController extends Controller
 {
     protected $stockContract;
+    protected $stockAdjustmentContract;
 
     public function __construct(
         StockContract $stockContract,
+        StockAdjustmentContract $stockAdjustmentContract,
     ) {
         $this->stockContract = $stockContract;
+        $this->stockAdjustmentContract = $stockAdjustmentContract;
     }
 
     public function stockList()
@@ -66,10 +70,10 @@ class StockController extends Controller
     {
         try {
             
-            $stocks = $this->stockContract->getAllStock();
-            
+            $stockAdjustments = $this->stockAdjustmentContract->getAllStockAdjustment();
+
             return view('pages.admin.stocks.stock-adjustment', [
-                'stocks' => $stocks,
+                'stockAdjustments' => $stockAdjustments,
             ]);
             
         } catch (Exception $e) {
@@ -103,6 +107,13 @@ class StockController extends Controller
 
             foreach ($stockData['products'] as $productId => $product) {
                 $productAvailable = $this->stockContract->getStockById($product['id']);
+
+                $stockAdjustmentData = [
+                    'editor_id' => $userId,
+                    'stock_id' => $productAvailable->stock_id,
+                ];
+                $this->stockAdjustmentContract->updateOrCreateStockAdjustment($stockAdjustmentData);
+
                 $newQuantity = $productAvailable->quantity + $product['quantity'];
                 $stockEntry = [
                     'id' => $productAvailable->stock_id,

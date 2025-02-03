@@ -7,6 +7,7 @@ use App\Contracts\CompanyContract;
 use App\Contracts\EntityContract;
 use App\Contracts\ProductContract;
 use App\Contracts\ProductImageContract;
+use App\Contracts\StockAdjustmentContract;
 use App\Contracts\StockContract;
 use App\Contracts\SubCategoryContract;
 use App\Contracts\UnitContract;
@@ -15,6 +16,7 @@ use App\Repositories\CompanyRepository;
 use App\Repositories\EntityRepository;
 use App\Repositories\ProductImageRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\StockAdjustmentRepository;
 use App\Repositories\StockRepository;
 use App\Repositories\SubCategoryRepository;
 use App\Repositories\UnitRepository;
@@ -31,6 +33,7 @@ class RepositoryProvider extends ServiceProvider
         ProductImageContract::class => ProductImageRepository::class,
         CompanyContract::class => CompanyRepository::class,
         EntityContract::class => EntityRepository::class,
+        StockAdjustmentContract::class => StockAdjustmentRepository::class,
     ];
 
     /**

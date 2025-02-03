@@ -208,12 +208,12 @@
                                     <th>Discount</th>
                                     <th>Supplier</th>
                                     <th>Created By</th>
-                                    <th>Created On</th>
-                                    <th class="no-sort">Action</th>
+                                    <th>Updated By</th>
+                                    <th>Updated On</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($stocks as $stock)
+                                @foreach ($stockAdjustments as $stockAdjustment)
                                     <tr>
                                         <td>
                                             <label class="checkboxs">
@@ -221,34 +221,28 @@
                                                 <span class="checkmarks"></span>
                                             </label>
                                         </td>
-                                        <td>{{ $stock['product_name'] }}</td>
-                                        <td>{{ $stock['description'] }}</td>
-                                        <td>{{ $stock['product_code'] }}</td>
-                                        <td>{{ $stock['category_name'] }}</td>
-                                        <td>{{ $stock['sub_category_name'] }}</td>
-                                        <td>{{ $stock['quantity'] }}</td>
-                                        <td>{{ $stock['selling_price'] }}</td>
-                                        <td>{{ $stock['buying_price'] }}</td>
-                                        <td>{{ $stock['discount'] }}</td>
+                                        <td>{{ $stockAdjustment['product_name'] }}</td>
+                                        <td>{{ $stockAdjustment['description'] }}</td>
+                                        <td>{{ $stockAdjustment['product_code'] }}</td>
+                                        <td>{{ $stockAdjustment['category_name'] }}</td>
+                                        <td>{{ $stockAdjustment['sub_category_name'] }}</td>
+                                        <td>{{ $stockAdjustment['quantity'] }}</td>
+                                        <td>{{ $stockAdjustment['selling_price'] }}</td>
+                                        <td>{{ $stockAdjustment['buying_price'] }}</td>
+                                        <td>{{ $stockAdjustment['discount'] }}</td>
                                         <td>
                                             <div class="productimgname">
                                                 <a href="javascript:void(0);" class="product-img stock-img">
-                                                    <img src="{{ $stock['supplier_profile'] && file_exists(storage_path('app/public/' . $stock['supplier_profile'])) ? asset('storage/' . $stock['supplier_profile']) : \Laravolt\Avatar\Facade::create($stock['supplier'])->toBase64() }}" alt="Supplier" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
+                                                    <img src="{{ $stockAdjustment['supplier_profile'] && file_exists(storage_path('app/public/' . $stockAdjustment['supplier_profile'])) ? asset('storage/' . $stockAdjustment['supplier_profile']) : \Laravolt\Avatar\Facade::create($stockAdjustment['supplier'])->toBase64() }}" alt="Supplier" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;">
                                                 </a>
                                                 <div>
-                                                    <a href="javascript:void(0);" class="ms-2">{{ $stock['supplier'] }}</a>
+                                                    <a href="javascript:void(0);" class="ms-2">{{ $stockAdjustment['supplier'] }}</a>
                                                 </div>
                                             </div>         
                                         </td>
-                                        <td>{{ $stock['created_by'] }}</td>
-                                        <td>{{ $stock['created_on'] }}</td>
-                                        <td class="action-table-data">
-                                            <div class="edit-delete-action">
-                                                <a class="me-2 p-2 mb-0 edit-entity" data-bs-toggle="modal" data-bs-target="#edit-entity" data-id="{{ $stock['id'] }}">
-                                                    <i data-feather="edit" class="feather-edit"></i>
-                                                </a>
-                                            </div>
-                                        </td>
+                                        <td>{{ $stockAdjustment['created_by'] }}</td>
+                                        <td>{{ $stockAdjustment['editor'] }}</td>
+                                        <td>{{ $stockAdjustment['created_on'] }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
