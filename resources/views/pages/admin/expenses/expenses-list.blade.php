@@ -107,8 +107,8 @@
                                         <th>Expenses</th>
                                         <th>Purpose</th>
                                         <th>Description</th>
-                                        <th>Status</th>
                                         <th>Amount</th>
+                                        <th>Status</th>
                                         <th>Created By</th>
                                         <th>Expense Date</th>
                                     </tr>
@@ -125,6 +125,7 @@
                                             <td>{{ $expense['expenses'] }}</td>
                                             <td>{{ $expense['purpose'] ?? 'N/A' }}</td>
                                             <td>{{ $expense['description'] ?? 'No description' }}</td>
+                                            <td>&#8369; {{ number_format($expense['amount'], 2) }}</td>
                                             <td>
                                                 @switch($expense['expense_status'])
                                                     @case('Active')
@@ -137,7 +138,6 @@
                                                         <span class="badge badge-secondary">Unknown</span>
                                                 @endswitch
                                             </td>
-                                            <td>&#8369; {{ number_format($expense['amount'], 2) }}</td>
                                             <td>{{ $expense['created_by'] ?? 'Unknown' }}</td>
                                             <td>{{ \Carbon\Carbon::parse($expense['created_at'])->format('F j, Y') }}</td>
                                         </tr>
