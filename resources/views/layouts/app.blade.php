@@ -111,6 +111,9 @@
         {{-- STOCK --}}
         <x-modal.add-stock />
 
+        {{-- EXPENSES --}}
+        <x-modal.add-expenses />
+
         <x-modal.add-unit />
         <x-modal.add-variation />
         <x-modal.view-notes />

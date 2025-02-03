@@ -251,22 +251,16 @@
                             <span>Stock Adjustment</span>
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/stock-transfer" class="">
-                            <span>Stock Transfer</span>
-                        </a>
-                    </li> --}}
                     <li class="submenu">
-                        <a href="javascript:void(0);" class=""><span>Expenses</span><span
-                                class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="">
+                            <span>Expenses</span>
+                            <span class="menu-arrow"></span>
+                        </a>
                         <ul>
                             <li>
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expense-list"
-                                    class="">Expenses</a>
-                            </li>
-                            <li>
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expense-category"
-                                    class="">Expense Category</a>
+                                <a href="{{ route('admin.expenses.list') }}" class="">
+                                    Expenses
+                                </a>
                             </li>
                         </ul>
                     </li>

@@ -21,7 +21,7 @@ class CategoryRepository implements CategoryContract
 
     public function getAllCategory()
     {
-        $data = DB::table('categories')->get();
+        $data = $this->model->get();
 
         $data->transform(function ($item) {
             $item->created_at = Carbon::parse($item->created_at)->format('F j, Y');
@@ -33,7 +33,7 @@ class CategoryRepository implements CategoryContract
 
     public function getCategory()
     {
-        return DB::table('categories')->get();
+        return $this->model->get();
     }
 
     public function updateOrCreateCategory($data)
@@ -53,12 +53,12 @@ class CategoryRepository implements CategoryContract
 
     public function findCategoryById($id)
     {
-        return DB::table('categories')->find($id);
+        return $this->model->find($id);
     }
 
     public function deleteCategoryById($id)
     {
-        return DB::table('categories')->where('id', $id)->delete();
+        return $this->model->where('id', $id)->delete();
     }
 
     public function getCategorySelect()

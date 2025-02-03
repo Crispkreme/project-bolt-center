@@ -21,7 +21,7 @@ class UnitRepository implements UnitContract
 
     public function getAllUnit()
     {
-        $data = DB::table('units')->get();
+        $data = $this->model->get();
 
         $data->transform(function ($item) {
             $item->created_at = Carbon::parse($item->created_at)->format('F j, Y');

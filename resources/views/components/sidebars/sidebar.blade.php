@@ -7,10 +7,10 @@
                     <h6 class="submenu-hdr">Main</h6>
                     <ul>
                         <li class="">
-                                <a href="{{ route('admin.dashboard') }}">
-                                        <i data-feather="grid"></i>
-                                        <span>Dashboard</span>
-                                </a>
+                            <a href="{{ route('admin.dashboard') }}">
+                                <i data-feather="grid"></i>
+                                <span>Dashboard</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -30,28 +30,28 @@
                             </a>
                         </li>
                         <li class="">
-                                <a href="{{ route('admin.stock.low') }}">
-                                        <i data-feather="trending-down"></i>
-                                        <span>Low Stocks</span>
-                                </a>
+                            <a href="{{ route('admin.stock.low') }}">
+                                <i data-feather="trending-down"></i>
+                                <span>Low Stocks</span>
+                            </a>
                         </li>
                         <li class="">
-                                <a href="{{ route('admin.category.list') }}">
-                                        <i data-feather="codepen"></i>
-                                        <span>Category</span>
-                                </a>
+                            <a href="{{ route('admin.category.list') }}">
+                                <i data-feather="codepen"></i>
+                                <span>Category</span>
+                            </a>
                         </li>
                         <li class="">
-                                <a href="{{ route('admin.sub.category.list') }}">
-                                        <i data-feather="speaker"></i>
-                                        <span>Sub Category</span>
-                                </a>
+                            <a href="{{ route('admin.sub.category.list') }}">
+                                <i data-feather="speaker"></i>
+                                <span>Sub Category</span>
+                            </a>
                         </li>
                         <li class="">
-                                <a href="{{ route('admin.unit.list') }}">
-                                        <i data-feather="speaker"></i>
-                                        <span>Units</span>
-                                </a>
+                            <a href="{{ route('admin.unit.list') }}">
+                                <i data-feather="speaker"></i>
+                                <span>Units</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -59,16 +59,16 @@
                     <h6 class="submenu-hdr">Stock</h6>
                     <ul>
                         <li class="">
-                                <a href="{{ route('admin.stock.list') }}">
-                                        <i data-feather="package"></i>
-                                        <span>Manage Stock</span>
-                                </a>
+                            <a href="{{ route('admin.stock.list') }}">
+                                <i data-feather="package"></i>
+                                <span>Manage Stock</span>
+                            </a>
                         </li>
                         <li>
-                                <a href="{{ route('admin.stock.adjustment') }}" class="">
-                                        <i data-feather="clipboard"></i>
-                                        <span>Stock Adjustment</span>
-                                </a>
+                            <a href="{{ route('admin.stock.adjustment') }}" class="">
+                                <i data-feather="clipboard"></i>
+                                <span>Stock Adjustment</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -76,30 +76,34 @@
                     <h6 class="submenu-hdr">Sales</h6>
                     <ul>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/sales-list">
-                                        <i data-feather="shopping-cart"></i><span>Sales</span></a></li>
-                        <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/invoice-report">
-                                        <i data-feather="file-text"></i><span>Invoices</span></a></li>
-                        <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/sales-returns">
-                                        <i data-feather="copy"></i><span>Sales
-                                    Return</span></a></li>
-                        <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/quotation-list">
-                                        <i data-feather="save"></i><span>Quotation</span></a>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/sales-list">
+                                <i data-feather="shopping-cart"></i><span>Sales</span></a>
                         </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/pos">
-                                        <i data-feather="hard-drive"></i><span>POS</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/invoice-report">
+                                <i data-feather="file-text"></i><span>Invoices</span></a>
+                        </li>
+                        <li class="">
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/sales-returns">
+                                <i data-feather="copy"></i><span>Sales
+                                    Return</span></a>
+                        </li>
+                        <li class="">
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/quotation-list">
+                                <i data-feather="save"></i><span>Quotation</span></a>
+                        </li>
+                        <li class="">
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/pos">
+                                <i data-feather="hard-drive"></i><span>POS</span></a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Promo</h6>
                     <ul>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/coupons">
-                                        <i data-feather="shopping-cart"></i><span>Coupons</span></a>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/coupons">
+                                <i data-feather="shopping-cart"></i><span>Coupons</span></a>
                         </li>
                     </ul>
                 </li>
@@ -107,30 +111,36 @@
                     <h6 class="submenu-hdr">Purchases</h6>
                     <ul>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/purchase-list">
-                                        <i data-feather="shopping-bag"></i><span>Purchases</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/purchase-list">
+                                <i data-feather="shopping-bag"></i><span>Purchases</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/purchase-order-report">
-                                        <i data-feather="file-minus"></i><span>Purchase Order</span></a></li>
+                            <a
+                                href="https://dreamspos.dreamstechnologies.com/laravel/template/public/purchase-order-report">
+                                <i data-feather="file-minus"></i><span>Purchase Order</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/purchase-returns">
-                                        <i data-feather="refresh-cw"></i><span>Purchase
-                                    Return</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/purchase-returns">
+                                <i data-feather="refresh-cw"></i><span>Purchase
+                                    Return</span></a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Finance & Accounts</h6>
                     <ul>
                         <li class="submenu">
-                            <a href="javascript:void(0);" class=""><i
-                                    data-feather="file-text"></i><span>Expenses</span><span
-                                    class="menu-arrow"></span></a>
+                            <a href="javascript:void(0);" class="">
+                                <i data-feather="file-text"></i>
+                                <span>Expenses</span>
+                                <span class="menu-arrow"></span>
+                            </a>
                             <ul>
-                                <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expense-list"
-                                        class="">Expenses</a></li>
-                                <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expense-category"
-                                        class="">Expense
-                                        Category</a></li>
+                                <li>
+                                    <a href="{{ route('admin.expenses.list') }}" class="">
+                                        Expenses
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -139,22 +149,22 @@
                     <h6 class="submenu-hdr">Peoples</h6>
                     <ul>
                         <li class="">
-                                <a href="{{ route('admin.customer.list') }}">
-                                        <i data-feather="user"></i>
-                                        <span>Customers</span>
-                                </a>
+                            <a href="{{ route('admin.customer.list') }}">
+                                <i data-feather="user"></i>
+                                <span>Customers</span>
+                            </a>
                         </li>
                         <li class="">
-                                <a href="{{ route('admin.supplier.list') }}">
-                                        <i data-feather="users"></i>
-                                        <span>Suppliers</span>
-                                </a>
+                            <a href="{{ route('admin.supplier.list') }}">
+                                <i data-feather="users"></i>
+                                <span>Suppliers</span>
+                            </a>
                         </li>
                         <li class="">
-                                <a href="{{ route('admin.company.list') }}">
-                                        <i data-feather="archive"></i>
-                                        <span>Company</span>
-                                </a>
+                            <a href="{{ route('admin.company.list') }}">
+                                <i data-feather="archive"></i>
+                                <span>Company</span>
+                            </a>
                         </li>
                         {{-- <li class="">
                                 <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/store-list">
@@ -166,17 +176,21 @@
                     <h6 class="submenu-hdr">HRM</h6>
                     <ul>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/employees-grid">
-                                        <i data-feather="user"></i><span>Employees</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/employees-grid">
+                                <i data-feather="user"></i><span>Employees</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/department-grid">
-                                        <i data-feather="users"></i><span>Departments</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/department-grid">
+                                <i data-feather="users"></i><span>Departments</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/designation">
-                                        <i data-feather="git-merge"></i><span>Designation</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/designation">
+                                <i data-feather="git-merge"></i><span>Designation</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/shift">
-                                        <i data-feather="shuffle"></i><span>Shifts</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/shift">
+                                <i data-feather="shuffle"></i><span>Shifts</span></a>
+                        </li>
                         <li class="submenu">
                             <a href="javascript:void(0);" class=""><i
                                     data-feather="book-open"></i><span>Attendence</span><span
@@ -205,8 +219,8 @@
                             </ul>
                         </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/holidays">
-                                        <i data-feather="credit-card"></i><span>Holidays</span></a>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/holidays">
+                                <i data-feather="credit-card"></i><span>Holidays</span></a>
                         </li>
                         <li class="submenu">
                             <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/payroll-list"
@@ -226,70 +240,85 @@
                     <h6 class="submenu-hdr">Reports</h6>
                     <ul>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/sales-report">
-                                        <i data-feather="bar-chart-2"></i><span>Sales
-                                    Report</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/sales-report">
+                                <i data-feather="bar-chart-2"></i><span>Sales
+                                    Report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/purchase-report">
-                                        <i data-feather="pie-chart"></i><span>Purchase
-                                    report</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/purchase-report">
+                                <i data-feather="pie-chart"></i><span>Purchase
+                                    report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/inventory-report">
-                                        <i data-feather="inbox"></i><span>Inventory
-                                    Report</span></a></li>
+                            <a
+                                href="https://dreamspos.dreamstechnologies.com/laravel/template/public/inventory-report">
+                                <i data-feather="inbox"></i><span>Inventory
+                                    Report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/invoice-report">
-                                        <i data-feather="file"></i><span>Invoice
-                                    Report</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/invoice-report">
+                                <i data-feather="file"></i><span>Invoice
+                                    Report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/supplier-report">
-                                        <i data-feather="user-check"></i><span>Supplier
-                                    Report</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/supplier-report">
+                                <i data-feather="user-check"></i><span>Supplier
+                                    Report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/customer-report">
-                                        <i data-feather="user"></i><span>Customer
-                                    Report</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/customer-report">
+                                <i data-feather="user"></i><span>Customer
+                                    Report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expense-report">
-                                        <i data-feather="file"></i><span>Expense
-                                    Report</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expense-report">
+                                <i data-feather="file"></i><span>Expense
+                                    Report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/income-report">
-                                        <i data-feather="bar-chart"></i><span>Income
-                                    Report</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/income-report">
+                                <i data-feather="bar-chart"></i><span>Income
+                                    Report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/tax-reports">
-                                        <i data-feather="database"></i><span>Tax
-                                    Report</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/tax-reports">
+                                <i data-feather="database"></i><span>Tax
+                                    Report</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/profit-and-loss">
-                                        <i data-feather="pie-chart"></i><span>Profit &
-                                    Loss</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/profit-and-loss">
+                                <i data-feather="pie-chart"></i><span>Profit &
+                                    Loss</span></a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">User Management</h6>
                     <ul>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/users">
-                                        <i data-feather="user-check"></i><span>Users</span></a>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/users">
+                                <i data-feather="user-check"></i><span>Users</span></a>
                         </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/roles-permissions">
-                                        <i data-feather="shield"></i><span>Roles &
-                                    Permissions</span></a></li>
+                            <a
+                                href="https://dreamspos.dreamstechnologies.com/laravel/template/public/roles-permissions">
+                                <i data-feather="shield"></i><span>Roles &
+                                    Permissions</span></a>
+                        </li>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/delete-account">
-                                        <i data-feather="lock"></i><span>Delete Account
-                                    Request</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/delete-account">
+                                <i data-feather="lock"></i><span>Delete Account
+                                    Request</span></a>
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Pages</h6>
                     <ul>
                         <li class="">
-                                <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/profile">
-                                        <i data-feather="user"></i><span>Profile</span></a></li>
+                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/profile">
+                                <i data-feather="user"></i><span>Profile</span></a>
+                        </li>
                         <li class="submenu">
                             <a href="javascript:void(0);"><i
                                     data-feather="shield"></i><span>Authentication</span><span
