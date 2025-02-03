@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Contracts\CategoryContract;
 use App\Contracts\CompanyContract;
 use App\Contracts\EntityContract;
+use App\Contracts\ExpensesContract;
 use App\Contracts\ProductContract;
 use App\Contracts\ProductImageContract;
 use App\Contracts\StockAdjustmentContract;
@@ -14,6 +15,7 @@ use App\Contracts\UnitContract;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CompanyRepository;
 use App\Repositories\EntityRepository;
+use App\Repositories\ExpensesRepository;
 use App\Repositories\ProductImageRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\StockAdjustmentRepository;
@@ -34,6 +36,7 @@ class RepositoryProvider extends ServiceProvider
         CompanyContract::class => CompanyRepository::class,
         EntityContract::class => EntityRepository::class,
         StockAdjustmentContract::class => StockAdjustmentRepository::class,
+        ExpensesContract::class => ExpensesRepository::class,
     ];
 
     /**

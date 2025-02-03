@@ -154,14 +154,16 @@
                         </ul>
                     </li>
                     <li class="submenu">
-                        <a href="javascript:void(0);" class=" "><span>Expenses</span><span
-                                class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="">
+                                <span>Expenses</span>
+                                <span class="menu-arrow"></span>
+                        </a>
                         <ul>
-                            <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expense-list"
-                                    class="">Expenses</a></li>
-                            <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/expense-category"
-                                    class="">Expense Category</a>
-                            </li>
+                                <li>
+                                        <a href="{{ route('admin.expenses.list') }}" class="">
+                                                Expenses
+                                        </a>
+                                </li>
                         </ul>
                     </li>
                 </ul>

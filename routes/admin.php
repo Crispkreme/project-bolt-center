@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EntityController;
+use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
@@ -62,4 +63,8 @@ Route::middleware('auth')->group(function () {
 
     // EMPLOYEES
     Route::get('/employee/list', [EntityController::class, 'getAllEmployees'])->name('employee.list');
+
+    // EXPENSES
+    Route::get('/expenses/list', [ExpensesController::class, 'getAllExpenses'])->name('expenses.list');
+    Route::post('/expenses/store', [ExpensesController::class, 'expensesStore'])->name('expenses.store');
 });
