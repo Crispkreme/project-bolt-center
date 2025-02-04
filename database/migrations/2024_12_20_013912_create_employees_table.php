@@ -18,6 +18,8 @@ return new class extends Migration
                   ->nullable()
                   ->constrained('accounts')
                   ->onDelete('cascade');
+            $table->string('emp_id')->nullable();
+            $table->string('position')->nullable();
             $table->string('experience')->nullable();
             $table->string('salary')->nullable();
             $table->string('leave')->nullable();
