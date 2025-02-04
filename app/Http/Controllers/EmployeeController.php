@@ -2,24 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\UserContract;
+use Exception;
 use Illuminate\Http\Request;
-use Inertia\Response;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class EmployeeController extends Controller
 {
-    public function index(): Response
-    {
-        return Inertia::render('Admin/Employees/Employee');
+    protected $userContract;
+
+    public function __construct(
+        UserContract $userContract,
+    ) {
+        $this->userContract = $userContract;
     }
 
-    public function createEmployee(): Response
+    public function getAllEmployee()
     {
-        return Inertia::render('Admin/Employees/CreateEmployee');
-    }
+        try {
+            
+            $employees = $this->userContract->getAllEmployeeByUser();
 
-    public function updateOrCreateEmployee(Request $request): Response
-    {
-        dd($request);
+            return view('pages.admin.employees.employee-list', [
+                'employees' => $employees,
+            ]);
+            
+        } catch (Exception $e) {
+
+            Log::error('Error in getAllExpenses: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        } 
     }
 }

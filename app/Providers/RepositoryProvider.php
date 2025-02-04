@@ -12,6 +12,7 @@ use App\Contracts\StockAdjustmentContract;
 use App\Contracts\StockContract;
 use App\Contracts\SubCategoryContract;
 use App\Contracts\UnitContract;
+use App\Contracts\UserContract;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CompanyRepository;
 use App\Repositories\EntityRepository;
@@ -22,6 +23,7 @@ use App\Repositories\StockAdjustmentRepository;
 use App\Repositories\StockRepository;
 use App\Repositories\SubCategoryRepository;
 use App\Repositories\UnitRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryProvider extends ServiceProvider
@@ -37,6 +39,7 @@ class RepositoryProvider extends ServiceProvider
         EntityContract::class => EntityRepository::class,
         StockAdjustmentContract::class => StockAdjustmentRepository::class,
         ExpensesContract::class => ExpensesRepository::class,
+        UserContract::class => UserRepository::class,
     ];
 
     /**

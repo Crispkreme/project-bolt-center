@@ -120,5 +120,19 @@
 
         @stack('scripts')
         
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const searchInput = document.getElementById("search-box");
+                const searchIcon = document.querySelector(".feather-search").parentElement;
+        
+                searchInput.addEventListener("input", function () {
+                    if (this.value.trim() === "") {
+                        searchIcon.style.display = "block";
+                    } else {
+                        searchIcon.style.display = "none";
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

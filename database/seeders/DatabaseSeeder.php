@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             SubCategorySeeder::class,
             EntitySeeder::class,
             CompanySeeder::class,
-            EmployeeSeeder::class,
             AccountSeeder::class,
+            EmployeeSeeder::class,
         ]);
     }
 }

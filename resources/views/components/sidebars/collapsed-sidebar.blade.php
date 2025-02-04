@@ -223,8 +223,10 @@
 
                 </ul>
                 <ul class="tab-pane " id="employee" aria-labelledby="set-tab2">
-                    <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/employees-grid"
-                            class=""><span>Employees</span></a>
+                    <li>
+                        <a href="{{ route('admin.employee.list') }}" class="">
+                                <span>Employees</span>
+                        </a>
                     </li>
                     <li><a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/department-grid"
                             class=""><span>Departments</span></a>

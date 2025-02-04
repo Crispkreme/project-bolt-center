@@ -20,7 +20,7 @@ class Employee extends Model
         'status',
     ];
 
-    public function employee() {
-        return $this->belongsTo(Employee::class);
+    public function account() {
+        return $this->belongsTo(Account::class);
     }
 }

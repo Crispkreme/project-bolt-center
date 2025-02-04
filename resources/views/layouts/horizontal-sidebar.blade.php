@@ -803,12 +803,15 @@
                         </ul>
                     </li>
                     <li class="submenu">
-                        <a href="javascript:void(0);" class=" "><span>Employees</span><span
-                                class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="">
+                            <span>Employees</span>
+                            <span class="menu-arrow"></span>
+                        </a>
                         <ul>
                             <li>
-                                <a class=""
-                                    href="https://dreamspos.dreamstechnologies.com/laravel/template/public/employees-grid"><span>Employees</span></a>
+                                <a class="" href="{{ route('admin.employee.list') }}">
+                                    <span>Employees</span>
+                                </a>
                             </li>
                             <li>
                                 <a class=""
