@@ -3,13 +3,13 @@
         <div class="content">
 
             <x-table.table-top-head 
-                title="Manage Employees" 
-                subtitle="Manage your employees" 
-                addTitleText="Add New employees" 
-                importTitleText="Import employees" 
+                title="Employees" 
+                subtitle="Manage your Employees" 
+                addTitleText="Add New Employee" 
+                importTitleText="" 
                 isModal="false" 
-                modalTarget="#add-employee" 
-                routeTarget="" 
+                modalTarget="" 
+                routeTarget="{{ route('admin.employee.add') }}" 
             />
 
             <!-- /product list -->

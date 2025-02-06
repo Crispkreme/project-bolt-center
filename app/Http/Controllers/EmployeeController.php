@@ -41,4 +41,9 @@ class EmployeeController extends Controller
             return redirect()->back()->with($notification);
         } 
     }
+
+    public function addEmployee()
+    {
+        return view('pages.admin.employees.add-employee');
+    }
 }

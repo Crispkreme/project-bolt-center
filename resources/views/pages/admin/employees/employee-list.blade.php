@@ -10,7 +10,7 @@
                     importTitleText="" 
                     isModal="false" 
                     modalTarget="" 
-                    routeTarget="" 
+                    routeTarget="{{ route('admin.employee.add') }}" 
                 />
 
                 <div class="card">
@@ -191,4 +191,5 @@
     @push('scripts')
         
     @endpush
+    
 </x-app-layout>
