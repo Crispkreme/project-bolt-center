@@ -21,7 +21,7 @@
                                     <h6>
                                         <i data-feather="users" class="feather-user"></i>
                                         Total Employees
-                                        <span>21</span>
+                                        <span>{{ $employees->count() }}</span>
                                     </h6>
                                 </div>
                                 <div class="search-input relative">
@@ -119,14 +119,15 @@
                                                 </a>
                                                 <ul class="dropdown-menu">
                                                     <li>
-                                                        {{-- {{ url('/edit-employee', $employee->id) }} --}}
-                                                        <a href="" class="dropdown-item">
-                                                            <i data-feather="edit" class="info-img"></i>Edit
+                                                        <a href="{{ route('admin.employee.edit', ['id' => $employee->user_id]) }}" class="dropdown-item edit-employee">
+                                                            <i data-feather="edit" class="info-img"></i>
+                                                            Edit
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="javascript:void(0);" class="dropdown-item confirm-text mb-0">
-                                                            <i data-feather="trash-2" class="info-img"></i>Delete
+                                                            <i data-feather="trash-2" class="info-img"></i>
+                                                            Delete
                                                         </a>
                                                     </li>
                                                 </ul>

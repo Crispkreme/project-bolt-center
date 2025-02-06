@@ -27,9 +27,10 @@
                     </ul>
                 </div>
 
-                <x-form.add-employee />
+               <x-form.edit-employee :account="$account" /> 
+
             </div>
         </div>
     </div>
-
+    
 </x-app-layout>

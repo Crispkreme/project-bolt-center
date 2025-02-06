@@ -29,15 +29,12 @@ class AccountRepository implements AccountContract
 
     public function updateOrCreateAccount($data)
     {
-        $user = Auth::user();
-        $userID = $user->id;
-
         return $this->model->updateOrCreate(
             [
                 'id' => $data['id'] ?? null,
             ],
             [
-                'user_id' => $data['user_id'] ?? $userID,
+                'user_id' => $data['user_id'],
                 'name' => $data['name'] ?? null,
                 'gender' => $data['gender'],
                 'birthday' => $data['birthday'],

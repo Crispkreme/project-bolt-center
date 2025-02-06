@@ -37,6 +37,7 @@ class UserRepository implements UserContract
             ->join('accounts', 'users.id', '=', 'accounts.user_id')
             ->leftJoin('employees', 'accounts.id', '=', 'employees.account_id')
             ->select(
+                'users.id as user_id',
                 'users.email',
                 'users.role',
                 'accounts.name',
@@ -78,5 +79,45 @@ class UserRepository implements UserContract
                 'created_at' => Carbon::now(),
             ]
         );
+    }
+
+    public function getAllEmployeeByUserId($id)
+    {
+        $employee = $this->model
+            ->join('accounts', 'users.id', '=', 'accounts.user_id')
+            ->leftJoin('employees', 'accounts.id', '=', 'employees.account_id')
+            ->select(
+                'users.id as user_id',
+                'accounts.id as account_id',
+                'employees.id as employee_id',
+                'users.email',
+                'users.role',
+                'accounts.name',
+                'accounts.gender',
+                'accounts.birthday',
+                'accounts.phone',
+                'accounts.civil_status',
+                'accounts.religion',
+                'accounts.status as account_status',
+                'accounts.address',
+                'accounts.profile',
+                'employees.emp_id',
+                'employees.designation',
+                'employees.hired_date',
+                'employees.isActive',
+                'employees.status as employee_status'
+            )
+            ->where('users.id', $id)
+            ->first();
+
+        if ($employee) {
+            $nameParts = explode(' ', trim($employee->name));
+
+            $employee->firstname = $nameParts[0] ?? '';
+            $employee->mi = isset($nameParts[1]) && strlen($nameParts[1]) === 1 ? $nameParts[1] : '';
+            $employee->lastname = isset($nameParts[2]) ? $nameParts[2] : ($nameParts[1] ?? '');
+        }
+
+        return $employee;
     }
 }
