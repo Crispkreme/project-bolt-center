@@ -2,21 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\AccountContract;
+use App\Contracts\EmployeeContract;
 use App\Contracts\UserContract;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
+use Carbon\Carbon;
 
 class EmployeeController extends Controller
 {
     protected $userContract;
+    protected $accountContract;
+    protected $employeeContract;
 
     public function __construct(
         UserContract $userContract,
+        AccountContract $accountContract,
+        EmployeeContract $employeeContract,
     ) {
         $this->userContract = $userContract;
+        $this->employeeContract = $employeeContract;
+        $this->accountContract = $accountContract;
     }
 
     public function getAllEmployee()
@@ -45,5 +55,99 @@ class EmployeeController extends Controller
     public function addEmployee()
     {
         return view('pages.admin.employees.add-employee');
+    }
+
+    public function storeEmployee(Request $request)
+    {
+
+        try {
+            
+            DB::beginTransaction();
+            
+            $userData = $request->validate([
+                'email'    => 'nullable|email|unique:users,email',
+                'password' => 'required|string|min:6',
+            ]);
+            
+            $user = $this->userContract->updateOrCreateUser($userData);
+            
+            $accountData = $request->validate([
+                'user_id'      => 'nullable|exists:users,id|unique:accounts,user_id',
+                'gender'       => 'required|in:Male,Female',
+                'birthday'     => 'required|date',
+                'phone'        => 'required|string|max:15',
+                'civil_status' => 'required|in:Single,Married,Divorce,Separated',
+                'religion'     => 'required|string|max:100',
+                'address'      => 'required|string|max:255',
+            ]);  
+
+            $imagePath = null;
+            if ($request->hasFile('profile')) {
+                $file = $request->file('profile');
+                $imagePath = $file->store('profile_images', 'public');
+                $imagePath = asset('storage/' . $imagePath);
+            }
+
+            if ($request->has('birthday')) {
+                $accountData['birthday'] = Carbon::createFromFormat('d-m-Y', $request->birthday)->format('Y-m-d');
+            }
+            
+            $accountData['user_id'] = $user->id;
+            $accountData['name'] = trim($request->firstname . ' ' . $request->mi . ' ' . $request->lastname);
+            $accountData['profile'] = $imagePath;
+            
+            $account = $this->accountContract->updateOrCreateAccount($accountData);
+            
+            $employeeData = $request->validate([
+                'account_id'    => 'nullable|exists:accounts,id|unique:employees,account_id',
+                'emp_id'        => 'nullable|string|max:255',
+                'designation'   => 'nullable|string|max:255',
+                'experience'    => 'nullable|string|max:255',
+                'salary'        => 'nullable|string|max:15',
+                'leave'         => 'nullable|string|max:50',
+                'hired_date'    => 'nullable|date',
+                'resign_date'   => 'nullable|date',
+            ]);
+
+            $employeeData['emp_id'] = null;
+            if (empty($employeeData['emp_id'])) {
+                $lastEmployee = $this->employeeContract->getLastEmployee();
+                $nextId = $lastEmployee ? $lastEmployee->id + 1 : 1;
+                $employeeData['emp_id'] = 'EMP-' . str_pad($nextId, 6, '0', STR_PAD_LEFT);
+            }
+
+            if ($request->has('hired_date')) {
+                $employeeData['hired_date'] = Carbon::createFromFormat('d-m-Y', $request->hired_date)->format('Y-m-d');
+            }
+
+            if ($request->has('resign_date')) {
+                $employeeData['resign_date'] = Carbon::createFromFormat('d-m-Y', $request->resign_date)->format('Y-m-d');
+            }
+
+            $employeeData['isActive'] = null;
+            $employeeData['status'] = null;
+            $employeeData['account_id'] = $account->id;
+            
+            $this->employeeContract->updateOrCreateEmployee($employeeData);
+
+            return response()->json([
+                'success' => true,
+            ]);
+
+            DB::commit();
+
+        } catch (Exception $e) {
+
+            DB::rollBack();
+            
+            Log::error('Error in storeEmployee: ' . $e->getMessage());
+
+            $notification = [
+                'alert-type' => 'danger',
+                'message' => 'Error occurred: ' . $e->getMessage(),
+            ];
+
+            return redirect()->back()->with($notification);
+        } 
     }
 }

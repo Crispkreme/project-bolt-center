@@ -6,6 +6,7 @@ use App\Contracts\CompanyContract;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
@@ -46,6 +47,9 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         try {
+
+            DB::beginTransaction();
+            
             $data = $request->validate([
                 'company_name' => 'required|string|max:255|unique:companies,company_name',
                 'company_email' => 'nullable|email',
@@ -71,7 +75,12 @@ class CompanyController extends Controller
                 'message' => 'Company created successfully!',
             ]);
 
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
+
             Log::error('Error in companyStore: ' . $e->getMessage());
 
             return response()->json([
@@ -85,6 +94,8 @@ class CompanyController extends Controller
     {
         try {
             
+            DB::beginTransaction();
+
             $this->companyContract->deleteCompanyById($id);
 
             return response()->json([
@@ -92,7 +103,11 @@ class CompanyController extends Controller
                 'message' => 'Category deleted successfully!'
             ]);
             
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
             
             Log::error('Error in subCategoryDelete: ' . $e->getMessage());
 
@@ -135,6 +150,9 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         try {
+
+            DB::beginTransaction();
+            
             $data = $request->validate([
                 'company_name' => 'required|string|max:255|unique:companies,company_name',
                 'company_email' => 'nullable|email',
@@ -154,7 +172,12 @@ class CompanyController extends Controller
                 'message' => 'Company created successfully!',
             ]);
 
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
+
             Log::error('Error in companyStore: ' . $e->getMessage());
 
             return response()->json([

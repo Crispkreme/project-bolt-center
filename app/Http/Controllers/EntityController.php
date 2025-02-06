@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\EntityContract;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class EntityController extends Controller
@@ -66,6 +67,9 @@ class EntityController extends Controller
     public function entityStore(Request $request)
     {
         try {
+
+            DB::beginTransaction();
+            
             $data = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'nullable|email|max:255',
@@ -90,7 +94,12 @@ class EntityController extends Controller
                 'message' => 'Customer/Supplier created successfully!',
             ]);
 
+            DB::commit();
+
         } catch (Exception $e) {
+
+            DB::rollBack();
+            
             Log::error('Error in entityStore: ' . $e->getMessage());
 
             return response()->json([
@@ -143,6 +152,9 @@ class EntityController extends Controller
     public function entityUpdate(Request $request)
     {
         try {
+            
+            DB::beginTransaction();
+
             $data = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'nullable|email|max:255',
@@ -179,7 +191,12 @@ class EntityController extends Controller
                 'message' => 'Customer/Supplier created successfully!',
             ]);
 
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
+
             Log::error('Error in entityUpdate: ' . $e->getMessage());
 
             return response()->json([

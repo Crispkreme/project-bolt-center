@@ -7,6 +7,7 @@ use App\Contracts\SubCategoryContract;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -72,6 +73,8 @@ class CategoryController extends Controller
     public function categoryStore(Request $request, $id = null)
     {
         try {
+            
+            DB::beginTransaction();
 
             $data = $request->validate([
                 'category' => 'required|string|max:255',
@@ -95,7 +98,11 @@ class CategoryController extends Controller
                 'message' => 'Category created successfully!'
             ]);
 
+            DB::commit();
+
         } catch (Exception $e) {
+
+            DB::rollBack();
 
             Log::error('Error in categoryStore: ' . $e->getMessage());
 
@@ -112,6 +119,9 @@ class CategoryController extends Controller
     public function subCategoryStore(Request $request)
     {
         try {
+
+            DB::beginTransaction();
+
             $data = $request->validate([
                 'category_id' => 'required|exists:categories,id',
                 'sub_category' => 'required|string|max:255',
@@ -131,7 +141,11 @@ class CategoryController extends Controller
                 'message' => 'Sub Category created successfully!'
             ]);
 
+            DB::commit();
+
         } catch (Exception $e) {
+
+            DB::rollBack();
 
             Log::error('Error in subCategoryStore: ' . $e->getMessage());
             $notification = [
@@ -197,6 +211,8 @@ class CategoryController extends Controller
     {
         try {
             
+            DB::beginTransaction();
+
             $data = $request->validate([
                 'category' => 'required|string|max:255',
                 'category_slug' => 'nullable|string|max:255|unique:categories,category_slug,' . $request->id,
@@ -220,7 +236,12 @@ class CategoryController extends Controller
                 'message' => 'Category updated successfully!'
             ]);
             
+            DB::commit();
+
         } catch (Exception $e) {
+
+            DB::rollBack();
+
             Log::error('Error in categoryUpdate: ' . $e->getMessage());
             $notification = [
                 'alert-type' => 'danger',
@@ -233,6 +254,9 @@ class CategoryController extends Controller
     public function subCategoryUpdate(Request $request)
     {
         try {
+
+            DB::beginTransaction();
+
             $data = $request->validate([
                 'category_id' => 'required|exists:categories,id',
                 'sub_category' => 'required|string|max:255',
@@ -253,7 +277,11 @@ class CategoryController extends Controller
                 'message' => 'Sub Category uodated successfully!'
             ]);
         
-        } catch (\Exception $e) {
+            DB::commit();
+
+        } catch (Exception $e) {
+
+            DB::rollBack();
         
             Log::error('Error in subCategoryStore: ' . $e->getMessage());
             $notification = [
@@ -272,6 +300,8 @@ class CategoryController extends Controller
     {
         try {
             
+            DB::beginTransaction();
+
             $this->categoryContract->deleteCategoryById($id);
 
             return response()->json([
@@ -279,7 +309,11 @@ class CategoryController extends Controller
                 'message' => 'Category deleted successfully!'
             ]);
             
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
             
             Log::error('Error in categoryDelete: ' . $e->getMessage());
 
@@ -295,6 +329,8 @@ class CategoryController extends Controller
     {
         try {
             
+            DB::beginTransaction();
+
             $this->subCategoryContract->deleteSubCategoryById($id);
 
             return response()->json([
@@ -302,7 +338,11 @@ class CategoryController extends Controller
                 'message' => 'Category deleted successfully!'
             ]);
             
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
             
             Log::error('Error in subCategoryDelete: ' . $e->getMessage());
 

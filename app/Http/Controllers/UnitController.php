@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\UnitContract;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class UnitController extends Controller
@@ -46,6 +47,8 @@ class UnitController extends Controller
     {
         try {
 
+            DB::beginTransaction();
+
             $data = $request->validate([
                 'unit' => 'required|string|max:255',
                 'unit_slug' => 'required|string|max:255|unique:units,unit_slug',
@@ -61,7 +64,11 @@ class UnitController extends Controller
             
             return redirect()->route('admin.unit.list')->with('success', 'Unit created successfully!');
 
+            DB::commit();
+            
         } catch (Exception $e) {
+
+            DB::rollBack();
 
             Log::error('Error in unitList: ' . $e->getMessage());
 

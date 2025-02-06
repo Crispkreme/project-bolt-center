@@ -34,15 +34,15 @@ class AccountRepository implements AccountContract
 
         return $this->model->updateOrCreate(
             [
-                'user_id' => $data['user_id'] ?? $userID,
+                'id' => $data['id'] ?? null,
             ],
             [
+                'user_id' => $data['user_id'] ?? $userID,
                 'name' => $data['name'] ?? null,
                 'gender' => $data['gender'],
                 'birthday' => $data['birthday'],
-                'gender' => $data['gender'],
+                'phone' => $data['phone'],
                 'civil_status' => $data['civil_status'],
-                'gender' => $data['gender'],
                 'religion' => $data['religion'],
                 'address' => $data['religion'],
                 'profile' => $data['profile'],

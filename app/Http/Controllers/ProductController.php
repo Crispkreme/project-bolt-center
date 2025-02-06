@@ -9,6 +9,7 @@ use App\Contracts\StockContract;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -41,6 +42,9 @@ class ProductController extends Controller
     public function productStore(Request $request)
     {
         try {
+
+            DB::beginTransaction();
+            
             $userId = Auth::user()->id;
 
             $productData = $request->validate([
@@ -92,7 +96,12 @@ class ProductController extends Controller
                 'message' => 'Product saved successfully!',
             ]);
 
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
+
             Log::error('Error in productStore: ' . $e->getMessage());
 
             return response()->json([
@@ -169,6 +178,8 @@ class ProductController extends Controller
     {
         try {
 
+            DB::beginTransaction();
+
             $userId = Auth::user()->id;
             $productData = $request->validate([
                 'category_id'       => 'nullable|exists:categories,id',
@@ -229,7 +240,12 @@ class ProductController extends Controller
                 'message' => 'Product saved successfully!',
             ]);
 
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
+
             Log::error('Error in productStore: ' . $e->getMessage());
 
             return response()->json([
@@ -242,6 +258,8 @@ class ProductController extends Controller
     public function productDelete($id)
     {
         try {
+
+            DB::beginTransaction();
             
             $this->productContract->deleteProductById($id);
 
@@ -250,7 +268,11 @@ class ProductController extends Controller
                 'message' => 'Product deleted successfully!'
             ]);
             
+            DB::commit();
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
             
             Log::error('Error in productDelete: ' . $e->getMessage());
 

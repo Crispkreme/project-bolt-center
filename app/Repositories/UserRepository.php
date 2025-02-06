@@ -72,10 +72,9 @@ class UserRepository implements UserContract
                 'id' => $data['id'] ?? null,
             ],
             [
-                'User' => $data['User'],
-                'User_slug' => $data['User_slug'],
-                'no_products' => $data['no_products'] ?? 0,
-                'User_status' => $data['User_status'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'role' => $data['role'] ?? 'Employee',
                 'created_at' => Carbon::now(),
             ]
         );
