@@ -59,7 +59,6 @@ class EmployeeController extends Controller
 
     public function storeEmployee(Request $request)
     {
-
         try {
             
             DB::beginTransaction();
@@ -118,10 +117,14 @@ class EmployeeController extends Controller
 
             if ($request->has('hired_date')) {
                 $employeeData['hired_date'] = Carbon::createFromFormat('d-m-Y', $request->hired_date)->format('Y-m-d');
+            } else {
+                $employeeData['hired_date'] = null;
             }
 
-            if ($request->has('resign_date')) {
+            if ($request->has('resign_date') && $request->resign_date != null) {
                 $employeeData['resign_date'] = Carbon::createFromFormat('d-m-Y', $request->resign_date)->format('Y-m-d');
+            } else {
+                $employeeData['resign_date'] = null;
             }
 
             $employeeData['isActive'] = null;
@@ -130,11 +133,11 @@ class EmployeeController extends Controller
             
             $this->employeeContract->updateOrCreateEmployee($employeeData);
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
 

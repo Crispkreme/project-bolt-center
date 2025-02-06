@@ -62,9 +62,9 @@ class UnitController extends Controller
                 $this->unitContract->updateOrCreateUnit($data);
             }
             
-            return redirect()->route('admin.unit.list')->with('success', 'Unit created successfully!');
-
             DB::commit();
+            
+            return redirect()->route('admin.unit.list')->with('success', 'Unit created successfully!');
             
         } catch (Exception $e) {
 

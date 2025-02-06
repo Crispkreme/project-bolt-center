@@ -133,11 +133,11 @@ class StockController extends Controller
                 $this->stockContract->updateOrCreateStock($stockEntry);
             }
 
+            DB::commit();
+            
             return response()->json([
                 'success' => true, 
             ]);
-            
-            DB::commit();
 
         } catch (Exception $e) {
             

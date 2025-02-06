@@ -65,11 +65,11 @@ class ExpensesController extends Controller
 
             $this->expensesContract->updateOrCreateExpenses($data);
 
+            DB::commit();
+            
             return response()->json([
                 'success' => true,
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
             

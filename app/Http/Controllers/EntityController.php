@@ -89,12 +89,12 @@ class EntityController extends Controller
 
             $this->entityContract->updateOrCreateEntity($data);
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Customer/Supplier created successfully!',
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
 
@@ -123,6 +123,7 @@ class EntityController extends Controller
         } catch (Exception $e) {
             
             Log::error('Error in entityEdit: ' . $e->getMessage());
+
             $notification = [
                 'alert-type' => 'danger',
                 'message' => 'Error occurred: ' . $e->getMessage(),
@@ -140,7 +141,9 @@ class EntityController extends Controller
                 'success' => true,
                 'suppliers' => $suppliers,
             ]);
+
         } catch (Exception $e) {
+            
             Log::error('Error in getSupplierList: ' . $e->getMessage());
 
             return response()->json([
@@ -186,12 +189,12 @@ class EntityController extends Controller
             $data['id'] = $id;
             $this->entityContract->updateOrCreateEntity($data);
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Customer/Supplier created successfully!',
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
             

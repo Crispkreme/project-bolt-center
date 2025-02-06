@@ -91,12 +91,12 @@ class ProductController extends Controller
                 }
             }            
 
+            DB::commit();
+            
             return response()->json([
                 'success' => true,
                 'message' => 'Product saved successfully!',
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
             
@@ -235,12 +235,12 @@ class ProductController extends Controller
                 }
             }
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Product saved successfully!',
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
             
@@ -263,12 +263,12 @@ class ProductController extends Controller
             
             $this->productContract->deleteProductById($id);
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Product deleted successfully!'
             ]);
-            
-            DB::commit();
 
         } catch (Exception $e) {
             

@@ -93,12 +93,12 @@ class CategoryController extends Controller
                 $this->categoryContract->updateOrCreateCategory($data);
             }
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Category created successfully!'
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
 
@@ -136,12 +136,12 @@ class CategoryController extends Controller
             $data['id'] = null;
             $this->subCategoryContract->updateOrCreateSubCategory($data);
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Sub Category created successfully!'
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
 
@@ -231,12 +231,12 @@ class CategoryController extends Controller
                 $this->categoryContract->updateOrCreateCategory($data);
             }
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Category updated successfully!'
             ]);
-            
-            DB::commit();
 
         } catch (Exception $e) {
 
@@ -271,13 +271,13 @@ class CategoryController extends Controller
             $data['id'] = $request->id;
 
             $this->subCategoryContract->updateOrCreateSubCategory($data);
-        
+            
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Sub Category uodated successfully!'
             ]);
-        
-            DB::commit();
 
         } catch (Exception $e) {
 
@@ -304,12 +304,12 @@ class CategoryController extends Controller
 
             $this->categoryContract->deleteCategoryById($id);
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Category deleted successfully!'
             ]);
-            
-            DB::commit();
 
         } catch (Exception $e) {
             
@@ -333,12 +333,12 @@ class CategoryController extends Controller
 
             $this->subCategoryContract->deleteSubCategoryById($id);
 
+            DB::commit();
+            
             return response()->json([
                 'success' => true,
                 'message' => 'Category deleted successfully!'
             ]);
-            
-            DB::commit();
 
         } catch (Exception $e) {
             

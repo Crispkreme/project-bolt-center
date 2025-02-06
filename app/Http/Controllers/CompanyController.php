@@ -70,12 +70,12 @@ class CompanyController extends Controller
                 $this->companyContract->updateOrCreateCompany($data);
             }
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Company created successfully!',
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
             
@@ -98,12 +98,12 @@ class CompanyController extends Controller
 
             $this->companyContract->deleteCompanyById($id);
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Category deleted successfully!'
             ]);
-            
-            DB::commit();
 
         } catch (Exception $e) {
             
@@ -167,12 +167,12 @@ class CompanyController extends Controller
 
             $this->companyContract->updateOrCreateCompany($data);
 
+            DB::commit();
+            
             return response()->json([
                 'success' => true,
                 'message' => 'Company created successfully!',
             ]);
-
-            DB::commit();
 
         } catch (Exception $e) {
             
