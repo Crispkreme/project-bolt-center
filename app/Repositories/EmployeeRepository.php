@@ -28,7 +28,7 @@ class EmployeeRepository implements EmployeeContract
             [
                 'account_id' => $data['account_id'],
                 'emp_id' => $data['emp_id'],
-                'designation' => $data['designation'] ?? null,
+                'designation' => $data['designation'] ?? 'Employee',
                 'experience' => $data['experience'] ?? null,
                 'salary' => $data['salary'] ?? null,
                 'leave' => $data['leave'] ?? null,

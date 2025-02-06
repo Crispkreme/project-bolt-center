@@ -135,7 +135,7 @@
                                     </div>
                                     <div class="profile-info">
                                         <div class="profile-pic {{ $employee->isActive ? 'active-profile' : '' }}">
-                                            <img src="{{ $employee->profile ?? asset('images/svg/profile.svg') }}" alt="Profile Picture">
+                                            <img src="{{ $employee->profile ?? asset('images/svg/profile.svg') }}" alt="Profile Picture" style="width:80px;height:80px;">
                                         </div>
                                         <h5>EMP ID: {{ $employee->emp_id }}</h5>
                                         <h4>{{ $employee->name }}</h4>
