@@ -19,7 +19,7 @@
 
                     <div class="table-top">
                         <div class="search-set">
-                            <div class="search-input">
+                            <div class="">
                                 <a href="" class="btn btn-searchset">
                                     <i data-feather="search" class="feather-search"></i>
                                 </a>

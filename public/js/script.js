@@ -160,7 +160,7 @@ $(document).ready(function () {
       },
       initComplete: (settings, json) => {
         $(".dataTables_filter").appendTo("#tableSearch");
-        $(".dataTables_filter").appendTo(".search-input");
+        // $(".dataTables_filter").appendTo(".search-input");
       },
     });
   }

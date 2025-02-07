@@ -50,10 +50,9 @@
     </ul>
 
     @if ($addTitleText)
-
         <div class="page-btn">
-            @if ($isModal)
-                <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="{{ $modalTarget }}">
+            @if ($isModal === true)
+                <a href="javascript:void(0);" class="btn btn-added" data-bs-toggle="modal" data-bs-target="{{ $modalTarget }}">
                     <i data-feather="plus-circle" class="me-2"></i>
                     {{ $addTitleText }}
                 </a>
@@ -68,7 +67,7 @@
 
     @if ($importTitleText)
         <div class="page-btn import">
-            <a href="#" class="btn btn-added color" data-bs-toggle="modal" data-bs-target="#view-notes">
+            <a href="javascript:void(0);" class="btn btn-added color" data-bs-toggle="modal" data-bs-target="#view-notes">
                 <i data-feather="download" class="me-2"></i>
                 {{ $importTitleText }}
             </a>

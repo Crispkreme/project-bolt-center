@@ -35,10 +35,11 @@
                             <div class="card-body">
                                 <div class="table-top">
                                     <div class="search-set">
-                                        <div class="search-input">
-                                            <a href="" class="btn btn-searchset">
+                                        <div class="search-input relative">
+                                            <a href="javascript:void(0);" class="btn btn-searchset absolute left-3 top-1/2 transform -translate-y-1/2">
                                                 <i data-feather="search" class="feather-search"></i>
                                             </a>
+                                            <input type="search" class="form-control pl-10" id="search-box" placeholder="Search...">
                                         </div>
                                     </div>
                                     <div class="search-path">
@@ -178,10 +179,11 @@
                             <div class="card-body">
                                 <div class="table-top">
                                     <div class="search-set">
-                                        <div class="search-input">
-                                            <a href="" class="btn btn-searchset">
+                                        <div class="search-input relative">
+                                            <a href="javascript:void(0);" class="btn btn-searchset absolute left-3 top-1/2 transform -translate-y-1/2">
                                                 <i data-feather="search" class="feather-search"></i>
                                             </a>
+                                            <input type="search" class="form-control pl-10" id="search-box" placeholder="Search...">
                                         </div>
                                     </div>
                                     <div class="search-path">

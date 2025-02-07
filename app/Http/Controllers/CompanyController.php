@@ -6,6 +6,7 @@ use App\Contracts\CompanyContract;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class CompanyController extends Controller
@@ -46,6 +47,9 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         try {
+
+            DB::beginTransaction();
+            
             $data = $request->validate([
                 'company_name' => 'required|string|max:255|unique:companies,company_name',
                 'company_email' => 'nullable|email',
@@ -66,12 +70,17 @@ class CompanyController extends Controller
                 $this->companyContract->updateOrCreateCompany($data);
             }
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
                 'message' => 'Company created successfully!',
             ]);
 
         } catch (Exception $e) {
+            
+            DB::rollBack();
+
             Log::error('Error in companyStore: ' . $e->getMessage());
 
             return response()->json([
@@ -85,14 +94,20 @@ class CompanyController extends Controller
     {
         try {
             
+            DB::beginTransaction();
+
             $this->companyContract->deleteCompanyById($id);
+
+            DB::commit();
 
             return response()->json([
                 'success' => true,
                 'message' => 'Category deleted successfully!'
             ]);
-            
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
             
             Log::error('Error in subCategoryDelete: ' . $e->getMessage());
 
@@ -135,6 +150,9 @@ class CompanyController extends Controller
         $user = Auth::user();
 
         try {
+
+            DB::beginTransaction();
+            
             $data = $request->validate([
                 'company_name' => 'required|string|max:255|unique:companies,company_name',
                 'company_email' => 'nullable|email',
@@ -149,12 +167,17 @@ class CompanyController extends Controller
 
             $this->companyContract->updateOrCreateCompany($data);
 
+            DB::commit();
+            
             return response()->json([
                 'success' => true,
                 'message' => 'Company created successfully!',
             ]);
 
         } catch (Exception $e) {
+            
+            DB::rollBack();
+
             Log::error('Error in companyStore: ' . $e->getMessage());
 
             return response()->json([

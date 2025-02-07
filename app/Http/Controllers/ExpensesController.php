@@ -6,6 +6,7 @@ use App\Contracts\ExpensesContract;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class ExpensesController extends Controller
@@ -43,7 +44,11 @@ class ExpensesController extends Controller
     public function expensesStore(Request $request)
     {
         $user = Auth::user();
+
         try {
+
+            DB::beginTransaction();
+
             $data = $request->validate([
                 'expenses'       => 'required|string|max:255',
                 'expense_for'    => 'nullable|string|max:255',
@@ -60,11 +65,16 @@ class ExpensesController extends Controller
 
             $this->expensesContract->updateOrCreateExpenses($data);
 
+            DB::commit();
+            
             return response()->json([
                 'success' => true,
             ]);
 
         } catch (Exception $e) {
+            
+            DB::rollBack();
+
             Log::error('Error in expensesStore: ' . $e->getMessage());
 
             return response()->json([

@@ -2,13 +2,17 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EntityController;
 use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\UnitController;
+
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::middleware('auth')->group(function () {
     
@@ -61,10 +65,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/entity/{id}/edit', [EntityController::class, 'entityEdit'])->name('entity.edit');
     Route::post('/entity/update', [EntityController::class, 'entityUpdate'])->name('entity.update');
 
-    // EMPLOYEES
-    Route::get('/employee/list', [EntityController::class, 'getAllEmployees'])->name('employee.list');
-
     // EXPENSES
     Route::get('/expenses/list', [ExpensesController::class, 'getAllExpenses'])->name('expenses.list');
     Route::post('/expenses/store', [ExpensesController::class, 'expensesStore'])->name('expenses.store');
+
+    // EMPLOYEES
+    Route::get('/employee/list', [EmployeeController::class, 'getAllEmployee'])->name('employee.list');
+    Route::get('/employee/add', [EmployeeController::class, 'addEmployee'])->name('employee.add');
+    Route::get('/employee/{id}/edit', [EmployeeController::class, 'editEmployee'])->name('employee.edit');
+    Route::post('/employee/store', [EmployeeController::class, 'storeEmployee'])->name('employee.store');
+    Route::post('/employee/update', [EmployeeController::class, 'updateEmployee'])->name('employee.update');
 });

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Contracts\AccountContract;
 use App\Contracts\CategoryContract;
 use App\Contracts\CompanyContract;
+use App\Contracts\EmployeeContract;
 use App\Contracts\EntityContract;
 use App\Contracts\ExpensesContract;
 use App\Contracts\ProductContract;
@@ -12,8 +14,11 @@ use App\Contracts\StockAdjustmentContract;
 use App\Contracts\StockContract;
 use App\Contracts\SubCategoryContract;
 use App\Contracts\UnitContract;
+use App\Contracts\UserContract;
+use App\Repositories\AccountRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CompanyRepository;
+use App\Repositories\EmployeeRepository;
 use App\Repositories\EntityRepository;
 use App\Repositories\ExpensesRepository;
 use App\Repositories\ProductImageRepository;
@@ -22,6 +27,7 @@ use App\Repositories\StockAdjustmentRepository;
 use App\Repositories\StockRepository;
 use App\Repositories\SubCategoryRepository;
 use App\Repositories\UnitRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryProvider extends ServiceProvider
@@ -37,6 +43,9 @@ class RepositoryProvider extends ServiceProvider
         EntityContract::class => EntityRepository::class,
         StockAdjustmentContract::class => StockAdjustmentRepository::class,
         ExpensesContract::class => ExpensesRepository::class,
+        UserContract::class => UserRepository::class,
+        AccountContract::class => AccountRepository::class,
+        EmployeeContract::class => EmployeeRepository::class,
     ];
 
     /**

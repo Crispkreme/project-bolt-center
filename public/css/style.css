@@ -11582,7 +11582,18 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
   border-color: #141432;
   background: #2c2c50;
 }
-[data-layout-mode=dark_mode] h1, [data-layout-mode=dark_mode] .h1, [data-layout-mode=dark_mode] h2, [data-layout-mode=dark_mode] .h2, [data-layout-mode=dark_mode] h3, [data-layout-mode=dark_mode] .h3, [data-layout-mode=dark_mode] h4, [data-layout-mode=dark_mode] .h4, [data-layout-mode=dark_mode] h5, [data-layout-mode=dark_mode] .h5, [data-layout-mode=dark_mode] h6, [data-layout-mode=dark_mode] .h6 {
+[data-layout-mode=dark_mode] h1, 
+[data-layout-mode=dark_mode] .h1, 
+[data-layout-mode=dark_mode] h2, 
+[data-layout-mode=dark_mode] .h2, 
+[data-layout-mode=dark_mode] h3, 
+[data-layout-mode=dark_mode] .h3, 
+[data-layout-mode=dark_mode] h4, 
+[data-layout-mode=dark_mode] .h4, 
+[data-layout-mode=dark_mode] h5, 
+[data-layout-mode=dark_mode] .h5, 
+[data-layout-mode=dark_mode] h6, 
+[data-layout-mode=dark_mode] .h6 {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode][data-nav-color=grey] .header {
@@ -11591,7 +11602,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode][data-nav-color=grey] .header .user-menu .nav-item-box > a {
   background: #2c2c50;
 }
-[data-layout-mode=dark_mode][data-nav-color=grey] .sidebar .slimScrollDiv, [data-layout-mode=dark_mode][data-nav-color=grey] .sidebars .slimScrollDiv {
+[data-layout-mode=dark_mode][data-nav-color=grey] .sidebar .slimScrollDiv, 
+[data-layout-mode=dark_mode][data-nav-color=grey] .sidebars .slimScrollDiv {
   background: #141432;
 }
 [data-layout-mode=dark_mode][data-nav-color=grey] .searchinputs input {
@@ -11617,7 +11629,13 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode][data-layout-style=collapsed] aside {
   background-color: #141432;
 }
-[data-layout-mode=dark_mode] .fc-unthemed th, [data-layout-mode=dark_mode] .fc-unthemed td, [data-layout-mode=dark_mode] .fc-unthemed thead, [data-layout-mode=dark_mode] .fc-unthemed tbody, [data-layout-mode=dark_mode] .fc-unthemed .fc-divider, [data-layout-mode=dark_mode] .fc-unthemed .fc-row, [data-layout-mode=dark_mode] .fc-unthemed .fc-popover {
+[data-layout-mode=dark_mode] .fc-unthemed th, 
+[data-layout-mode=dark_mode] .fc-unthemed td, 
+[data-layout-mode=dark_mode] .fc-unthemed thead, 
+[data-layout-mode=dark_mode] .fc-unthemed tbody, 
+[data-layout-mode=dark_mode] .fc-unthemed .fc-divider, 
+[data-layout-mode=dark_mode] .fc-unthemed .fc-row, 
+[data-layout-mode=dark_mode] .fc-unthemed .fc-popover {
   border-color: #2c2c50 !important;
 }
 [data-layout-mode=dark_mode] div#global-loader {
@@ -11639,7 +11657,10 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] body .page-wrapper-new {
   background-color: #141432;
 }
-[data-layout-mode=dark_mode] body label, [data-layout-mode=dark_mode] body .form-label, [data-layout-mode=dark_mode] body .form-control, [data-layout-mode=dark_mode] body .notes-summernote p {
+[data-layout-mode=dark_mode] body label, 
+[data-layout-mode=dark_mode] body .form-label, 
+[data-layout-mode=dark_mode] body .form-control, 
+[data-layout-mode=dark_mode] body .notes-summernote p {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .header {
@@ -11693,7 +11714,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .sidebar .sidebar-menu > ul > li .submenu-hdr {
   color: #adb5bd !important;
 }
-[data-layout-mode=dark_mode] .sidebar .sidebar-menu > ul > li.submenu-open ul, [data-layout-mode=dark_mode] .sidebars .sidebar-menu > ul > li.submenu-open ul {
+[data-layout-mode=dark_mode] .sidebar .sidebar-menu > ul > li.submenu-open ul, 
+[data-layout-mode=dark_mode] .sidebars .sidebar-menu > ul > li.submenu-open ul {
   border-bottom: 1px solid #353570;
 }
 [data-layout-mode=dark_mode] .page-wrapper {
@@ -11727,7 +11749,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .dash-widget .dash-widgetcontent h6 {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .page-header h4, [data-layout-mode=dark_mode] .page-header h6 {
+[data-layout-mode=dark_mode] .page-header h4, 
+[data-layout-mode=dark_mode] .page-header h6 {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .form-control {
@@ -11781,10 +11804,12 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .fc-day {
   background-color: #212529 !important;
 }
-[data-layout-mode=dark_mode] .chat-cont-left .chat-scroll .media .media-body .user-name, [data-layout-mode=dark_mode] .chat-cont-left .chat-scroll .media .media-body .user-last-chat {
+[data-layout-mode=dark_mode] .chat-cont-left .chat-scroll .media .media-body .user-name, 
+[data-layout-mode=dark_mode] .chat-cont-left .chat-scroll .media .media-body .user-last-chat {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .chat-cont-left .chat-scroll .media.active, [data-layout-mode=dark_mode] .chat-cont-left .chat-scroll .media:hover {
+[data-layout-mode=dark_mode] .chat-cont-left .chat-scroll .media.active, 
+[data-layout-mode=dark_mode] .chat-cont-left .chat-scroll .media:hover {
   background: #1B2850;
 }
 [data-layout-mode=dark_mode] .chat-cont-right ul.list-unstyled .media.sent .media-body .msg-box p {
@@ -11812,7 +11837,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li > a span {
   color: #adb5bd;
 }
-[data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li > a img, [data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li > a svg {
+[data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li > a img, 
+[data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li > a svg {
   filter: brightness(0) saturate(100%) invert(65%) sepia(27%) saturate(206%) hue- rotate(165deg) brightness(93%) contrast(88%);
 }
 [data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li.submenu ul {
@@ -11821,7 +11847,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li.submenu ul li a {
   color: #adb5bd;
 }
-[data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li.submenu ul li img, [data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li.submenu ul li svg {
+[data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li.submenu ul li img, 
+[data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li.submenu ul li svg {
   filter: brightness(0) saturate(100%) invert(65%) sepia(27%) saturate(206%) hue-rotate(165deg) brightness(93%) contrast(88%) !important;
 }
 [data-layout-mode=dark_mode] .horizontal-sidebar .sidebar-menu > ul > li.submenu ul li > ul {
@@ -11901,10 +11928,12 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .searchinputs input::placeholder {
   color: #adb5bd;
 }
-[data-layout-mode=dark_mode] .image-upload-new .productviewscontent .productviewsname h2, [data-layout-mode=dark_mode] .image-upload-new .productviewscontent .productviewsname h3 {
+[data-layout-mode=dark_mode] .image-upload-new .productviewscontent .productviewsname h2, 
+[data-layout-mode=dark_mode] .image-upload-new .productviewscontent .productviewsname h3 {
   color: #adb5bd;
 }
-[data-layout-mode=dark_mode] .split-card::before, [data-layout-mode=dark_mode] .split-card::after {
+[data-layout-mode=dark_mode] .split-card::before, 
+[data-layout-mode=dark_mode] .split-card::after {
   background: #353570;
 }
 [data-layout-mode=dark_mode] input[type=email] {
@@ -11981,7 +12010,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
   background: #141432;
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .order-list .orderid h4, [data-layout-mode=dark_mode] .order-list .orderid h5 {
+[data-layout-mode=dark_mode] .order-list .orderid h4, 
+[data-layout-mode=dark_mode] .order-list .orderid h5 {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .productimg .productcontet h4 {
@@ -12032,7 +12062,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .user-menu.nav.nav > li > a.dropdown-toggle.nav-link.show {
   background: #212529;
 }
-[data-layout-mode=dark_mode] .profilename .profileset h5, [data-layout-mode=dark_mode] .profilename .profileset h6 {
+[data-layout-mode=dark_mode] .profilename .profileset h5, 
+[data-layout-mode=dark_mode] .profilename .profileset h6 {
   color: #adb5bd;
 }
 [data-layout-mode=dark_mode] .header .menu-drop-user .dropdown-item {
@@ -12084,16 +12115,22 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .search-set .search-input input[type=search]::placeholder {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .input-blocks input[type=text], [data-layout-mode=dark_mode] .input-blocks input[type=password],
+[data-layout-mode=dark_mode] .input-blocks input[type=text], 
+[data-layout-mode=dark_mode] .input-blocks input[type=password],
 [data-layout-mode=dark_mode] .select2-container--default .select2-selection--single,
-[data-layout-mode=dark_mode] .select2-container--focus .select2-selection--single, [data-layout-mode=dark_mode] .form-control, [data-layout-mode=dark_mode] .form-select,
+[data-layout-mode=dark_mode] .select2-container--focus .select2-selection--single, 
+[data-layout-mode=dark_mode] .form-control, 
+[data-layout-mode=dark_mode] .form-select,
 [data-layout-mode=dark_mode] .select2-container--default .select2-selection--multiple {
   background: #1d1d42 !important;
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .input-blocks input[type=text]::placeholder, [data-layout-mode=dark_mode] .input-blocks input[type=password]::placeholder,
+[data-layout-mode=dark_mode] .input-blocks input[type=text]::placeholder, 
+[data-layout-mode=dark_mode] .input-blocks input[type=password]::placeholder,
 [data-layout-mode=dark_mode] .select2-container--default .select2-selection--single::placeholder,
-[data-layout-mode=dark_mode] .select2-container--focus .select2-selection--single::placeholder, [data-layout-mode=dark_mode] .form-control::placeholder, [data-layout-mode=dark_mode] .form-select::placeholder,
+[data-layout-mode=dark_mode] .select2-container--focus .select2-selection--single::placeholder, 
+[data-layout-mode=dark_mode] .form-control::placeholder, 
+[data-layout-mode=dark_mode] .form-select::placeholder,
 [data-layout-mode=dark_mode] .select2-container--default .select2-selection--multiple::placeholder {
   color: #97A2D2;
 }
@@ -12167,7 +12204,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .breadcrumb .breadcrumb-item a {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .product-list ul li .productviews .productviewscontent .productviewsname h2, [data-layout-mode=dark_mode] .product-list ul li .productviews .productviewscontent .productviewsname h3 {
+[data-layout-mode=dark_mode] .product-list ul li .productviews .productviewscontent .productviewsname h2, 
+[data-layout-mode=dark_mode] .product-list ul li .productviews .productviewscontent .productviewsname h3 {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
@@ -12185,7 +12223,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .alertify .ajs-footer .ajs-buttons .ajs-button {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .bs-popover-auto[data-popper-placement^=top] > .popover-arrow::after, [data-layout-mode=dark_mode] .bs-popover-top > .popover-arrow::after {
+[data-layout-mode=dark_mode] .bs-popover-auto[data-popper-placement^=top] > .popover-arrow::after, 
+[data-layout-mode=dark_mode] .bs-popover-top > .popover-arrow::after {
   border-top-color: #353570;
 }
 [data-layout-mode=dark_mode] .popover {
@@ -12249,7 +12288,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .sidebar.side-three.horizontal-sidebar .sidebar-menu > ul > li > a span {
   color: #adb5bd !important;
 }
-[data-layout-mode=dark_mode] .sidebar.side-three.horizontal-sidebar .sidebar-menu > ul > li > a img, [data-layout-mode=dark_mode] .sidebar.side-three.horizontal-sidebar .sidebar-menu > ul > li > a svg {
+[data-layout-mode=dark_mode] .sidebar.side-three.horizontal-sidebar .sidebar-menu > ul > li > a img, 
+[data-layout-mode=dark_mode] .sidebar.side-three.horizontal-sidebar .sidebar-menu > ul > li > a svg {
   filter: brightness(0) saturate(100%) invert(65%) sepia(27%) saturate(206%) hue-rotate(165deg) brightness(93%) contrast(88%);
 }
 [data-layout-mode=dark_mode] .cardhead .card-header {
@@ -12282,7 +12322,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .login-logo.logo-white {
   display: block !important;
 }
-[data-layout-mode=dark_mode] .login-wrapper .login-content .login-userheading h3, [data-layout-mode=dark_mode] .login-wrapper .login-content .login-userheading h4 {
+[data-layout-mode=dark_mode] .login-wrapper .login-content .login-userheading h3, 
+[data-layout-mode=dark_mode] .login-wrapper .login-content .login-userheading h4 {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .login-wrapper .login-content .form-login label {
@@ -12321,13 +12362,15 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .table-top-head li a:hover {
   background: #1B2850;
 }
-[data-layout-mode=dark_mode] .sales-cards .card h3, [data-layout-mode=dark_mode] .sales-cards .card p {
+[data-layout-mode=dark_mode] .sales-cards .card h3, 
+[data-layout-mode=dark_mode] .sales-cards .card p {
   color: #97A2D2 !important;
 }
 [data-layout-mode=dark_mode] .main-chat-blk .all-chats {
   background: #092C4C;
 }
-[data-layout-mode=dark_mode] .main-chat-blk .chat-member-details .member-details ul li span, [data-layout-mode=dark_mode] .main-chat-blk .chat-member-details .member-details ul li h5 {
+[data-layout-mode=dark_mode] .main-chat-blk .chat-member-details .member-details ul li span, 
+[data-layout-mode=dark_mode] .main-chat-blk .chat-member-details .member-details ul li h5 {
   color: #67748E;
 }
 [data-layout-mode=dark_mode] .main-chat-blk .right-sidebar .right-sidebar-wrap {
@@ -12362,7 +12405,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .main-chat-blk .sidebar .user-list li a {
   border-color: #67748E;
 }
-[data-layout-mode=dark_mode] .main-chat-blk .sidebar .user-list li .users-list-body h5, [data-layout-mode=dark_mode] .main-chat-blk .sidebar .user-list li .users-list-body p {
+[data-layout-mode=dark_mode] .main-chat-blk .sidebar .user-list li .users-list-body h5, 
+[data-layout-mode=dark_mode] .main-chat-blk .sidebar .user-list li .users-list-body p {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .main-chat-blk .sidebar .user-list li .users-list-body .last-chat-time .text-muted {
@@ -12375,7 +12419,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
   background: #141432;
   box-shadow: none;
 }
-[data-layout-mode=dark_mode] .main-chat-blk .chat .chat-header .user-details h5, [data-layout-mode=dark_mode] .main-chat-blk .chat .chat-header .user-details small {
+[data-layout-mode=dark_mode] .main-chat-blk .chat .chat-header .user-details h5, 
+[data-layout-mode=dark_mode] .main-chat-blk .chat .chat-header .user-details small {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .main-chat-blk .chat .chat-header li a i {
@@ -12387,10 +12432,12 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .main-chat-blk .main-wrapper .content .sidebar-group .sidebar {
   border-right-color: #67748E;
 }
-[data-layout-mode=dark_mode] .part-name.sub-part-name, [data-layout-mode=dark_mode] .recession-meet-blk .partispant-blk span a {
+[data-layout-mode=dark_mode] .part-name.sub-part-name, 
+[data-layout-mode=dark_mode] .recession-meet-blk .partispant-blk span a {
   background: #092C4C;
 }
-[data-layout-mode=dark_mode] .part-name.sub-part-name h4, [data-layout-mode=dark_mode] .recession-meet-blk .partispant-blk span a h4 {
+[data-layout-mode=dark_mode] .part-name.sub-part-name h4, 
+[data-layout-mode=dark_mode] .recession-meet-blk .partispant-blk span a h4 {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .more-icon a {
@@ -12399,7 +12446,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .recession-meet-blk .reccession-head h5 {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .welcome button, [data-layout-mode=dark_mode] .welcome a {
+[data-layout-mode=dark_mode] .welcome button, 
+[data-layout-mode=dark_mode] .welcome a {
   border-color: #353570;
   color: #97A2D2;
 }
@@ -12587,10 +12635,12 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .modal-body-table {
   background: #212529;
 }
-[data-layout-mode=dark_mode] span.customer-toggle, [data-layout-mode=dark_mode] .status-label {
+[data-layout-mode=dark_mode] span.customer-toggle, 
+[data-layout-mode=dark_mode] .status-label {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .layout-drop-item .drop-item-head h5, [data-layout-mode=dark_mode] p {
+[data-layout-mode=dark_mode] .layout-drop-item .drop-item-head h5, 
+[data-layout-mode=dark_mode] p {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .total-employees {
@@ -12624,36 +12674,66 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .product-wrap .product-list .action a {
   border-color: #353570;
 }
-[data-layout-mode=dark_mode] .pos-categories, [data-layout-mode=dark_mode] aside, [data-layout-mode=dark_mode] .pos-products .product-info .img-bg {
+[data-layout-mode=dark_mode] .pos-categories, 
+[data-layout-mode=dark_mode] aside, 
+[data-layout-mode=dark_mode] .pos-products .product-info .img-bg {
   background: #141432;
 }
-[data-layout-mode=dark_mode] aside.product-order-list .order-total, [data-layout-mode=dark_mode] aside.product-order-list .order-total table {
+[data-layout-mode=dark_mode] aside.product-order-list .order-total, 
+[data-layout-mode=dark_mode] aside.product-order-list .order-total table {
   background: #212529;
 }
 [data-layout-mode=dark_mode] .product-wrap .product-list {
   box-shadow: none;
   background: #212529;
 }
-[data-layout-mode=dark_mode] .pos-categories h5, [data-layout-mode=dark_mode] .pos-categories h6, [data-layout-mode=dark_mode] .order-list h5, [data-layout-mode=dark_mode] .order-list h6, [data-layout-mode=dark_mode] .pos-products .product-info h6.product-name a, [data-layout-mode=dark_mode] .product-wrap .product-list .qty-item .dec, [data-layout-mode=dark_mode] .product-wrap .product-list .qty-item .inc, [data-layout-mode=dark_mode] aside.product-order-list .payment-method .methods .default-cover a span, [data-layout-mode=dark_mode] .product-wrap .product-list .info h6 a, [data-layout-mode=dark_mode] .file-manager aside h5, [data-layout-mode=dark_mode] .file-manager aside ul li a, [data-layout-mode=dark_mode] .file-manager h4, [data-layout-mode=dark_mode] .file-manager h6 a, [data-layout-mode=dark_mode] .file-manager .accordion .accordion-item .accordion-button::after, [data-layout-mode=dark_mode] .fc-toolbar h2, [data-layout-mode=dark_mode] .file-manager, [data-layout-mode=dark_mode] .file-manager .card, [data-layout-mode=dark_mode] .search-dropdown .search-info h6, [data-layout-mode=dark_mode] .search-dropdown .search-info h6 svg, [data-layout-mode=dark_mode] .search-set .search-input .btn-searchset .feather-search {
+[data-layout-mode=dark_mode] .pos-categories h5, 
+[data-layout-mode=dark_mode] .pos-categories h6, 
+[data-layout-mode=dark_mode] .order-list h5, 
+[data-layout-mode=dark_mode] .order-list h6, 
+[data-layout-mode=dark_mode] .pos-products .product-info h6.product-name a, 
+[data-layout-mode=dark_mode] .product-wrap .product-list .qty-item .dec, 
+[data-layout-mode=dark_mode] .product-wrap .product-list .qty-item .inc, 
+[data-layout-mode=dark_mode] aside.product-order-list .payment-method .methods .default-cover a span, 
+[data-layout-mode=dark_mode] .product-wrap .product-list .info h6 a, 
+[data-layout-mode=dark_mode] .file-manager aside h5, 
+[data-layout-mode=dark_mode] .file-manager aside ul li a, 
+[data-layout-mode=dark_mode] .file-manager h4, 
+[data-layout-mode=dark_mode] .file-manager h6 a, 
+[data-layout-mode=dark_mode] .file-manager .accordion .accordion-item .accordion-button::after, 
+[data-layout-mode=dark_mode] .fc-toolbar h2, 
+[data-layout-mode=dark_mode] .file-manager, 
+[data-layout-mode=dark_mode] .file-manager .card, 
+[data-layout-mode=dark_mode] .search-dropdown .search-info h6, 
+[data-layout-mode=dark_mode] .search-dropdown .search-info h6 svg, 
+[data-layout-mode=dark_mode] .search-set .search-input .btn-searchset .feather-search {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .file-manager aside .dropdown > a .feather-16, [data-layout-mode=dark_mode] .file-manager aside ul li a .feather-16, [data-layout-mode=dark_mode] .file-manager .project-plan ul li, [data-layout-mode=dark_mode] .file-manager .project-plan label, [data-layout-mode=dark_mode] .file-manager .page-header .btn-added .feather-16 {
+[data-layout-mode=dark_mode] .file-manager aside .dropdown > a .feather-16, 
+[data-layout-mode=dark_mode] .file-manager aside ul li a .feather-16, 
+[data-layout-mode=dark_mode] .file-manager .project-plan ul li, 
+[data-layout-mode=dark_mode] .file-manager .project-plan label, 
+[data-layout-mode=dark_mode] .file-manager .page-header .btn-added .feather-16 {
   color: #ffffff;
 }
-[data-layout-mode=dark_mode] aside.product-order-list .head, [data-layout-mode=dark_mode] .file-manager .info, [data-layout-mode=dark_mode] .file-manager .folders {
+[data-layout-mode=dark_mode] aside.product-order-list .head, 
+[data-layout-mode=dark_mode] .file-manager .info, 
+[data-layout-mode=dark_mode] .file-manager .folders {
   background: #212529;
 }
 [data-layout-mode=dark_mode] .file-manager .folders {
   border-color: #353570;
   background: #1d1d42;
 }
-[data-layout-mode=dark_mode] .file-manager .folders, [data-layout-mode=dark_mode] .file-manager .info {
+[data-layout-mode=dark_mode] .file-manager .folders, 
+[data-layout-mode=dark_mode] .file-manager .info {
   box-shadow: none;
 }
 [data-layout-mode=dark_mode] aside.product-order-list .payment-method .methods .default-cover img {
   filter: invert(75%) sepia(66%) saturate(1955%) hue-rotate(327deg) brightness(103%) contrast(102%);
 }
-[data-layout-mode=dark_mode] .page-wrapper .content.settings-content, [data-layout-mode=dark_mode] .sidebars {
+[data-layout-mode=dark_mode] .page-wrapper .content.settings-content, 
+[data-layout-mode=dark_mode] .sidebars {
   background: #141432;
 }
 [data-layout-mode=dark_mode] .sidebars.settings-sidebar .sidebar-menu .submenu-open ul .submenu a span {
@@ -12682,10 +12762,12 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
   background: #092C4C;
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .header-left #toggle_btn svg, [data-layout-mode=dark_mode] .btn-row .btn svg {
+[data-layout-mode=dark_mode] .header-left #toggle_btn svg, 
+[data-layout-mode=dark_mode] .btn-row .btn svg {
   color: #ffffff;
 }
-[data-layout-mode=dark_mode] .table.profit-table thead, [data-layout-mode=dark_mode] .table.profit-table tbody .profit-table-bg td {
+[data-layout-mode=dark_mode] .table.profit-table thead, 
+[data-layout-mode=dark_mode] .table.profit-table tbody .profit-table-bg td {
   background: #092C4C;
   color: #97A2D2;
 }
@@ -12707,7 +12789,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .login-wrapper .login-content .login-logo {
   display: none;
 }
-[data-layout-mode=dark_mode] .pos-modal .modal-header, [data-layout-mode=dark_mode] .pos-modal#hold-order h2 {
+[data-layout-mode=dark_mode] .pos-modal .modal-header, 
+[data-layout-mode=dark_mode] .pos-modal#hold-order h2 {
   background: #141432;
   color: #97A2D2;
 }
@@ -12737,7 +12820,9 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] aside.product-order-list .head h5 {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] #print-receipt .modal-body .tax-invoice span, [data-layout-mode=dark_mode] #print-receipt .modal-body table thead th, [data-layout-mode=dark_mode] #print-receipt .modal-body table tbody tr table tr:last-child td {
+[data-layout-mode=dark_mode] #print-receipt .modal-body .tax-invoice span, 
+[data-layout-mode=dark_mode] #print-receipt .modal-body table thead th, 
+[data-layout-mode=dark_mode] #print-receipt .modal-body table tbody tr table tr:last-child td {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] aside.product-order-list .order-total table tr td {
@@ -12764,7 +12849,8 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .card .card-body .payslip-month .month-of-slip h4 {
   color: #97A2D2;
 }
-[data-layout-mode=dark_mode] .paysilp-table-border th, [data-layout-mode=dark_mode] .payslip-border-bottom th {
+[data-layout-mode=dark_mode] .paysilp-table-border th, 
+[data-layout-mode=dark_mode] .payslip-border-bottom th {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .card .card-body .emp-details .emp-name-id h6 {
@@ -12785,7 +12871,9 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .card .card-body .emp-details {
   background: #141432;
 }
-[data-layout-mode=dark_mode] .connected-app-card ul li .security-title h5, [data-layout-mode=dark_mode] .appearance-settings h6, [data-layout-mode=dark_mode] .logo-company li .logo-info h6 {
+[data-layout-mode=dark_mode] .connected-app-card ul li .security-title h5, 
+[data-layout-mode=dark_mode] .appearance-settings h6, 
+[data-layout-mode=dark_mode] .logo-company li .logo-info h6 {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .localization-info .setting-info h6 {
@@ -12802,10 +12890,12 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .custom-alert-icon {
   background: #212529 !important;
 }
-[data-layout-mode=dark_mode] .accordion-button, [data-layout-mode=dark_mode] .accordion .accordion-button.collapsed {
+[data-layout-mode=dark_mode] .accordion-button, 
+[data-layout-mode=dark_mode] .accordion .accordion-button.collapsed {
   background: transparent !important;
 }
-[data-layout-mode=dark_mode] .accordion-button::after, [data-layout-mode=dark_mode] .accordion .accordion-button.collapsed::after {
+[data-layout-mode=dark_mode] .accordion-button::after, 
+[data-layout-mode=dark_mode] .accordion .accordion-button.collapsed::after {
   background: #212529;
 }
 [data-layout-mode=dark_mode] .accordion-body {
@@ -13098,11 +13188,13 @@ th .checkboxs .checkmarks::after, td .checkboxs .checkmarks::after {
 [data-layout-mode=dark_mode] .table.table-primary tr th {
   background-color: #1d1d42;
 }
-[data-layout-mode=dark_mode] .pos-category .owl-nav button.owl-next, [data-layout-mode=dark_mode] .pos-category .owl-nav button.owl-prev {
+[data-layout-mode=dark_mode] .pos-category .owl-nav button.owl-next, 
+[data-layout-mode=dark_mode] .pos-category .owl-nav button.owl-prev {
   background-color: #1d1d42;
   border: 1px solid #353570;
 }
-[data-layout-mode=dark_mode] .pos-category .owl-nav button.owl-next i, [data-layout-mode=dark_mode] .pos-category .owl-nav button.owl-prev i {
+[data-layout-mode=dark_mode] .pos-category .owl-nav button.owl-next i, 
+[data-layout-mode=dark_mode] .pos-category .owl-nav button.owl-prev i {
   color: #97A2D2;
 }
 [data-layout-mode=dark_mode] .select2-container--default.select2-container--focus .select2-selection--multiple {

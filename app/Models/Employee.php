@@ -11,7 +11,9 @@ class Employee extends Model
 
     protected $fillable = [
         'account_id',
+        'emp_id',
         'experience',
+        'designation',
         'salary',
         'leave',
         'hired_date',
@@ -20,7 +22,7 @@ class Employee extends Model
         'status',
     ];
 
-    public function employee() {
-        return $this->belongsTo(Employee::class);
+    public function account() {
+        return $this->belongsTo(Account::class);
     }
 }

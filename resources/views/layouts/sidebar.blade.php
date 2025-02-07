@@ -300,7 +300,7 @@
                     <h6 class="submenu-hdr">HRM</h6>
                     <ul>
                         <li class="">
-                            <a href="https://dreamspos.dreamstechnologies.com/laravel/template/public/employees-grid">
+                            <a href="{{ route('admin.employee.list') }}">
                                 <i data-feather="user"></i>
                                 <span>Employees</span>
                             </a>

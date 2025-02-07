@@ -7,6 +7,7 @@ use App\Contracts\StockContract;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class StockController extends Controller
@@ -92,6 +93,8 @@ class StockController extends Controller
     {
         try {
             
+            DB::beginTransaction();
+            
             $userId = Auth::id();
             $stockData = $request->validate([
                 'supplier_id' => 'required|exists:entities,id',
@@ -130,11 +133,15 @@ class StockController extends Controller
                 $this->stockContract->updateOrCreateStock($stockEntry);
             }
 
+            DB::commit();
+            
             return response()->json([
                 'success' => true, 
             ]);
-            
+
         } catch (Exception $e) {
+            
+            DB::rollBack();
 
             Log::error('Error in addStock: ' . $e->getMessage());
 
