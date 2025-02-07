@@ -13,6 +13,7 @@ class Employee extends Model
         'account_id',
         'emp_id',
         'experience',
+        'designation',
         'salary',
         'leave',
         'hired_date',

@@ -259,7 +259,7 @@ class EmployeeController extends Controller
             $employeeData['id'] = $request->employee_id;
             
             $this->employeeContract->updateOrCreateEmployee($employeeData);
-
+            
             DB::commit();
 
             return response()->json([
